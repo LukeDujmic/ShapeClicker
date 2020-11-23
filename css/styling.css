@@ -1,0 +1,289 @@
+@font-face {
+    font-family: 'Texturina', serif;
+    src: url('../fonts/Texturina.ttf') format('truetype');
+}
+body{
+    font-family: 'Texturina', serif;
+}
+#enemyArea
+{
+    height: 40em;
+    border: black solid 0.5em;
+}
+#enemy
+{
+    background-color: green;
+    height: 15em;
+    width: 15em;
+    top: 50%;
+    left: 50%;
+    position: relative;
+    transform: translate(-50%, -50%) scale(1);
+    transition: 0.1s;
+}
+#enemy:active
+{
+    background-color: red;
+    height: 15em;
+    width: 15em;
+    transform: translate(-50%, -55%) skewY(1deg) skewX(-10deg) translateX(20px) scale(1);
+    transition: 0.05s;
+}
+#boss
+{
+    transform: translate(-50%, -50%) scale(1.2);
+}
+.killed
+{
+    opacity: 0;
+    transition: 0.2s;
+}
+p
+{
+    margin: 0.1em;
+}
+
+/* Heroes styling */
+#heroesArea
+{
+    border: solid black 0.4em;
+    margin: 5px auto;
+    display: flex;
+    text-align: center;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.heroBox
+{
+    width: 20em;
+    border: solid black 0.3em;
+    border-radius: 0.1em;
+    margin: 0.1%;
+}
+.heroSpriteBox
+{
+    width: 20em;
+    height: 5em;
+    box-sizing: border-box;
+}
+.heroes
+{
+    width: 2em;
+    height: 2em;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    position: relative;
+    transition: 0.1s;
+    transition-timing-function: ease-in;
+}
+#hero1Sprite
+{
+    background-color: blue;
+}
+#hero2Sprite
+{
+    background-color: rgb(255, 153, 0);
+    border-radius: 50%;
+}
+#hero3Sprite
+{
+    background-color: rgb(255, 0, 0);
+    border-radius: 25%;
+}
+/* hero 4 */
+#hero4Sprite
+{
+    top: 30%;
+    left: 50%;
+}
+.star {
+position: relative;
+
+display: block;
+width: 0;
+height: 0;
+
+margin-left: 0em;
+margin-right: 0em;
+margin-bottom: 0em;
+
+border-right:  .3em solid transparent;
+border-bottom: .7em  solid rgb(132, 0, 255);
+border-left:   .3em solid transparent;
+
+/* Controlls the size of the stars. */
+font-size: 24px;
+
+
+}
+.star:before, .star:after {
+content: '';
+
+display: block;
+width: 0;
+height: 0;
+
+position: absolute;
+top: 0.6em;
+left: -1em;
+
+border-right:  1em solid transparent;
+border-bottom: .7em  solid rgb(132, 0, 255);
+border-left:   1em solid transparent;
+
+transform: rotate(-35deg);
+}
+
+.star:after {  
+transform: rotate(35deg);
+}
+/* hero 5 */
+#hero5Sprite
+{
+    top: 50%;
+    left: 50%;
+}
+.hexagon {
+position: relative;
+width: 35px; 
+height: 17.5px;
+background-color: rgb(0, 145, 0);
+}
+
+.hexagon:before,
+.hexagon:after {
+content: "";
+position: absolute;
+width: 0;
+border-left: 17.5px solid transparent;
+border-right: 17.5px solid transparent;
+left: 0;
+}
+
+.hexagon:before {
+bottom: 100%;
+border-bottom: 10px solid rgb(0, 145, 0);
+}
+
+.hexagon:after {
+top: 100%;
+width: 0;
+border-top: 10px solid rgb(0, 145, 0);
+}
+
+#hero6Sprite
+{
+    top: 50%;
+    left: 50%;
+    width: 1em;
+    height: 2.5em;
+    border-radius: 50em;
+    background-color: yellow;
+    border: 0.1em rgb(255, 199, 114) solid;
+}
+
+
+.attacking1
+{
+    top: 30%;
+    transition: 0.1s;
+    transition-timing-function: ease-in;
+    box-shadow: rgb(0, 143, 153) 0px 0px 6px 5px;
+}
+.attacking2
+{
+    top: 60%;
+    transition: 0.1s;
+    transition-timing-function: ease-out;
+    box-shadow: rgb(0, 0, 0) 0px -2.5em 0px -10px;
+}
+.attacking3
+{
+    top: 35%;
+    transition: 0.1s;
+    transition-timing-function: ease-in;
+    height: 4em;
+    width: 1em;
+    box-shadow: rgb(255, 166, 0) 0px -15px 3px -3px;
+}
+.attacking4
+{
+    top: 65%;
+    transition: 0.1s;
+    transition-timing-function: ease-in;
+    box-shadow: rgb(215, 114, 255) 0px -30px 3px -4px;
+    transform: scale(1.15) translateX(-0.25em);
+}
+.attacking5
+{
+    transition: 0.1s;
+    transition-timing-function: ease-in;
+    box-shadow: rgb(98, 255, 106) 0px -10px 3px 0px;
+    transform: scale(1.1) translate(-1em, -1.25em);
+}
+.attacking6
+{
+    transition: 0.1s;
+    transition-timing-function: ease-in;
+    box-shadow: rgb(245, 255, 110) 0px 10px 3px 0px;
+    transform: scale(1.1) translate(-1em, -3em) rotate(180deg);
+}
+
+/* top UI */
+#stageStats
+{
+    margin: 5px auto;
+    display: flex;
+    text-align: center;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+#stageStats > div
+{
+    box-sizing: border-box;
+    width: 33%;
+    border: solid black 0.3em;
+    border-radius: 0.1em;
+    margin: 0.1%;
+    font-size: 2em;
+}
+#healthStat
+{
+    box-sizing: border-box;
+    width: 99.1%;
+    border: solid rgb(255, 0, 55) 0.1em;
+    color: rgb(255, 0, 55);
+    text-shadow: black 0.04em 0em, black -0.04em 0em, black 0em 0.04em, black 0em -0.04em;
+    border-radius: 0.1em;
+    margin: 0.4%;
+    font-size: 2em;
+    padding: 0.1em;
+    background: url(../images/healthMeter.png);
+    background-size: 25% 100%;
+    background-repeat: no-repeat;
+    transform: skewX(-10deg);
+}
+#goldStat
+{
+    box-sizing: border-box;
+    width: 25%;
+    border: solid rgb(255, 187, 0) 0.1em;
+    color:rgb(255, 187, 0);
+    text-shadow: black 0.04em 0em, black -0.04em 0em, black 0em 0.04em, black 0em -0.04em;
+    border-radius: 0.1em;
+    margin: 0.1%;
+    font-size: 2em;
+    padding: 0.1em;
+}
+
+/* click UI */
+#playerStats > div
+{
+    box-sizing: border-box;
+    width: 33%;
+    border: solid black 0.3em;
+    border-radius: 0.1em;
+    margin: 0.1%;
+    font-size: 2em;
+}

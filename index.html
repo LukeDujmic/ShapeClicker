@@ -1,0 +1,136 @@
+<html>
+    <head>
+        <title>Clicker Game</title>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" href="css/styling.css">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Texturina:wght@100&display=swap" rel="stylesheet">
+    </head>
+
+    <body>
+        <div id="stageStats">
+            <div>Stage: <a id="stage"></a></div>
+            <div>Progress: <a id="enemyNum"></a></div>
+            
+        </div>
+
+        <div id="enemyArea">
+            <div id="healthStat">HP: <a id="enemyHealth"></a></div>
+            <div id="goldStat">Gold: <a id="gold"></a></div>
+            <div id="enemy" class="boss"></div>
+        </div>
+        <div id="heroesArea">
+            <div id="hero1" class="heroBox">
+                <div class="heroSpriteBox">
+                    <div id="hero1Sprite" class="heroes"></div>
+                </div>
+                
+                <div>
+                    <button id="hero1Button"><a id="hero1Locked">Unlock</a> Hero 1 <p>(Cost: <a id="hCost1"></a>)</p></button>
+                    <button id="hero1Button2"><a id="hero1M1">Milestone (Lvl. 10)</a> <p>(Cost: <a id="hMCost1"></a>)</p></button>
+                </div>
+                <div class="heroStats">
+                    <div>Level: <a id="hero1Lvl"></a></div>
+                    <div>Damage: <a id="hero1Damage"></a></div>
+                </div>
+            </div>
+
+            <div id="hero2" class="heroBox">
+                <div class="heroSpriteBox">
+                    <div id="hero2Sprite" class="heroes"></div>
+                </div>
+                
+                <div>
+                    <button id="hero2Button"><a id="hero2Locked">Unlock</a> Hero 2 <p>(Cost: <a id="hCost2"></a>)</p></button>
+                </div>
+                <div class="heroStats">
+                    <div>Level: <a id="hero2Lvl"></a></div>
+                    <div>Damage: <a id="hero2Damage"></a></div>
+                </div>
+            </div>
+
+            <div id="hero3" class="heroBox">
+                <div class="heroSpriteBox">
+                    <div id="hero3Sprite" class="heroes"></div>
+                </div>
+                
+                <div>
+                    <button id="hero3Button"><a id="hero3Locked">Unlock</a> Hero 3 <p>(Cost: <a id="hCost3"></a>)</p></button>
+                </div>
+                <div class="heroStats">
+                    <div>Level: <a id="hero3Lvl"></a></div>
+                    <div>Damage: <a id="hero3Damage"></a></div>
+                </div>
+            </div>
+
+            <div id="hero4" class="heroBox">
+                <div class="heroSpriteBox">
+                    <div id="hero4Sprite" class="heroes star"></div>
+                </div>
+                
+                <div>
+                    <button id="hero4Button"><a id="hero4Locked">Unlock</a> Hero 4 <p>(Cost: <a id="hCost4"></a>)</p></button>
+                </div>
+                <div class="heroStats">
+                    <div>Level: <a id="hero4Lvl"></a></div>
+                    <div>Damage: <a id="hero4Damage"></a></div>
+                </div>
+            </div>
+
+            <div id="hero5" class="heroBox">
+                <div class="heroSpriteBox">
+                    <div id="hero5Sprite" class="heroes hexagon"></div>
+                </div>
+                
+                <div>
+                    <button id="hero5Button"><a id="hero5Locked">Unlock</a> Hero 5 <p>(Cost: <a id="hCost5"></a>)</p></button>
+                </div>
+                <div class="heroStats">
+                    <div>Level: <a id="hero5Lvl"></a></div>
+                    <div>Damage: <a id="hero5Damage"></a></div>
+                </div>
+            </div>
+
+            <div id="hero6" class="heroBox">
+                <div class="heroSpriteBox">
+                    <div id="hero6Sprite" class="heroes"></div>
+                </div>
+                
+                <div>
+                    <button id="hero6Button"><a id="hero6Locked">Unlock</a> Hero 6 <p>(Cost: <a id="hCost6"></a>)</p></button>
+                </div>
+                <div class="heroStats">
+                    <div>Level: <a id="hero6Lvl"></a></div>
+                    <div>Damage: <a id="hero6Damage"></a></div>
+                </div>
+            </div>
+        </div>
+        
+        
+
+        <div id="playerStats">
+
+            <button onclick="upgrade()">Upgrade Damage (Cost: <a id="cost"></a>)</button>
+            <div>Click Level: <a id="clickLevel"></a></div>
+            <div>Damage: <a id="damage"></a></div>
+            
+        </div>
+
+        <button onclick="multiUpgrade()">Multi-Upgrade</button>
+
+        <div id="admin">
+            <button onclick="goldSpawn()">Spawn Gold</button>
+            <button onclick="stageSelect()">Stage Select</button>
+        </div>
+
+
+        
+        
+
+
+        <script src="js/function.js"></script>
+    </body>
+</html>
