@@ -107,6 +107,20 @@
                     <div>Damage: <a id="hero6Damage"></a></div>
                 </div>
             </div>
+
+            <div id="hero7" class="heroBox">
+                <div class="heroSpriteBox">
+                    <div id="hero7Sprite" class="heroes"></div>
+                </div>
+                
+                <div>
+                    <button id="hero7Button"><a id="hero7Locked">Unlock</a> Hero 7 <p>(Cost: <a id="hCost7"></a>)</p></button>
+                </div>
+                <div class="heroStats">
+                    <div>Level: <a id="hero7Lvl"></a></div>
+                    <div>Damage: <a id="hero7Damage"></a></div>
+                </div>
+            </div>
         </div>
         
         
@@ -119,16 +133,25 @@
             
         </div>
 
+        <div id="abiltyArea">
+            <button id="ability1Button"> Use Shape Rage <p>(Cooldown: <a id="aCooldown1"></a>)</p> </button>
+            <div>Duration Left: <a id="aDuration1"></a></div>
+        </div>
+
+        <div id="abiltyBuyArea">
+            <button id="ability1"> <div id="ability1Locked">Unlock</div> Shape Rage <p>(Cost: <a id="aCost1"></a>)</p> </button>
+            <div>Level: <a id="aLvl1"></a></div>
+            <div>Hero Damage Multiplier: <a id="shapeRageMult"></a></div>
+            <div>Duration: <a id="aDurationBase1"></a></div>
+            <div>Cooldown: <a id="aCooldownBase1"></a></div>
+        </div>
+
         <button onclick="multiUpgrade()">Multi-Upgrade</button>
 
         <div id="admin">
             <button onclick="goldSpawn()">Spawn Gold</button>
             <button onclick="stageSelect()">Stage Select</button>
         </div>
-
-
-        
-        
 
 
         <script src="js/function.js"></script>
