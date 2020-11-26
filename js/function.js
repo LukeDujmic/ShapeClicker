@@ -9,27 +9,28 @@ var allDamageMult = 1;
 
 var damage = 5e0;
 //var heroDamage = [0, 10, 40, 4000, 17500, 250000];
-var heroLvl = [1000, 0, 0, 0, 0, 0, 0, 0];
-var hDmgMult = [0, 1, 1, 1, 1, 1, 1, 1];
-const heroNumber = [0, 1, 2, 3, 4, 5, 6, 7];
+var heroLvl = [1000, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+var hDmgMult = [0, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+const heroNumber = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-var heroAtk = [0, 'filler', 'filler', 'filler', 'filler', 'filler', 'filler', 'filler'];
+var heroAtk = [0, 'filler', 'filler', 'filler', 'filler', 'filler', 'filler', 'filler', 'filler', 'filler'];
 
-const hCostBase = [0, 2e1, 3e2, 3.5e3, 5e4, 7.5e5, 2.5e7, 1.25e9];
-var hCost = [0, 2e1, 3e2, 3.5e3, 5e4, 7.5e5, 2.5e7, 1.25e9];
-var heroAtkCooldown = [0, 2, 0.5, 5, 1.75, 2.5, 1.5, 6];
+const hCostBase = [0, 2e1, 3e2, 3.5e3, 5e4, 7.5e5, 2.5e7, 1.25e9, 1e11, 1.15e13];
+var hCost = [0, 2e1, 3e2, 3.5e3, 5e4, 7.5e5, 2.5e7, 1.25e9, 1e11, 1.15e13];
+var heroAtkCooldown = [0, 2, 0.5, 5, 1.75, 2.5, 1.5, 6, 1.25, 1];
 var heroBaseDamage = [0]
 var heroDamage = [0];
+
 var heroColorDmg = [0, 1, 1, 1, 1, 1, 1];
 // red, blue, yellow, orange, purple, green
 for (let i = 1; i < hCost.length; i++)
 {
     let z = 1;
-    z = (hCost[i] * z * heroAtkCooldown[i]) / 4 * ((1-23/1000*min(heroNumber[i], heroNumber.length))**min(heroNumber[i],heroNumber.length));
+    z = (hCost[i] * 5 * z * heroAtkCooldown[i]) / 4 * ((1-23/1000*min(heroNumber[i], heroNumber.length))**min(heroNumber[i],heroNumber.length));
     heroDamage.push(z);
     heroBaseDamage.push(z);
 }
-
+var allHeroDmg = 0;
 const aCostBase = [0, 1e3];
 var aCost = [0, 1e3];
 var aLvl = [0, 0];
@@ -44,6 +45,9 @@ var clickLevel = 1;
 
 var maxHealth = health;
 
+/*var ahd = setInterval(function(){
+    allHeroDmg =  heroDamage[1] + heroDamage[2] + heroDamage[3] + heroDamage[4] + heroDamage[5] + heroDamage[6] + heroDamage[7];
+}, 1)*/
 console.log(document.getElementById("healthStat").style.backgroundSize);
 
 document.getElementById("enemy").addEventListener('click', clickDamage);
@@ -277,6 +281,20 @@ function heroUnlockCheck()
         document.getElementById("hero7Button").addEventListener("click", buyHero7);
         document.getElementById("hCost7").innerHTML = convrt(hCost[7]);
     }
+    //hero 8 unlocks
+    if (stage > 0 && hero8Unlocked == false)
+    {
+        hero8Unlocked = true;
+        document.getElementById("hero8Button").addEventListener("click", buyHero8);
+        document.getElementById("hCost8").innerHTML = convrt(hCost[8]);
+    }
+    //hero 9 unlocks
+    if (stage > 0 && hero9Unlocked == false)
+    {
+        hero9Unlocked = true;
+        document.getElementById("hero9Button").addEventListener("click", buyHero9);
+        document.getElementById("hCost9").innerHTML = convrt(hCost[9]);
+    }
 }
 //Hero 1
 var hero1Unlocked = false;
@@ -304,7 +322,7 @@ function buyHero1()
     {
         hero1Bought = true;
         gold -= hCost[1];
-        hCost[1] += ((hCostBase[1]/10) * 1.06**(heroLvl[1]));
+        hCost[1] += ((hCostBase[1]/4) * 1.06**(heroLvl[1]));
         heroLvl[1]++;
         displayStats();
         heroAtk[1] = setInterval(heroAttack1, heroAtkCooldown[1]*1000);
@@ -334,7 +352,7 @@ function upgradeHero1()
     {
         gold -= hCost[1];
         heroDamage[1] = heroDamage[1] + (heroColorDmg[2] * heroDamageMult * hDmgMult[1] * (heroBaseDamage[1]/5) * 1.01**(heroLvl[1]));
-        hCost[1] += ((hCostBase[1]/10) * 1.06**(heroLvl[1]));
+        hCost[1] += ((hCostBase[1]/4) * 1.06**(heroLvl[1]));
         heroLvl[1]++;
         displayStats();
         heroLvlMult(1);
@@ -438,7 +456,7 @@ function buyHero2()
     {
         hero2Bought = true;
         gold -= hCost[2];
-        hCost[2] += ((hCostBase[2]/10) * 1.06**(heroLvl[2]));
+        hCost[2] += ((hCostBase[2]/4) * 1.06**(heroLvl[2]));
         heroLvl[2]++;
         displayStats();
         heroAtk[2] = setInterval(heroAttack2, heroAtkCooldown[2]*1000);
@@ -468,7 +486,7 @@ function upgradeHero2()
     {
         gold -= hCost[2];
         heroDamage[2] = heroDamage[2] + (heroColorDmg[4] * heroDamageMult * hDmgMult[2] * (heroBaseDamage[2]/5) * 1.01**(heroLvl[2]));
-        hCost[2] += ((hCostBase[2]/10) * 1.06**(heroLvl[2]));
+        hCost[2] += ((hCostBase[2]/4) * 1.06**(heroLvl[2]));
         heroLvl[2]++;
         displayStats();
         heroLvlMult(2);
@@ -488,7 +506,7 @@ function buyHero3()
     {
         hero3Bought = true;
         gold -= hCost[3];
-        hCost[3] += ((hCostBase[3]/10) * (1.06**(heroLvl[3])));
+        hCost[3] += ((hCostBase[3]/4) * (1.06**(heroLvl[3])));
         heroLvl[3]++;
         displayStats();
         heroAtk[3] = setInterval(heroAttack3, heroAtkCooldown[3]*1000);
@@ -518,7 +536,7 @@ function upgradeHero3()
     {
         gold -= hCost[3];
         heroDamage[3] = heroDamage[3] + (heroColorDmg[1] * heroDamageMult * hDmgMult[3] * (heroBaseDamage[3]/5) * (1.01**(heroLvl[3])));
-        hCost[3] += ((hCostBase[3]/10) * (1.06**(heroLvl[3])));
+        hCost[3] += ((hCostBase[3]/4) * (1.06**(heroLvl[3])));
         heroLvl[3]++;
         displayStats();
         heroLvlMult(3);
@@ -538,7 +556,7 @@ function buyHero4()
     {
         hero4Bought = true;
         gold -= hCost[4];
-        hCost[4] += ((hCostBase[4]/10) * (1.06**(heroLvl[4])));
+        hCost[4] += ((hCostBase[4]/4) * (1.06**(heroLvl[4])));
         heroLvl[4]++;
         displayStats();
         heroAtk[4] = setInterval(heroAttack4, heroAtkCooldown[4]*1000);
@@ -568,7 +586,7 @@ function upgradeHero4()
     {
         gold -= hCost[4];
         heroDamage[4] = heroDamage[4] + (heroColorDmg[5] * heroDamageMult * hDmgMult[4] * (heroBaseDamage[4]/5) * (1.01**(heroLvl[4])));
-        hCost[4] += ((hCostBase[4]/10) * (1.06**(heroLvl[4])));
+        hCost[4] += ((hCostBase[4]/4) * (1.06**(heroLvl[4])));
         heroLvl[4]++;
         displayStats();
         heroLvlMult(4);
@@ -589,7 +607,7 @@ function buyHero5()
     {
         hero5Bought = true;
         gold -= hCost[5];
-        hCost[5] += ((hCostBase[5]/10) * (1.06**(heroLvl[5])));
+        hCost[5] += ((hCostBase[5]/4) * (1.06**(heroLvl[5])));
         heroLvl[5]++;
         displayStats();
         heroAtk[5] = setInterval(heroAttack5, heroAtkCooldown[5]*1000);
@@ -619,7 +637,7 @@ function upgradeHero5()
     {
         gold -= hCost[5];
         heroDamage[5] = heroDamage[5] + (heroColorDmg[6] * heroDamageMult * hDmgMult[5] * (heroBaseDamage[5]/5) * (1.01**(heroLvl[5])));
-        hCost[5] += ((hCostBase[5]/10) * (1.06**(heroLvl[5]))); 
+        hCost[5] += ((hCostBase[5]/4) * (1.06**(heroLvl[5]))); 
         heroLvl[5]++;
         displayStats();
         heroLvlMult(5);
@@ -640,7 +658,7 @@ function buyHero6()
     {
         hero6Bought = true;
         gold -= hCost[6];
-        hCost[6] += ((hCostBase[6]/10) * (1.06**(heroLvl[6])));
+        hCost[6] += ((hCostBase[6]/4) * (1.06**(heroLvl[6])));
         heroLvl[6]++;
         displayStats();
         heroAtk[6] = setInterval(heroAttack6, heroAtkCooldown[6]*1000);
@@ -670,7 +688,7 @@ function upgradeHero6()
     {
         gold -= hCost[6];
         heroDamage[6] = heroDamage[6] + (heroColorDmg[3] * heroDamageMult * hDmgMult[6] * (heroBaseDamage[6]/5) * (1.01**(heroLvl[6])));
-        hCost[6] += ((hCostBase[6]/10) * (1.06**(heroLvl[6])));
+        hCost[6] += ((hCostBase[6]/4) * (1.06**(heroLvl[6])));
         heroLvl[6]++;
         displayStats();
         heroLvlMult(6);
@@ -690,7 +708,7 @@ function buyHero7()
     {
         hero7Bought = true;
         gold -= hCost[7];
-        hCost[7] += ((hCostBase[7]/10) * (1.06**(heroLvl[7])));
+        hCost[7] += ((hCostBase[7]/4) * (1.06**(heroLvl[7])));
         heroLvl[7]++;
         displayStats();
         heroAtk[7] = setInterval(heroAttack7, heroAtkCooldown[7]*1000);
@@ -719,14 +737,117 @@ function upgradeHero7()
     if (gold >= hCost[7])
     {
         gold -= hCost[7];
-        heroDamage[7] = heroDamage[7] + (heroColorDmg[4] *heroDamageMult * hDmgMult[7] * (heroBaseDamage[7]/5) * (1.01**(heroLvl[7])));
-        hCost[7] += ((hCostBase[7]/10) * (1.06**(heroLvl[7])));
+        heroDamage[7] = heroDamage[7] + (heroColorDmg[4] * heroDamageMult * hDmgMult[7] * (heroBaseDamage[7]/5) * (1.01**(heroLvl[7])));
+        hCost[7] += ((hCostBase[7]/4) * (1.06**(heroLvl[7])));
         heroLvl[7]++;
         displayStats();
         heroLvlMult(7);
 
     }
 }
+
+//Hero 8
+var hero8Unlocked = false;
+var hero8Bought = false;
+hDmgMult[8] = 1;
+
+heroDamage[8] = heroDamage[8] * heroDamageMult * hDmgMult[8] * heroColorDmg[5];
+
+function buyHero8()
+{
+    if (gold >= hCost[8])
+    {
+        hero8Bought = true;
+        gold -= hCost[8];
+        hCost[8] += ((hCostBase[8]/4) * (1.06**(heroLvl[8])));
+        heroLvl[8]++;
+        displayStats();
+        heroAtk[8] = setInterval(heroAttack8, heroAtkCooldown[8]*1000);
+        console.log("hero 8 unlocked");
+        document.getElementById("hero8Button").removeEventListener("click", buyHero8);
+        document.getElementById("hero8Locked").innerHTML = "Upgrade"
+        document.getElementById("hero8Button").addEventListener("click", upgradeHero8);
+    }
+
+    
+}
+function heroAttack8()
+{
+    health = (health - (heroDamage[8]));
+    displayStats();
+    if (health <= 0)
+    {
+        health = 0;
+    }
+    setTimeout(function(){document.getElementById("hero8Sprite").classList.add("attacking8");}, 0);
+    setTimeout(function(){document.getElementById("hero8Sprite").classList.remove("attacking8");}, 150);
+    setTimeout(dealDamage, 100);
+}
+function upgradeHero8()
+{
+    if (gold >= hCost[8])
+    {
+        gold -= hCost[8];
+        heroDamage[8] = heroDamage[8] + (heroColorDmg[5] * heroDamageMult * hDmgMult[8] * (heroBaseDamage[8]/5) * (1.01**(heroLvl[8])));
+        hCost[8] += ((hCostBase[8]/4) * (1.06**(heroLvl[8])));
+        heroLvl[8]++;
+        displayStats();
+        heroLvlMult(8);
+
+    }
+}
+
+//Hero 8
+var hero9Unlocked = false;
+var hero9Bought = false;
+hDmgMult[9] = 1;
+
+heroDamage[9] = heroDamage[9] * heroDamageMult * hDmgMult[9] * heroColorDmg[1];
+
+function buyHero9()
+{
+    if (gold >= hCost[9])
+    {
+        hero9Bought = true;
+        gold -= hCost[9];
+        hCost[9] += ((hCostBase[9]/4) * (1.06**(heroLvl[9])));
+        heroLvl[9]++;
+        displayStats();
+        heroAtk[9] = setInterval(heroAttack9, heroAtkCooldown[9]*1000);
+        console.log("hero 9 unlocked");
+        document.getElementById("hero9Button").removeEventListener("click", buyHero9);
+        document.getElementById("hero9Locked").innerHTML = "Upgrade"
+        document.getElementById("hero9Button").addEventListener("click", upgradeHero9);
+    }
+
+    
+}
+function heroAttack9()
+{
+    health = (health - (heroDamage[9]));
+    displayStats();
+    if (health <= 0)
+    {
+        health = 0;
+    }
+    setTimeout(function(){document.getElementById("hero9Sprite").classList.add("attacking9");}, 0);
+    setTimeout(function(){document.getElementById("hero9Sprite").classList.remove("attacking9");}, 150);
+    setTimeout(dealDamage, 100);
+}
+function upgradeHero9()
+{
+    if (gold >= hCost[9])
+    {
+        gold -= hCost[9];
+        heroDamage[9] = heroDamage[9] + (heroColorDmg[1] * heroDamageMult * hDmgMult[9] * (heroBaseDamage[9]/5) * (1.01**(heroLvl[9])));
+        hCost[9] += ((hCostBase[9]/4) * (1.06**(heroLvl[9])));
+        heroLvl[9]++;
+        displayStats();
+        heroLvlMult(9);
+
+    }
+}
+
 //hero damage mini milestones (i.e. at lvl 25 for ANY hero their damage doubles)
 function heroLvlMult(i)
 {
@@ -941,7 +1062,7 @@ function upgrade()
     {
         gold -= clickUpCost;
         damage += (allDamageMult * clickDamageMult * 5 * (1.01**(clickLevel - 1)));
-        clickUpCost += (10 * (1.07**(clickLevel - 1)));
+        clickUpCost += (10 * (1.05**(clickLevel - 1)));
         clickLevel++;
         displayStats();
         if (clickLevel == 10)
@@ -1019,10 +1140,45 @@ function upgrade()
             damage *= 4;
             clickDamageMult *= 4;
         }
-        if (clickLevel == 320)
+        if (clickLevel == 325)
         {
             damage *= 2;
             clickDamageMult *= 2;
+        }
+        if (clickLevel == 350)
+        {
+            damage *= 2;
+            clickDamageMult *= 2;
+        }
+        if (clickLevel == 375)
+        {
+            damage *= 2;
+            clickDamageMult *= 2;
+        }
+        if (clickLevel == 400)
+        {
+            damage *= 4;
+            clickDamageMult *= 4;
+        }
+        if (clickLevel == 425)
+        {
+            damage *= 2;
+            clickDamageMult *= 2;
+        }
+        if (clickLevel == 450)
+        {
+            damage *= 2;
+            clickDamageMult *= 2;
+        }
+        if (clickLevel == 475)
+        {
+            damage *= 2;
+            clickDamageMult *= 2;
+        }
+        if (clickLevel == 500)
+        {
+            damage *= 5;
+            clickDamageMult *= 5;
         }
     }
 }
@@ -1101,6 +1257,14 @@ function useAbility1()
         {
             heroAtk[7] = setInterval(heroAttack7, heroAtkCooldown[7]*500);
         }
+        if (hero8Bought == true)
+        {
+            heroAtk[8] = setInterval(heroAttack8, heroAtkCooldown[8]*500);
+        }
+        if (hero9Bought == true)
+        {
+            heroAtk[9] = setInterval(heroAttack9, heroAtkCooldown[9]*500);
+        }
         
         var cooldown = setInterval(function(){
             aCooldown[1] -= 1;
@@ -1153,6 +1317,14 @@ function useAbility1()
                 if (hero7Bought == true)
                 {
                     heroAtk[7] = setInterval(heroAttack7, heroAtkCooldown[7]*1000);
+                }
+                if (hero8Bought == true)
+                {
+                    heroAtk[8] = setInterval(heroAttack8, heroAtkCooldown[8]*1000);
+                }
+                if (hero9Bought == true)
+                {
+                    heroAtk[9] = setInterval(heroAttack9, heroAtkCooldown[9]*1000);
                 }
                 console.log("shape rage ended");
             }
@@ -1220,6 +1392,8 @@ function displayStats()
         document.getElementById("hCost5").innerHTML = convrt(hCost[5]);
         document.getElementById("hCost6").innerHTML = convrt(hCost[6]);
         document.getElementById("hCost7").innerHTML = convrt(hCost[7]);
+        document.getElementById("hCost8").innerHTML = convrt(hCost[8]);
+        document.getElementById("hCost9").innerHTML = convrt(hCost[9]);
     }
     if (stage >= 10)
     {
@@ -1250,6 +1424,12 @@ function displayStats()
     document.getElementById("hero7Lvl").innerHTML = heroLvl[7];
     document.getElementById("hero7Damage").innerHTML = convrt(heroDamage[7]);
 
+    document.getElementById("hero8Lvl").innerHTML = heroLvl[8];
+    document.getElementById("hero8Damage").innerHTML = convrt(heroDamage[8]);
+
+    document.getElementById("hero9Lvl").innerHTML = heroLvl[9];
+    document.getElementById("hero9Damage").innerHTML = convrt(heroDamage[9]);
+
     /* Ability Stuff */
     document.getElementById("aLvl1").innerHTML = aLvl[1];
     document.getElementById("shapeRageMult").innerHTML = convrt(shapeRageMult);
@@ -1260,8 +1440,6 @@ function displayStats()
 
     /* Health Bar Stuff */
     document.getElementById("healthStat").style.backgroundSize = ((health/maxHealth) * 100)+"% 100%";
-
-    console.log("stats displayed");
 }
 
 function multiUpgrade()
@@ -1315,6 +1493,13 @@ function multiUpgrade()
         for (i = 0; i < t; i++)
         {
             upgradeHero7();
+        }
+    }
+    if (h == 8 && hero8Bought == true)
+    {
+        for (i = 0; i < t; i++)
+        {
+            upgradeHero8();
         }
     }
 }

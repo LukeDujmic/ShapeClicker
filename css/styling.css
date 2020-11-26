@@ -180,7 +180,7 @@ border-top: 10px solid rgb(0, 145, 0);
     height: 2.5em;
     border-radius: 50em;
     background-color: yellow;
-    border: 0.1em rgb(255, 199, 114) solid;
+    border: 0.075em rgb(170, 159, 95) solid;
 }
 
 #hero7Sprite
@@ -191,6 +191,31 @@ border-top: 10px solid rgb(0, 145, 0);
     height: 1.75em;
     border-radius: 0.2em;
     background-color: rgb(255, 153, 0);
+}
+
+#hero8Sprite
+{
+    top: 50%;
+    left: 50%;
+    width: 2em;
+    height: 2em;
+    border-radius: 0.3em;
+    background-color: rgb(132, 0, 255);
+}
+
+#hero9Sprite
+{
+    top: 50%;
+    left: 50%;
+    width: 1.8em;
+    height: 1.8em;
+    border-radius: 50em;
+    background-color: rgb(255, 0, 0);
+}
+
+.rotated
+{
+    transform: translate(-1em, -1em) rotate(-45deg);
 }
 
 
@@ -245,6 +270,20 @@ border-top: 10px solid rgb(0, 145, 0);
     transition-timing-function: ease-out;
     box-shadow: rgb(255, 153, 0) 0px -50px 0px -9px,  rgb(255, 153, 0) 0px -35px 0px -10px, rgb(255, 153, 0) 0px -15px 0px -10px;
     transform: scale(1.1) translate(-1em, 0.4em);
+}
+.attacking8
+{
+    transition: 0.1s;
+    transition-timing-function: ease-in;
+    box-shadow: rgb(48, 0, 138) -2em -2em 0.3em -0.5em;
+    transform: scale(1.05) translate(-1em, 0em) rotate(45deg);
+}
+.attacking9
+{
+    transition: 0.1s;
+    transition-timing-function: ease-in-out;
+    box-shadow: rgb(107, 0, 0) 0em -0.2em 0.3em 0.2em;
+    transform: scale(1.15) translate(-0.8em, -1.75em);
 }
 
 /* top UI */
@@ -302,4 +341,71 @@ border-top: 10px solid rgb(0, 145, 0);
     border-radius: 0.1em;
     margin: 0.1%;
     font-size: 2em;
+}
+
+/* Ability UI */
+#abilityArea
+{
+    border: solid black 0.4em;
+    margin: 5px auto;
+    display: flex;
+    text-align: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 0.5em;
+}
+#ability1Area
+{
+    border: solid black 0.2em;
+    border-radius: 1em;
+    padding: 0.25em;
+}
+
+#abilityBuyArea
+{
+    border: solid black 0.4em;
+    margin: 5px auto;
+    display: flex;
+    text-align: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 0.5em;
+}
+#ability1BuyArea
+{
+    border: solid black 0.2em;
+    border-radius: 1em;
+    padding: 0.25em;
+}
+
+/* tabs UI */
+#tabs
+{
+    position: fixed;
+    display: flex;
+    text-align: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    bottom: 0;
+    width: 100%;
+}
+#tabs > div
+{
+    display: inline-block;
+    position: relative;
+    bottom: 0;
+    width: 45%;
+    margin: 0em 1% 0em 1%;
+    border: solid black 0.2em;
+    border-bottom: none;
+    border-radius: 0.5em 0.5em 0em 0em;
+    font-size: 1em;
+    background-color: white;
+    box-shadow: black 0em 0.5em;
+    transition: 0.2s;
+}
+#tabs > div:hover
+{
+    transform: translateY(-0.33em);
+    transition: 0.2s;
 }

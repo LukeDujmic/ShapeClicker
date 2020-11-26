@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>Clicker Game</title>
+        <title>Shape Clicker</title>
 
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +8,8 @@
         <link rel="stylesheet" href="css/styling.css">
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Texturina:wght@100&display=swap" rel="stylesheet">
+
+        <link rel="icon" href="images/webIcon.png" type="image/gif" sizes="32x32">
     </head>
 
     <body>
@@ -121,6 +123,34 @@
                     <div>Damage: <a id="hero7Damage"></a></div>
                 </div>
             </div>
+
+            <div id="hero8" class="heroBox">
+                <div class="heroSpriteBox">
+                    <div id="hero8Sprite" class="heroes rotated"></div>
+                </div>
+                
+                <div>
+                    <button id="hero8Button"><a id="hero8Locked">Unlock</a> Hero 8 <p>(Cost: <a id="hCost8"></a>)</p></button>
+                </div>
+                <div class="heroStats">
+                    <div>Level: <a id="hero8Lvl"></a></div>
+                    <div>Damage: <a id="hero8Damage"></a></div>
+                </div>
+            </div>
+
+            <div id="hero9" class="heroBox">
+                <div class="heroSpriteBox">
+                    <div id="hero9Sprite" class="heroes"></div>
+                </div>
+                
+                <div>
+                    <button id="hero9Button"><a id="hero9Locked">Unlock</a> Hero 9 <p>(Cost: <a id="hCost9"></a>)</p></button>
+                </div>
+                <div class="heroStats">
+                    <div>Level: <a id="hero9Lvl"></a></div>
+                    <div>Damage: <a id="hero9Damage"></a></div>
+                </div>
+            </div>
         </div>
         
         
@@ -133,17 +163,23 @@
             
         </div>
 
-        <div id="abiltyArea">
-            <button id="ability1Button"> Use Shape Rage <p>(Cooldown: <a id="aCooldown1"></a>)</p> </button>
-            <div>Duration Left: <a id="aDuration1"></a></div>
+        <div id="abilityArea">
+            <div id="ability1Area">
+                <button id="ability1Button"> Use Shape Rage <p>(Cooldown: <a id="aCooldown1"></a>)</p> </button>
+                <div>Duration Left: <a id="aDuration1"></a></div>
+            </div>
+            
         </div>
 
-        <div id="abiltyBuyArea">
-            <button id="ability1"> <div id="ability1Locked">Unlock</div> Shape Rage <p>(Cost: <a id="aCost1"></a>)</p> </button>
-            <div>Level: <a id="aLvl1"></a></div>
-            <div>Hero Damage Multiplier: <a id="shapeRageMult"></a></div>
-            <div>Duration: <a id="aDurationBase1"></a></div>
-            <div>Cooldown: <a id="aCooldownBase1"></a></div>
+        <div id="abilityBuyArea">
+            <div id="ability1BuyArea">
+                <button id="ability1"> <div id="ability1Locked">Unlock</div> Shape Rage <p>(Cost: <a id="aCost1"></a>)</p> </button>
+                <div>Level: <a id="aLvl1"></a></div>
+                <div>Hero Damage Multiplier: <a id="shapeRageMult"></a></div>
+                <div>Duration: <a id="aDurationBase1"></a></div>
+                <div>Cooldown: <a id="aCooldownBase1"></a></div>
+            </div>
+
         </div>
 
         <button onclick="multiUpgrade()">Multi-Upgrade</button>
@@ -152,6 +188,11 @@
             <button onclick="goldSpawn()">Spawn Gold</button>
             <button onclick="stageSelect()">Stage Select</button>
         </div>
+
+        <!--<div id="tabs">
+            <div id="clickTab">Tap</div>
+            <div id="heroTab">Heroes</div>
+        </div>-->
 
 
         <script src="js/function.js"></script>
