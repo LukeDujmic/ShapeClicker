@@ -22,7 +22,7 @@
         <div id="enemyArea">
             <div id="healthStat">HP: <a id="enemyHealth"></a></div>
             <div id="goldStat">Gold: <a id="gold"></a></div>
-            <div id="enemy" class="enemySquare"></div>
+            <div id="enemy" class="enemySquare regular"></div>
         </div>
         <div id="heroesArea">
             <div id="hero1" class="heroBox">
@@ -153,8 +153,6 @@
             </div>
         </div>
         
-        
-
         <div id="playerStats">
 
             <button onclick="upgrade()">Upgrade Damage (Cost: <a id="cost"></a>)</button>
@@ -162,6 +160,8 @@
             <div>Damage: <a id="damage"></a></div>
             
         </div>
+
+        <button onclick="multiUpgrade()">Multi-Upgrade</button>
 
         <div id="abilityArea">
             <div id="ability1Area">
@@ -182,7 +182,93 @@
 
         </div>
 
-        <button onclick="multiUpgrade()">Multi-Upgrade</button>
+        <div id="infoArea">
+            <button id="multInfoButton">Show Levelling Info</button>
+            <div id="multiplierInfo">
+                <p>Hero Damage Multipliers</p>
+                <li>Level 10: x2</li>
+                <li>Level 20: x2</li>
+                <li>Level 35: x2</li>
+                <li>Level 50: x2</li>
+                <li>Level 65: x2</li>
+                <li>Level 80: x2</li>
+                <li>Level 100: x3</li>
+                <li>Level 120: x2</li>
+                <li>Level 140: x2</li>
+                <li>Level 160: x2</li>
+                <li>Level 180: x2</li>
+                <li>Level 200: x4</li>
+                <li>Level 220: x2</li>
+                <li>Level 240: x2</li>
+                <li>Level 260: x2</li>
+                <li>Level 280: x2</li>
+                <li>Level 300: x5</li>
+                <li>Level 325: x2</li>
+                <li>Level 350: x2</li>
+                <li>Level 375: x2</li>
+                <li>Level 400: x5</li>
+                <li>Level 430: x3</li>
+                <li>Level 460: x3</li>
+                <li>Level 500: x10</li>
+                <li>Level 530: x3</li>
+                <li>Level 560: x3</li>
+                <li>Level 600: x5</li>
+                <li>Level 630: x3</li>
+                <li>Level 660: x3</li>
+                <li>Level 700: x5</li>
+                <li>Level 730: x3</li>
+                <li>Level 760: x3</li>
+                <li>Level 800: x5</li>
+                <li>Level 830: x3</li>
+                <li>Level 860: x3</li>
+                <li>Level 900: x5</li>
+                <li>Level 930: x3</li>
+                <li>Level 960: x3</li>
+                <li>Level 1000: x1000</li>
+                <li>Level 1050: x8</li>
+                <li>Level 1100: x9</li>
+
+                <p>Click Damage Multipliers</p>
+                <li>Level 10: x2</li>
+                <li>Level 25: x2</li>
+                <li>Level 50: x2</li>
+                <li>Level 75: x2</li>
+                <li>Level 100: x4</li>
+                <li>Level 120: x2</li>
+                <li>Level 140: x3</li>
+                <li>Level 160: x2</li>
+                <li>Level 180: x2</li>
+                <li>Level 200: x4</li>
+                <li>Level 220: x2</li>
+                <li>Level 240: x2</li>
+                <li>Level 260: x2</li>
+                <li>Level 280: x2</li>
+                <li>Level 300: x4</li>
+                <li>Level 325: x2</li>
+                <li>Level 350: x2</li>
+                <li>Level 375: x2</li>
+                <li>Level 400: x4</li>
+                <li>Level 425: x2</li>
+                <li>Level 450: x2</li>
+                <li>Level 475: x2</li>
+                <li>Level 500: x5</li>
+                <li>Level 530: x2</li>
+                <li>Level 560: x2</li>
+                <li>Level 590: x2</li>
+                <li>Level 620: x5</li>
+                <li>Level 650: x2</li>
+                <li>Level 680: x2</li>
+                <li>Level 710: x5</li>
+                <li>Level 740: x2</li>
+                <li>Level 770: x2</li>
+                <li>Level 800: x5</li>
+                <li>Level 850: x3</li>
+                <li>Level 900: x4</li>
+                <li>Level 950: x3</li>
+                <li>Level 1000: x10</li>
+            </div>
+        </div>
+
 
         <div id="admin">
             <button onclick="goldSpawn()">Spawn Gold</button>

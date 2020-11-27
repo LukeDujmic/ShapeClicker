@@ -12,7 +12,6 @@ body{
 }
 #enemy
 {
-    background-color: green;
     top: 50%;
     left: 50%;
     position: relative;
@@ -38,7 +37,6 @@ body{
 position: relative;
 width: 15em; 
 height: 7.5em;
-background-color:green;
 transform: translate(-50%, -50%) scale(1);
 transition: 0.05s;
 }
@@ -54,18 +52,31 @@ left: 0;
 transition: 0.1s;
 }
 
-.enemyHexagon:before {
+.enemyHexagon.regular:before {
 bottom: 99.4%;
 border-bottom: 4.25em solid green;
 transition: 0.1s;
 }
 
-.enemyHexagon:after {
+.enemyHexagon.regular:after {
 top: 99.4%;
 width: 0;
 border-top: 4.25em solid green;
 transition: 0.1s;
 }
+.enemyHexagon.golden:before {
+bottom: 99.4%;
+border-bottom: 4.25em solid gold;
+transition: 0.1s;
+}
+
+.enemyHexagon.golden:after {
+top: 99.4%;
+width: 0;
+border-top: 4.25em solid gold;
+transition: 0.1s;
+}
+
 .enemyHexagon:active:before,
 .enemyHexagon:active:after {
 content: "";
@@ -119,6 +130,14 @@ transition: 0.05s;
 .boss
 {
     transform: translate(-50%, -50%) scale(1.2) translateY(-1em);
+}
+.golden
+{
+    background-color: gold;
+}
+.regular
+{
+    background-color: green;
 }
 
 .killed
@@ -466,6 +485,11 @@ border-top: 10px solid rgb(0, 145, 0);
     border: solid black 0.2em;
     border-radius: 1em;
     padding: 0.25em;
+}
+/* info stuff */
+#multiplierInfo
+{
+    display: none;
 }
 
 /* tabs UI */
