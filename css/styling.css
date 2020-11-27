@@ -13,31 +13,121 @@ body{
 #enemy
 {
     background-color: green;
-    height: 15em;
-    width: 15em;
     top: 50%;
     left: 50%;
     position: relative;
-    transform: translate(-50%, -50%) scale(1);
+    
     transition: 0.1s;
 }
+.enemyCircle
+{
+    height: 15em;
+    width: 15em;
+    border-radius: 100em;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.enemySquare
+{
+    height: 15em;
+    width: 15em;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.enemyHexagon {
+position: relative;
+width: 15em; 
+height: 7.5em;
+background-color:green;
+transform: translate(-50%, -50%) scale(1);
+transition: 0.05s;
+}
+
+.enemyHexagon:before,
+.enemyHexagon:after {
+content: "";
+position: absolute;
+width: 0;
+border-left: 7.5em solid transparent;
+border-right: 7.5em solid transparent;
+left: 0;
+transition: 0.1s;
+}
+
+.enemyHexagon:before {
+bottom: 99.4%;
+border-bottom: 4.25em solid green;
+transition: 0.1s;
+}
+
+.enemyHexagon:after {
+top: 99.4%;
+width: 0;
+border-top: 4.25em solid green;
+transition: 0.1s;
+}
+.enemyHexagon:active:before,
+.enemyHexagon:active:after {
+content: "";
+position: absolute;
+width: 0;
+border-left: 7.5em solid transparent;
+border-right: 7.5em solid transparent;
+left: 0;
+transition: 0.05s;
+}
+
+.enemyHexagon:active:before {
+bottom: 99.4%;
+border-bottom: 4.25em solid red;
+transition: 0.05s;
+}
+
+.enemyHexagon:active:after {
+top: 99.4%;
+width: 0;
+border-top: 4.25em solid red;
+transition: 0.05s;
+}
+
+.enemySquircle
+{
+    height: 15em;
+    width: 15em;
+    border-radius: 4em;
+    transform: translate(-50%, -50%) scale(1);
+}
+.enemyPill
+{
+    height: 15em;
+    width: 10em;
+    border-radius: 100em;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+
 #enemy:active
 {
     background-color: red;
-    height: 15em;
-    width: 15em;
     transform: translate(-50%, -55%) skewY(1deg) skewX(-10deg) translateX(20px) scale(1);
     transition: 0.05s;
 }
-#boss
+#enemy.boss:active
 {
-    transform: translate(-50%, -50%) scale(1.2);
+    transform: translate(-50%, -55%) skewY(1deg) skewX(-10deg) translateX(20px) scale(1.2) translateY(-1em);
 }
+.boss
+{
+    transform: translate(-50%, -50%) scale(1.2) translateY(-1em);
+}
+
 .killed
 {
     opacity: 0;
     transition: 0.2s;
+    
 }
+
 p
 {
     margin: 0.1em;

@@ -81,13 +81,7 @@ var abbr = ['','K','M','B','T',
 'axa','axb','axc','axd','axe','axf','axg','axh','axi','axj','axk','axl','axm','axn','axo','axp','axq','axr','axs','axt','axu','axv','axw','axx','axy','axz',
 'aya','ayb','ayc','ayd','aye','ayf','ayg','ayh','ayi','ayj','ayk','ayl','aym','ayn','ayo','ayp','ayq','ayr','ays','ayt','ayu','ayv','ayw','ayx','ayy','ayz',
 'aza','azb','azc','azd','aze','azf','azg','azh','azi','azj','azk','azl','azm','azn','azo','azp','azq','azr','azs','azt','azu','azv','azw','azx','azy','azz',
-]
-
-var l = 1000000n;
-
-j = Number(l);
-
-console.log(j);
+];
 
 const convrt = n => { 
     if (n < 1e3 && n > 0) return +(n / 1e0).toPrecision(3); 
@@ -141,8 +135,8 @@ function dealDamage()
         
         maxHealth = health;
         gold += ((maxHealth * 0.04 + 0.0002 * min(stage, 150) * (Math.random() * 0.2 + 0.9) * allGoldMult));
-
         enemyCooldown();
+        setTimeout(enemyStyle, 200);
 
         stageProgress++;
         document.getElementById("enemyHealth").innerHTML = convrt(health);
@@ -153,24 +147,21 @@ function dealDamage()
         boss = true;
         health = ((100 * (1.39**(min(stage, 120)) * (1.13 **(max((stage - 120), 0))))) * 4);
         maxHealth = health;
-        document.getElementById("enemy").style.width = "20em";
-        document.getElementById("enemy").style.height = "20em";
-        document.getElementById("enemy").style.top = "42.5%";
-
+        enemyCooldown();
+        setTimeout(enemyStyle, 200);
+        document.getElementById("enemy").classList.add("boss");
         document.getElementById("enemyHealth").innerHTML = convrt(health);
         displayStats();
     }
     if (boss == true && health <= 0)
     {
-        document.getElementById("enemy").style.width = "15em";
-        document.getElementById("enemy").style.height = "15em";
-        document.getElementById("enemy").style.top = "50%";
 
         gold += ((maxHealth * 0.04 + 0.0002 * min(stage, 150) * (Math.random() * 0.2 + 0.9) * allGoldMult * 4));
-
         enemyCooldown();
-
+        setTimeout(enemyStyle, 200);
+        
         boss = false;
+        document.getElementById("enemy").classList.remove("boss");
         stageProgress = 1;
         stage++;
         health = ((100 * (1.39**(min(stage, 120)) * (1.13 **(max((stage - 120), 0))))) * (Math.random() * 0.2 + 0.9)).toFixed(2);
@@ -188,6 +179,53 @@ function enemyCooldown()
     document.getElementById("enemy").removeEventListener("click", clickDamage);
     setTimeout(function(){document.getElementById("enemy").classList.remove("killed");}, 300);
     setTimeout(function(){document.getElementById("enemy").addEventListener("click", clickDamage)}, 300);
+}
+
+//enemy styles
+function enemyStyle()
+{
+    let r = Math.ceil(Math.random(1) * 5);
+    if (r == 1)
+    {
+        document.getElementById("enemy").classList.add("enemySquare");
+        document.getElementById("enemy").classList.remove("enemyCircle");
+        document.getElementById("enemy").classList.remove("enemyHexagon");
+        document.getElementById("enemy").classList.remove("enemySquircle");
+        document.getElementById("enemy").classList.remove("enemyPill");
+    }
+    if (r == 2)
+    {
+        document.getElementById("enemy").classList.add("enemyCircle");
+        document.getElementById("enemy").classList.remove("enemySquare");
+        document.getElementById("enemy").classList.remove("enemyHexagon");
+        document.getElementById("enemy").classList.remove("enemySquircle");
+        document.getElementById("enemy").classList.remove("enemyPill");
+    }
+    if (r == 3)
+    {
+        document.getElementById("enemy").classList.add("enemyHexagon");
+        document.getElementById("enemy").classList.remove("enemySquare");
+        document.getElementById("enemy").classList.remove("enemyCircle");
+        document.getElementById("enemy").classList.remove("enemySquircle");
+        document.getElementById("enemy").classList.remove("enemyPill");
+    }
+    if (r == 4)
+    {
+        document.getElementById("enemy").classList.add("enemySquircle");
+        document.getElementById("enemy").classList.remove("enemySquare");
+        document.getElementById("enemy").classList.remove("enemyCircle");
+        document.getElementById("enemy").classList.remove("enemyHexagon");
+        document.getElementById("enemy").classList.remove("enemyPill");
+    }
+    if (r == 5)
+    {
+        document.getElementById("enemy").classList.add("enemyPill");
+        document.getElementById("enemy").classList.remove("enemySquare");
+        document.getElementById("enemy").classList.remove("enemyCircle");
+        document.getElementById("enemy").classList.remove("enemyHexagon");
+        document.getElementById("enemy").classList.remove("enemySquircle");
+    }
+
 }
 
 //heroes
@@ -797,7 +835,7 @@ function upgradeHero8()
     }
 }
 
-//Hero 8
+//Hero 9
 var hero9Unlocked = false;
 var hero9Bought = false;
 hDmgMult[9] = 1;
@@ -871,7 +909,12 @@ function heroLvlMult(i)
         hDmgMult[i] *= 2;
         heroDamage[i] *= 2;
     }
-    if (heroLvl[i] == 75)
+    if (heroLvl[i] == 65)
+    {
+        hDmgMult[i] *= 2;
+        heroDamage[i] *= 2;
+    }
+    if (heroLvl[i] == 80)
     {
         hDmgMult[i] *= 2;
         heroDamage[i] *= 2;
@@ -1500,6 +1543,13 @@ function multiUpgrade()
         for (i = 0; i < t; i++)
         {
             upgradeHero8();
+        }
+    }
+    if (h == 9 && hero9Bought == true)
+    {
+        for (i = 0; i < t; i++)
+        {
+            upgradeHero9();
         }
     }
 }
