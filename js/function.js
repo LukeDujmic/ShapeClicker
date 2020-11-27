@@ -412,7 +412,7 @@ var hM4Cost1 = 5e4;
 var h1M4 = false;
 var hM5Cost1 = 2e7;
 var h1M5 = false;
-var hM6Cost1 = 4e9;
+var hM6Cost1 = 1.5e10;
 var h1M6 = false;
 var hM7Cost1 = 5e12;
 var h1M7 = false;
@@ -560,7 +560,7 @@ function buyHero1Milestone()
         heroUnlockCheck();
         displayStats();
     }
-    if (h1M7 == false && gold >= hM7Cost1 && heroLvl[1] >= 300 && h1M1 == true && h1M2 == true && h1M3 == true && h1M4 == true && h1M5 == true && h1M6 == true)
+    if (h1M7 == false && gold >= hM7Cost1 && heroLvl[1] >= 400 && h1M1 == true && h1M2 == true && h1M3 == true && h1M4 == true && h1M5 == true && h1M6 == true)
     {
         gold -= hM7Cost1;
         for (i = 1; i < heroDamage.length; i++)
@@ -577,7 +577,7 @@ function buyHero1Milestone()
         heroUnlockCheck();
         displayStats();
     }
-    if (h1M8 == false && gold >= hM8Cost1 && heroLvl[1] >= 300 && h1M1 == true && h1M2 == true && h1M3 == true && h1M4 == true && h1M5 == true && h1M6 == true && h1M7 == true)
+    if (h1M8 == false && gold >= hM8Cost1 && heroLvl[1] >= 500 && h1M1 == true && h1M2 == true && h1M3 == true && h1M4 == true && h1M5 == true && h1M6 == true && h1M7 == true)
     {
         gold -= hM8Cost1;
         bossGoldMult *= 1.2;
