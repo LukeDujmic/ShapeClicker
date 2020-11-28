@@ -77,8 +77,8 @@ border-top: 4.25em solid gold;
 transition: 0.1s;
 }
 
-.enemyHexagon:active:before,
-.enemyHexagon:active:after {
+#enemyArea:active > .enemyHexagon:before,
+.enemyHexagon:after {
 content: "";
 position: absolute;
 width: 0;
@@ -88,13 +88,13 @@ left: 0;
 transition: 0.05s;
 }
 
-.enemyHexagon:active:before {
+#enemyArea:active > .enemyHexagon:before {
 bottom: 99.4%;
 border-bottom: 4.25em solid red;
 transition: 0.05s;
 }
 
-.enemyHexagon:active:after {
+#enemyArea:active > .enemyHexagon:after {
 top: 99.4%;
 width: 0;
 border-top: 4.25em solid red;
@@ -115,21 +115,30 @@ transition: 0.05s;
     border-radius: 100em;
     transform: translate(-50%, -50%) scale(1);
 }
+.enemyEgg
+{
+    display: block;
+    width: 13em;
+    height: 15em;
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    transform: translate(-50%, -50%) scale(1);
+}
 
 
-#enemy:active
+#enemyArea:active > #enemy
 {
     background-color: red;
     transform: translate(-50%, -55%) skewY(1deg) skewX(-10deg) translateX(20px) scale(1);
     transition: 0.05s;
 }
-#enemy.boss:active
+#enemyArea:active > #enemy.boss
 {
-    transform: translate(-50%, -55%) skewY(1deg) skewX(-10deg) translateX(20px) scale(1.2) translateY(-1em);
+    transform: translate(-50%, -55%) skewY(1deg) skewX(-10deg) translateX(20px) scale(1.35) translateY(-2.2em);
 }
+
 .boss
 {
-    transform: translate(-50%, -50%) scale(1.2) translateY(-1em);
+    transform: translate(-50%, -50%) scale(1.35) translateY(-2em);
 }
 .golden
 {
@@ -143,8 +152,14 @@ transition: 0.05s;
 .killed
 {
     opacity: 0;
-    transition: 0.2s;
-    
+    transition: 0.15s;
+    transform: skewX(-1deg) skewY(1deg) translate(-50%, -55%) scale(1.1);
+}
+.boss.killed
+{
+    opacity: 0;
+    transition: 0.15s;
+    transform: skewX(-1deg) skewY(1deg) translate(-50%, -55%) scale(1.4);
 }
 
 p
@@ -485,6 +500,22 @@ border-top: 10px solid rgb(0, 145, 0);
     border: solid black 0.2em;
     border-radius: 1em;
     padding: 0.25em;
+}
+/* save buttons */
+#saveArea > button
+{
+    padding: 1em;
+    margin: 1em;
+    border: solid black 0.25em;
+    border-radius: 0.5em;
+    background-color: rgb(214, 214, 214);
+    transition: 0.15s;
+}
+#saveArea > button:hover
+{
+    box-shadow: black 0em 0.25em;
+    transform: translateY(-0.25em);
+    transition: 0.15s;
 }
 /* info stuff */
 #multiplierInfo

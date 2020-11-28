@@ -14,6 +14,7 @@
 
     <body>
         <div id="stageStats">
+            
             <div>Stage: <a id="stage"></a></div>
             <div>Progress: <a id="enemyNum"></a></div>
             
@@ -47,6 +48,7 @@
                 
                 <div>
                     <button id="hero2Button"><a id="hero2Locked">Unlock</a> Hero 2 <p>(Cost: <a id="hCost2"></a>)</p></button>
+                    <button id="hero2Button2"><a id="hero2M1">Milestone (Lvl. 10)</a> <p>(Cost: <a id="hMCost2"></a>)</p></button>
                 </div>
                 <div class="heroStats">
                     <div>Level: <a id="hero2Lvl"></a></div>
@@ -61,6 +63,7 @@
                 
                 <div>
                     <button id="hero3Button"><a id="hero3Locked">Unlock</a> Hero 3 <p>(Cost: <a id="hCost3"></a>)</p></button>
+                    <button id="hero3Button2"><a id="hero3M1">Milestone (Lvl. 10)</a> <p>(Cost: <a id="hMCost3"></a>)</p></button>
                 </div>
                 <div class="heroStats">
                     <div>Level: <a id="hero3Lvl"></a></div>
@@ -182,6 +185,12 @@
 
         </div>
 
+        <div id="saveArea">
+            <button id="save" onclick="saveGame()">Save Progress</button>
+            <button id="load" onclick="loadGame()">Load Progress</button>
+            <p>*Important Notice: Give the game about 1 second to properly save everything. If you have already loaded your progress, refresh the page and load your progress (this only matters if you have saved and want to return back multiple times for whatever reason).  Also, just know that the game only saves LOCALLY, as in it will only save on this device.</p>
+        </div>
+
         <div id="infoArea">
             <button id="multInfoButton">Show Levelling Info</button>
             <div id="multiplierInfo">
@@ -235,7 +244,7 @@
                 <li>Level 75: x2</li>
                 <li>Level 100: x4</li>
                 <li>Level 120: x2</li>
-                <li>Level 140: x3</li>
+                <li>Level 140: x2</li>
                 <li>Level 160: x2</li>
                 <li>Level 180: x2</li>
                 <li>Level 200: x4</li>
