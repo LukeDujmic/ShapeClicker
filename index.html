@@ -12,7 +12,7 @@
         <link rel="icon" href="images/webIcon.png" type="image/gif" sizes="32x32">
     </head>
 
-    <body>
+    <body onbeforeunload="return reloadFunction()" onload="loadPass()">
         <div id="stageStats">
             
             <div>Stage: <a id="stage"></a></div>
@@ -187,8 +187,10 @@
 
         <div id="saveArea">
             <button id="save" onclick="saveGame()">Save Progress</button>
+            <button id="password" onclick="setPassword()">Set Password</button>
             <button id="load" onclick="loadGame()">Load Progress</button>
             <p>*Important Notice: Give the game about 1 second to properly save everything. If you have already loaded your progress, refresh the page and load your progress (this only matters if you have saved and want to return back multiple times for whatever reason).  Also, just know that the game only saves LOCALLY, as in it will only save on this device.</p>
+            <p>*WARNING: Clicking save will set everything to whatever you are on!  So make sure that you don't accidentally save on stage 1 after refreshing.  Setting a password is highly advised.</p>
         </div>
 
         <div id="infoArea">

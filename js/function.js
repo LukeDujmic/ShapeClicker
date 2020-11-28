@@ -12,6 +12,7 @@ var regGoldMult = 1;
 var goldenGoldMult = 1;
 var isGolden = false;
 var isReg = true;
+var enemyDead = false;
 
 
 var damage = 5e0;
@@ -55,6 +56,15 @@ var clickUpCost = 5;
 var clickLevel = 1;
 
 var maxHealth = health;
+
+var passSet = false;
+var savePass;
+
+function loadPass()
+{
+    savePass = JSON.parse(localStorage.getItem('savePass'));
+    passSet = JSON.parse(localStorage.getItem('passSet'));
+}
 
 /*var ahd = setInterval(function(){
     allHeroDmg =  heroDamage[1] + heroDamage[2] + heroDamage[3] + heroDamage[4] + heroDamage[5] + heroDamage[6] + heroDamage[7];
@@ -104,7 +114,10 @@ const convrt = n => {
 }
 function clickDamage()
 {
-    health = (health - damage).toPrecision(3);
+    if (enemyDead == false)
+    {
+        health = (health - damage).toPrecision(3);
+    }
     if (health <= 0)
     {
         health = 0;
@@ -226,9 +239,11 @@ function dealDamage()
 
 function enemyCooldown()
 {
+    enemyDead = true;
     document.getElementById("enemy").classList.add("killed");
     document.getElementById("enemyArea").removeEventListener("click", clickDamage);
     setTimeout(function(){document.getElementById("enemy").classList.remove("killed");}, 300);
+    setTimeout(function(){enemyDead = false;}, 300);
     setTimeout(function(){document.getElementById("enemyArea").addEventListener("click", clickDamage)}, 300);
 }
 
@@ -338,7 +353,10 @@ function buyHero1()
 }
 function heroAttack1()
 {
-    health = (health - heroDamage[1]);
+    if (enemyDead == false)
+    {
+        health = (health - heroDamage[1]);
+    }
     displayStats();
     if (health <= 0)
     {
@@ -362,8 +380,6 @@ function buyHero1Milestone()
         document.getElementById("hero1Button2").removeEventListener("click", buyHero1Milestone); 
         h1M[1] = true;
         console.log('Milestone 1 Purchased');
-        document.getElementById("hero1M1").innerHTML = "Milestone (Lvl. 30)";
-        document.getElementById("hMCost1").innerHTML = convrt(hM2Cost1);
         heroUnlockCheck();
         displayStats();
     }
@@ -372,8 +388,6 @@ function buyHero1Milestone()
         gold -= hM2Cost1;
         allGoldMult *= 1.1;
         document.getElementById("hero1Button2").removeEventListener("click", buyHero1Milestone); 
-        document.getElementById("hero1M1").innerHTML = "Milestone (Lvl. 60)";
-        document.getElementById("hMCost1").innerHTML = convrt(hM3Cost1);
         console.log('Milestone 2 Purchased');
         h1M[2] = true;
         heroUnlockCheck();
@@ -391,8 +405,6 @@ function buyHero1Milestone()
         damage *= 1.1;
 
         document.getElementById("hero1Button2").removeEventListener("click", buyHero1Milestone); 
-        document.getElementById("hero1M1").innerHTML = "Milestone (Lvl. 100)";
-        document.getElementById("hMCost1").innerHTML = convrt(hM4Cost1);
         console.log('Milestone 3 Purchased');
         h1M[3] = true;
         heroUnlockCheck();
@@ -406,8 +418,6 @@ function buyHero1Milestone()
         damage *= 1.2;
 
         document.getElementById("hero1Button2").removeEventListener("click", buyHero1Milestone); 
-        document.getElementById("hero1M1").innerHTML = "Milestone (Lvl. 200)";
-        document.getElementById("hMCost1").innerHTML = convrt(hM5Cost1);
         console.log('Milestone 4 Purchased');
         h1M[4] = true;
         heroUnlockCheck();
@@ -418,8 +428,6 @@ function buyHero1Milestone()
         gold -= hM5Cost1;
         heroBlueMultiplier(1.25);
         document.getElementById("hero1Button2").removeEventListener("click", buyHero1Milestone); 
-        document.getElementById("hero1M1").innerHTML = "Milestone (Lvl. 300)";
-        document.getElementById("hMCost1").innerHTML = convrt(hM6Cost1);
         console.log('Milestone 5 Purchased');
         h1M[5] = true;
         heroUnlockCheck();
@@ -431,8 +439,6 @@ function buyHero1Milestone()
         allGoldMult *= 1.1;
 
         document.getElementById("hero1Button2").removeEventListener("click", buyHero1Milestone); 
-        document.getElementById("hero1M1").innerHTML = "Milestone (Lvl. 400)";
-        document.getElementById("hMCost1").innerHTML = convrt(hM7Cost1);
         console.log('Milestone 6 Purchased');
         h1M[6] = true;
         heroUnlockCheck();
@@ -448,8 +454,6 @@ function buyHero1Milestone()
         heroDamageMult = heroDamageMult * 1.1;
 
         document.getElementById("hero1Button2").removeEventListener("click", buyHero1Milestone); 
-        document.getElementById("hero1M1").innerHTML = "Milestone (Lvl. 500)";
-        document.getElementById("hMCost1").innerHTML = convrt(hM8Cost1);
         console.log('Milestone 7 Purchased');
         h1M[7] = true;
         heroUnlockCheck();
@@ -461,8 +465,6 @@ function buyHero1Milestone()
         bossGoldMult *= 1.2;
 
         document.getElementById("hero1Button2").removeEventListener("click", buyHero1Milestone); 
-        document.getElementById("hero1M1").innerHTML = "Milestone (Lvl. 1000)";
-        document.getElementById("hMCost1").innerHTML = convrt(hM9Cost1);
         console.log('Milestone 8 Purchased');
         h1M[8] = true;
         heroUnlockCheck();
@@ -517,7 +519,10 @@ function buyHero2()
 }
 function heroAttack2()
 {
-    health = (health - (heroDamage[2]));
+    if (enemyDead == false)
+    {
+        health = (health - (heroDamage[2]));
+    }
     displayStats();
     if (health <= 0)
     {
@@ -536,8 +541,6 @@ function buyhero2Milestone()
         document.getElementById("hero2Button2").removeEventListener("click", buyhero2Milestone); 
         h2M[1] = true;
         console.log('Milestone 1 Purchased');
-        document.getElementById("hero2M1").innerHTML = "Milestone (Lvl. 30)";
-        document.getElementById("hMCost2").innerHTML = convrt(hM2Cost2);
         heroUnlockCheck();
         displayStats();
     }
@@ -547,8 +550,6 @@ function buyhero2Milestone()
         clickDamageMult *= 1.2;
         damage *= 1.2
         document.getElementById("hero2Button2").removeEventListener("click", buyhero2Milestone); 
-        document.getElementById("hero2M1").innerHTML = "Milestone (Lvl. 60)";
-        document.getElementById("hMCost2").innerHTML = convrt(hM3Cost2);
         console.log('Milestone 2 Purchased');
         h2M[2] = true;
         heroUnlockCheck();
@@ -560,8 +561,6 @@ function buyhero2Milestone()
         allGoldMult *= 1.1;
 
         document.getElementById("hero2Button2").removeEventListener("click", buyhero2Milestone); 
-        document.getElementById("hero2M1").innerHTML = "Milestone (Lvl. 100)";
-        document.getElementById("hMCost2").innerHTML = convrt(hM4Cost2);
         console.log('Milestone 3 Purchased');
         h2M[3] = true;
         heroUnlockCheck();
@@ -573,8 +572,6 @@ function buyhero2Milestone()
         heroOrangeMultiplier(1.25);
 
         document.getElementById("hero2Button2").removeEventListener("click", buyhero2Milestone); 
-        document.getElementById("hero2M1").innerHTML = "Milestone (Lvl. 200)";
-        document.getElementById("hMCost2").innerHTML = convrt(hM5Cost2);
         console.log('Milestone 4 Purchased');
         h2M[4] = true;
         heroUnlockCheck();
@@ -585,8 +582,6 @@ function buyhero2Milestone()
         gold -= hM5Cost2;
         regGoldMult *= 1.2;
         document.getElementById("hero2Button2").removeEventListener("click", buyhero2Milestone); 
-        document.getElementById("hero2M1").innerHTML = "Milestone (Lvl. 300)";
-        document.getElementById("hMCost2").innerHTML = convrt(hM6Cost2);
         console.log('Milestone 5 Purchased');
         h2M[5] = true;
         heroUnlockCheck();
@@ -598,8 +593,6 @@ function buyhero2Milestone()
         rangedHeroMultiplier(1.1);
 
         document.getElementById("hero2Button2").removeEventListener("click", buyhero2Milestone); 
-        document.getElementById("hero2M1").innerHTML = "Milestone (Lvl. 400)";
-        document.getElementById("hMCost2").innerHTML = convrt(hM7Cost2);
         console.log('Milestone 6 Purchased');
         h2M[6] = true;
         heroUnlockCheck();
@@ -615,8 +608,6 @@ function buyhero2Milestone()
         heroDamageMult = heroDamageMult * 1.1;
 
         document.getElementById("hero2Button2").removeEventListener("click", buyhero2Milestone); 
-        document.getElementById("hero2M1").innerHTML = "Milestone (Lvl. 500)";
-        document.getElementById("hMCost2").innerHTML = convrt(hM8Cost2);
         console.log('Milestone 7 Purchased');
         h2M[7] = true;
         heroUnlockCheck();
@@ -627,8 +618,6 @@ function buyhero2Milestone()
         gold -= hM8Cost2;
         goldenGoldMult *= 1.2;
         document.getElementById("hero2Button2").removeEventListener("click", buyhero2Milestone); 
-        document.getElementById("hero2M1").innerHTML = "Milestone (Lvl. 1000)";
-        document.getElementById("hMCost2").innerHTML = convrt(hM9Cost2);
         console.log('Milestone 8 Purchased');
         h2M[8] = true;
         heroUnlockCheck();
@@ -683,7 +672,10 @@ function buyHero3()
 }
 function heroAttack3()
 {
-    health = (health - (heroDamage[3]));
+    if (enemyDead == false)
+    {
+        health = (health - (heroDamage[3]));
+    }
     displayStats();
     if (health <= 0)
     {
@@ -702,8 +694,6 @@ function buyHero3Milestone()
         document.getElementById("hero3Button2").removeEventListener("click", buyHero3Milestone); 
         h3M[1] = true;
         console.log('Milestone 1 Purchased');
-        document.getElementById("hero3M1").innerHTML = "Milestone (Lvl. 30)";
-        document.getElementById("hMCost3").innerHTML = convrt(hM2Cost3);
         heroUnlockCheck();
         displayStats();
     }
@@ -712,8 +702,6 @@ function buyHero3Milestone()
         gold -= hM2Cost3;
         meleeHeroMultiplier(1.2);
         document.getElementById("hero3Button2").removeEventListener("click", buyHero3Milestone); 
-        document.getElementById("hero3M1").innerHTML = "Milestone (Lvl. 60)";
-        document.getElementById("hMCost3").innerHTML = convrt(hM3Cost3);
         console.log('Milestone 2 Purchased');
         h3M[2] = true;
         heroUnlockCheck();
@@ -725,8 +713,6 @@ function buyHero3Milestone()
         allGoldMult *= 1.1;
 
         document.getElementById("hero3Button2").removeEventListener("click", buyHero3Milestone); 
-        document.getElementById("hero3M1").innerHTML = "Milestone (Lvl. 100)";
-        document.getElementById("hMCost3").innerHTML = convrt(hM4Cost3);
         console.log('Milestone 3 Purchased');
         h3M[3] = true;
         heroUnlockCheck();
@@ -738,8 +724,6 @@ function buyHero3Milestone()
         bossGoldMult *= 1.1;
 
         document.getElementById("hero3Button2").removeEventListener("click", buyHero3Milestone); 
-        document.getElementById("hero3M1").innerHTML = "Milestone (Lvl. 200)";
-        document.getElementById("hMCost3").innerHTML = convrt(hM5Cost3);
         console.log('Milestone 4 Purchased');
         h3M[4] = true;
         heroUnlockCheck();
@@ -750,8 +734,6 @@ function buyHero3Milestone()
         gold -= hM5Cost3;
         meleeHeroMultiplier(1.1);
         document.getElementById("hero3Button2").removeEventListener("click", buyHero3Milestone); 
-        document.getElementById("hero3M1").innerHTML = "Milestone (Lvl. 300)";
-        document.getElementById("hMCost3").innerHTML = convrt(hM6Cost3);
         console.log('Milestone 5 Purchased');
         h3M[5] = true;
         heroUnlockCheck();
@@ -763,8 +745,6 @@ function buyHero3Milestone()
         clickCritMult *= 1.1;
 
         document.getElementById("hero3Button2").removeEventListener("click", buyHero3Milestone); 
-        document.getElementById("hero3M1").innerHTML = "Milestone (Lvl. 400)";
-        document.getElementById("hMCost3").innerHTML = convrt(hM7Cost3);
         console.log('Milestone 6 Purchased');
         h3M[6] = true;
         heroUnlockCheck();
@@ -776,8 +756,6 @@ function buyHero3Milestone()
         clickDamageMult *= 1.1;
 
         document.getElementById("hero3Button2").removeEventListener("click", buyHero3Milestone); 
-        document.getElementById("hero3M1").innerHTML = "Milestone (Lvl. 500)";
-        document.getElementById("hMCost3").innerHTML = convrt(hM8Cost3);
         console.log('Milestone 7 Purchased');
         h3M[7] = true;
         heroUnlockCheck();
@@ -788,8 +766,6 @@ function buyHero3Milestone()
         gold -= hM8Cost3;
         allDamageMultiplier(1.1);
         document.getElementById("hero3Button2").removeEventListener("click", buyHero3Milestone); 
-        document.getElementById("hero3M1").innerHTML = "Milestone (Lvl. 1000)";
-        document.getElementById("hMCost3").innerHTML = convrt(hM9Cost3);
         console.log('Milestone 8 Purchased');
         h3M[8] = true;
         heroUnlockCheck();
@@ -830,7 +806,11 @@ function buyHero4()
 }
 function heroAttack4()
 {
-    health = (health - (heroDamage[4]));
+    if (enemyDead == false)
+    {
+        health = (health - (heroDamage[4]));
+    }
+    
     displayStats();
     if (health <= 0)
     {
@@ -872,7 +852,10 @@ function buyHero5()
 }
 function heroAttack5()
 {
-    health = (health - (heroDamage[5]));
+    if (enemyDead == false)
+    {
+        health = (health - (heroDamage[5]));
+    }
     displayStats();
     if (health <= 0)
     {
@@ -914,7 +897,10 @@ function buyHero6()
 }
 function heroAttack6()
 {
-    health = (health - (heroDamage[6]));
+    if (enemyDead == false)
+    {
+        health = (health - (heroDamage[6]));
+    }
     displayStats();
     if (health <= 0)
     {
@@ -955,7 +941,11 @@ function buyHero7()
 }
 function heroAttack7()
 {
-    health = (health - (heroDamage[7]));
+    if (enemyDead == false)
+    {
+        health = (health - (heroDamage[7]));
+    }
+    
     displayStats();
     if (health <= 0)
     {
@@ -999,7 +989,10 @@ function buyHero8()
 }
 function heroAttack8()
 {
-    health = (health - (heroDamage[8]));
+    if (enemyDead == false)
+    {
+        health = (health - (heroDamage[8]));
+    }
     displayStats();
     if (health <= 0)
     {
@@ -1043,7 +1036,11 @@ function buyHero9()
 }
 function heroAttack9()
 {
-    health = (health - (heroDamage[9]));
+    if (enemyDead == false)
+    {
+        health = (health - (heroDamage[9]));
+    }
+    
     displayStats();
     if (health <= 0)
     {
@@ -1065,13 +1062,16 @@ function heroUnlockCheck()
         document.getElementById("hero1Button").addEventListener("click", buyHero1);
         document.getElementById("hCost1").innerHTML = convrt(hCost[1]);
     }
-
     if (heroLvl[1] >= 10 && h1M[1] == false)
     {
         document.getElementById("hero1M1").innerHTML = "Hero Damage x 1.2";
         document.getElementById("hMCost1").innerHTML = convrt(hM1Cost1);
         document.getElementById("hero1Button2").addEventListener("click", buyHero1Milestone); 
-        
+    }
+    if (heroLvl[1] >= 10 && h1M[1] == true)
+    {
+        document.getElementById("hero1M1").innerHTML = "Milestone (Lvl. 30)";
+        document.getElementById("hMCost1").innerHTML = convrt(hM2Cost1);
     }
     if (heroLvl[1] >= 30 && h1M[2] == false)
     {
@@ -1080,19 +1080,32 @@ function heroUnlockCheck()
         document.getElementById("hero1Button2").addEventListener("click", buyHero1Milestone); 
         
     }
+    if (heroLvl[1] >= 30 && h1M[2] == true)
+    {
+        document.getElementById("hero1M1").innerHTML = "Milestone (Lvl. 60)";
+        document.getElementById("hMCost1").innerHTML = convrt(hM3Cost1);
+    }
     if (heroLvl[1] >= 60 && h1M[3] == false)
     {
         document.getElementById("hero1M1").innerHTML = "All Damage x 1.1";
         document.getElementById("hMCost1").innerHTML = convrt(hM3Cost1);
         document.getElementById("hero1Button2").addEventListener("click", buyHero1Milestone); 
-        
+    }
+    if (heroLvl[1] >= 60 && h1M[3] == true)
+    {
+        document.getElementById("hero1M1").innerHTML = "Milestone (Lvl. 100)";
+        document.getElementById("hMCost1").innerHTML = convrt(hM4Cost1);
     }
     if (heroLvl[1] >= 100 && h1M[4] == false)
     {
         document.getElementById("hero1M1").innerHTML = "Click Damage x 1.2";
         document.getElementById("hMCost1").innerHTML = convrt(hM4Cost1);
         document.getElementById("hero1Button2").addEventListener("click", buyHero1Milestone); 
-        
+    }
+    if (heroLvl[1] >= 100 && h1M[4] == true)
+    {
+        document.getElementById("hero1M1").innerHTML = "Milestone (Lvl. 200)";
+        document.getElementById("hMCost1").innerHTML = convrt(hM5Cost1);
     }
     if (heroLvl[1] >= 200 && h1M[5] == false)
     {
@@ -1100,11 +1113,21 @@ function heroUnlockCheck()
         document.getElementById("hMCost1").innerHTML = convrt(hM5Cost1);
         document.getElementById("hero1Button2").addEventListener("click", buyHero1Milestone); 
     }
+    if (heroLvl[1] >= 200 && h1M[5] == true)
+    {
+        document.getElementById("hero1M1").innerHTML = "Milestone (Lvl. 300)";
+        document.getElementById("hMCost1").innerHTML = convrt(hM6Cost1);
+    }
     if (heroLvl[1] >= 300 && h1M[6] == false)
     {
         document.getElementById("hero1M1").innerHTML = "All Gold x 1.1";
         document.getElementById("hMCost1").innerHTML = convrt(hM6Cost1);
         document.getElementById("hero1Button2").addEventListener("click", buyHero1Milestone); 
+    }
+    if (heroLvl[1] >= 300 && h1M[6] == true)
+    {
+        document.getElementById("hero1M1").innerHTML = "Milestone (Lvl. 400)";
+        document.getElementById("hMCost1").innerHTML = convrt(hM7Cost1);
     }
     if (heroLvl[1] >= 400 && h1M[7] == false)
     {
@@ -1112,11 +1135,21 @@ function heroUnlockCheck()
         document.getElementById("hMCost1").innerHTML = convrt(hM7Cost1);
         document.getElementById("hero1Button2").addEventListener("click", buyHero1Milestone); 
     }
+    if (heroLvl[1] >= 400 && h1M[7] == true)
+    {
+        document.getElementById("hero1M1").innerHTML = "Milestone (Lvl. 500)";
+        document.getElementById("hMCost1").innerHTML = convrt(hM8Cost1);
+    }
     if (heroLvl[1] >= 500 && h1M[8] == false)
     {
         document.getElementById("hero1M1").innerHTML = "Boss Gold x 1.2";
         document.getElementById("hMCost1").innerHTML = convrt(hM8Cost1);
         document.getElementById("hero1Button2").addEventListener("click", buyHero1Milestone); 
+    }
+    if (heroLvl[1] >= 500 && h1M[8] == true)
+    {
+        document.getElementById("hero1M1").innerHTML = "Milestone (Lvl. 1000)";
+        document.getElementById("hMCost1").innerHTML = convrt(hM9Cost1);
     }
 
 
@@ -1132,7 +1165,11 @@ function heroUnlockCheck()
         document.getElementById("hero2M1").innerHTML = "Ranged Hero Damage x 1.2";
         document.getElementById("hMCost2").innerHTML = convrt(hM1Cost2);
         document.getElementById("hero2Button2").addEventListener("click", buyhero2Milestone); 
-        
+    }
+    if (heroLvl[2] >= 10 && h2M[1] == true)
+    {
+        document.getElementById("hero2M1").innerHTML = "Milestone (Lvl. 30)";
+        document.getElementById("hMCost2").innerHTML = convrt(hM2Cost2);
     }
     if (heroLvl[2] >= 30 && h2M[2] == false)
     {
@@ -1141,19 +1178,32 @@ function heroUnlockCheck()
         document.getElementById("hero2Button2").addEventListener("click", buyhero2Milestone); 
         
     }
+    if (heroLvl[2] >= 30 && h2M[2] == true)
+    {
+        document.getElementById("hero2M1").innerHTML = "Milestone (Lvl. 60)";
+        document.getElementById("hMCost2").innerHTML = convrt(hM3Cost2);
+    }
     if (heroLvl[2] >= 60 && h2M[3] == false)
     {
         document.getElementById("hero2M1").innerHTML = "All Gold x 1.1";
         document.getElementById("hMCost2").innerHTML = convrt(hM3Cost2);
         document.getElementById("hero2Button2").addEventListener("click", buyhero2Milestone); 
-        
+    }
+    if (heroLvl[2] >= 60 && h2M[3] == true)
+    {
+        document.getElementById("hero2M1").innerHTML = "Milestone (Lvl. 100)";
+        document.getElementById("hMCost2").innerHTML = convrt(hM4Cost2);
     }
     if (heroLvl[2] >= 100 && h2M[4] == false)
     {
         document.getElementById("hero2M1").innerHTML = "Orange Hero Damage x 1.25";
         document.getElementById("hMCost2").innerHTML = convrt(hM4Cost2);
         document.getElementById("hero2Button2").addEventListener("click", buyhero2Milestone); 
-        
+    }
+    if (heroLvl[2] >= 100 && h2M[4] == true)
+    {
+        document.getElementById("hero2M1").innerHTML = "Milestone (Lvl. 200)";
+        document.getElementById("hMCost2").innerHTML = convrt(hM5Cost2);
     }
     if (heroLvl[2] >= 200 && h2M[5] == false)
     {
@@ -1161,11 +1211,21 @@ function heroUnlockCheck()
         document.getElementById("hMCost2").innerHTML = convrt(hM5Cost2);
         document.getElementById("hero2Button2").addEventListener("click", buyhero2Milestone); 
     }
+    if (heroLvl[2] >= 200 && h2M[5] == true)
+    {
+        document.getElementById("hero2M1").innerHTML = "Milestone (Lvl. 300)";
+        document.getElementById("hMCost2").innerHTML = convrt(hM6Cost2);
+    }
     if (heroLvl[2] >= 300 && h2M[6] == false)
     {
         document.getElementById("hero2M1").innerHTML = "Ranged Hero Damage x 1.1";
         document.getElementById("hMCost2").innerHTML = convrt(hM6Cost2);
         document.getElementById("hero2Button2").addEventListener("click", buyhero2Milestone); 
+    }
+    if (heroLvl[2] >= 300 && h2M[6] == true)
+    {
+        document.getElementById("hero2M1").innerHTML = "Milestone (Lvl. 400)";
+        document.getElementById("hMCost2").innerHTML = convrt(hM7Cost2);
     }
     if (heroLvl[2] >= 400 && h2M[7] == false)
     {
@@ -1173,11 +1233,21 @@ function heroUnlockCheck()
         document.getElementById("hMCost2").innerHTML = convrt(hM7Cost2);
         document.getElementById("hero2Button2").addEventListener("click", buyhero2Milestone); 
     }
+    if (heroLvl[2] >= 400 && h2M[7] == true)
+    {
+        document.getElementById("hero2M1").innerHTML = "Milestone (Lvl. 500)";
+        document.getElementById("hMCost2").innerHTML = convrt(hM8Cost2);
+    }
     if (heroLvl[2] >= 500 && h2M[8] == false)
     {
         document.getElementById("hero2M1").innerHTML = "Golden Enemy Gold x 1.2";
         document.getElementById("hMCost2").innerHTML = convrt(hM8Cost2);
         document.getElementById("hero2Button2").addEventListener("click", buyhero2Milestone); 
+    }
+    if (heroLvl[2] >= 500 && h2M[8] == true)
+    {
+        document.getElementById("hero2M1").innerHTML = "Milestone (Lvl. 1000)";
+        document.getElementById("hMCost2").innerHTML = convrt(hM9Cost2);
     }
 
     //hero 3 unlocks
@@ -1192,7 +1262,11 @@ function heroUnlockCheck()
         document.getElementById("hero3M1").innerHTML = "Red Hero Damage x 1.25";
         document.getElementById("hMCost3").innerHTML = convrt(hM1Cost3);
         document.getElementById("hero3Button2").addEventListener("click", buyHero3Milestone); 
-        
+    }
+    if (heroLvl[3] >= 10 && h3M[1] == true)
+    {
+        document.getElementById("hero3M1").innerHTML = "Milestone (Lvl. 30)";
+        document.getElementById("hMCost3").innerHTML = convrt(hM2Cost3);
     }
     if (heroLvl[3] >= 30 && h3M[2] == false)
     {
@@ -1201,19 +1275,32 @@ function heroUnlockCheck()
         document.getElementById("hero3Button2").addEventListener("click", buyHero3Milestone); 
         
     }
+    if (heroLvl[3] >= 30 && h3M[2] == true)
+    {
+        document.getElementById("hero3M1").innerHTML = "Milestone (Lvl. 60)";
+        document.getElementById("hMCost3").innerHTML = convrt(hM3Cost3);
+    }
     if (heroLvl[3] >= 60 && h3M[3] == false)
     {
         document.getElementById("hero3M1").innerHTML = "All Gold x 1.1";
         document.getElementById("hMCost3").innerHTML = convrt(hM3Cost3);
         document.getElementById("hero3Button2").addEventListener("click", buyHero3Milestone); 
-        
+    }
+    if (heroLvl[3] >= 60 && h3M[3] == true)
+    {
+        document.getElementById("hero3M1").innerHTML = "Milestone (Lvl. 100)";
+        document.getElementById("hMCost3").innerHTML = convrt(hM4Cost3);
     }
     if (heroLvl[3] >= 100 && h3M[4] == false)
     {
         document.getElementById("hero3M1").innerHTML = "Boss Gold x 1.1";
         document.getElementById("hMCost3").innerHTML = convrt(hM4Cost3);
         document.getElementById("hero3Button2").addEventListener("click", buyHero3Milestone); 
-        
+    }
+    if (heroLvl[3] >= 100 && h3M[4] == true)
+    {
+        document.getElementById("hero3M1").innerHTML = "Milestone (Lvl. 200)";
+        document.getElementById("hMCost3").innerHTML = convrt(hM5Cost3);
     }
     if (heroLvl[3] >= 200 && h3M[5] == false)
     {
@@ -1221,11 +1308,21 @@ function heroUnlockCheck()
         document.getElementById("hMCost3").innerHTML = convrt(hM5Cost3);
         document.getElementById("hero3Button2").addEventListener("click", buyHero3Milestone); 
     }
+    if (heroLvl[3] >= 200 && h3M[5] == true)
+    {
+        document.getElementById("hero3M1").innerHTML = "Milestone (Lvl. 300)";
+        document.getElementById("hMCost3").innerHTML = convrt(hM6Cost3);
+    }
     if (heroLvl[3] >= 300 && h3M[6] == false)
     {
         document.getElementById("hero3M1").innerHTML = "Crit Damage x 1.1";
         document.getElementById("hMCost3").innerHTML = convrt(hM6Cost3);
         document.getElementById("hero3Button2").addEventListener("click", buyHero3Milestone); 
+    }
+    if (heroLvl[3] >= 300 && h3M[6] == true)
+    {
+        document.getElementById("hero3M1").innerHTML = "Milestone (Lvl. 400)";
+        document.getElementById("hMCost3").innerHTML = convrt(hM7Cost3);
     }
     if (heroLvl[3] >= 400 && h3M[7] == false)
     {
@@ -1233,11 +1330,21 @@ function heroUnlockCheck()
         document.getElementById("hMCost3").innerHTML = convrt(hM7Cost3);
         document.getElementById("hero3Button2").addEventListener("click", buyHero3Milestone); 
     }
+    if (heroLvl[3] >= 400 && h3M[7] == true)
+    {
+        document.getElementById("hero3M1").innerHTML = "Milestone (Lvl. 500)";
+        document.getElementById("hMCost3").innerHTML = convrt(hM8Cost3);
+    }
     if (heroLvl[3] >= 500 && h3M[8] == false)
     {
         document.getElementById("hero3M1").innerHTML = "All Damage x 1.1";
         document.getElementById("hMCost3").innerHTML = convrt(hM8Cost3);
         document.getElementById("hero3Button2").addEventListener("click", buyHero3Milestone); 
+    }
+    if (heroLvl[3] >= 500 && h3M[8] == true)
+    {
+        document.getElementById("hero3M1").innerHTML = "Milestone (Lvl. 1000)";
+        document.getElementById("hMCost3").innerHTML = convrt(hM9Cost3);
     }
 
     //hero 4 unlocks
@@ -2035,8 +2142,15 @@ function displayStats()
 
 function multiUpgrade()
 {
-    var h = prompt("Which Hero would you like to upgrade? (type in their number value)");
+    var h = prompt("Which Hero would you like to upgrade? (Type in their number value.  Type 0 for upgrading click)");
     var t = prompt("How many times would you like to upgrade them?");
+    if (h == 0)
+    {
+        for (i = 0; i < t; i++)
+        {
+            upgrade();
+        }
+    }
     if (h == 1 && heroBought[1] == true)
     {
         for (i = 0; i < t; i++)
@@ -2118,20 +2232,68 @@ function hideMultInfo()
     document.getElementById("multInfoButton").removeEventListener("click", hideMultInfo);
 }
 
+function milestoneLoad()
+{
+    if (h1M[1] == true)
+    {
+
+    }
+}
+
 /* GAME SAVING ---------------------------------------------------------------------- */
 /* ---------------------------------------faust-------------------------------------- */
+function reloadFunction()
+{
+    return "Are you sure you want to leave the site?  Make sure you have saved your progress.";
+}
+function setPassword()
+{
+    var passwordSet = prompt("Would you like a password for saving? (type 'yes' or 'no') ");
+    if (passwordSet != 'yes')
+    {
+        passwordSet = 'no';
+        passSet = false;
+    }
+    if (passwordSet == 'yes')
+    {
+        savePass = prompt("What is your password?");
+        passSet = true;
+    }
+}
+
 function saveGame()
 {
-    for (i = 1; i < aLvl.length; i++)
+    if (passSet == true)
     {
-        abilityActive[i] = false;
-        aDuration[i] = 0;
+        var pass = prompt("What is the password?")
+        if (pass == savePass)
+        {
+            for (i = 1; i < aLvl.length; i++)
+            {
+                abilityActive[i] = false;
+                aDuration[i] = 0;
+            }
+            document.getElementById("ability1Button").removeEventListener("click", useAbility1);
+            setTimeout(function(){document.getElementById("ability1Button").addEventListener("click", useAbility1)}, 1200);
+            setTimeout(saveGameDefer, 1000);
+            setTimeout(function(){document.getElementById("save").style.backgroundColor = "green"}, 1000);
+            setTimeout(function(){document.getElementById("save").style.backgroundColor = "rgb(214, 214, 214)"}, 1200);
+        }
     }
-    document.getElementById("ability1Button").removeEventListener("click", useAbility1);
-    setTimeout(function(){document.getElementById("ability1Button").addEventListener("click", useAbility1)}, 1200);
-    setTimeout(saveGameDefer, 1000);
-    setTimeout(function(){document.getElementById("save").style.backgroundColor = "green"}, 1000);
-    setTimeout(function(){document.getElementById("save").style.backgroundColor = "rgb(214, 214, 214)"}, 1200);
+    if (passSet == false)
+    {
+        for (i = 1; i < aLvl.length; i++)
+        {
+            abilityActive[i] = false;
+            aDuration[i] = 0;
+        }
+        document.getElementById("ability1Button").removeEventListener("click", useAbility1);
+        setTimeout(function(){document.getElementById("ability1Button").addEventListener("click", useAbility1)}, 1200);
+        setTimeout(saveGameDefer, 1000);
+        setTimeout(function(){document.getElementById("save").style.backgroundColor = "green"}, 1000);
+        setTimeout(function(){document.getElementById("save").style.backgroundColor = "rgb(214, 214, 214)"}, 1200);
+    }
+    
 }
 function saveGameDefer()
 {
@@ -2147,6 +2309,7 @@ function saveGameDefer()
     localStorage.setItem('heroLvl', JSON.stringify(heroLvl));
 
     localStorage.setItem('damage', JSON.stringify(damage));
+    localStorage.setItem('clickDamageMult', JSON.stringify(clickDamageMult));
     localStorage.setItem('clickCritMult', JSON.stringify(clickCritMult));
     localStorage.setItem('clickCritChance', JSON.stringify(clickCritChance));
     localStorage.setItem('clickLevel', JSON.stringify(clickLevel));
@@ -2182,6 +2345,9 @@ function saveGameDefer()
     localStorage.setItem('h1M', JSON.stringify(h1M));
     localStorage.setItem('h2M', JSON.stringify(h2M));
     localStorage.setItem('h3M', JSON.stringify(h3M));
+
+    localStorage.setItem('savePass', JSON.stringify(savePass));
+    localStorage.setItem('passSet', JSON.stringify(passSet));
 }
 function loadGame()
 {
@@ -2201,6 +2367,7 @@ function loadGame()
         heroLvl = JSON.parse(localStorage.getItem('heroLvl'));
 
         damage = JSON.parse(localStorage.getItem('damage'));
+        clickDamageMult = JSON.parse(localStorage.getItem('clickDamageMult'));
         clickCritMult = JSON.parse(localStorage.getItem('clickCritMult'));
         clickCritChance = JSON.parse(localStorage.getItem('clickCritChance'));
         clickLevel = JSON.parse(localStorage.getItem('clickLevel'));
@@ -2237,7 +2404,13 @@ function loadGame()
         h1M = JSON.parse(localStorage.getItem('h1M'));
         h2M = JSON.parse(localStorage.getItem('h2M'));
         h3M = JSON.parse(localStorage.getItem('h3M'));
+
+        savePass = JSON.parse(localStorage.getItem('savePass'));
+        passSet = JSON.parse(localStorage.getItem('passSet'));
         
+        //milestone stuff
+        heroUnlockCheck();
+
         // ability stuff
         if (abilityBought[1] == true)
         {
@@ -2259,71 +2432,60 @@ function loadGame()
         if (heroBought[1] == true)
         {
             clearInterval(heroAtk[1]);
-            setInterval(heroAttack1, heroAtkCooldown[1]*1000);
+            heroAtk[1] = setInterval(heroAttack1, heroAtkCooldown[1]*1000);
             document.getElementById("hero1Locked").innerHTML = "Upgrade";
         }
         if (heroBought[2] == true)
         {
             clearInterval(heroAtk[2]);
-            setInterval(heroAttack2, heroAtkCooldown[2]*1000);
+            heroAtk[2] = setInterval(heroAttack2, heroAtkCooldown[2]*1000);
             document.getElementById("hero2Locked").innerHTML = "Upgrade";
         }
         if (heroBought[3] == true)
         {
             clearInterval(heroAtk[3]);
-            setInterval(heroAttack3, heroAtkCooldown[3]*1000);
+            heroAtk[3] = setInterval(heroAttack3, heroAtkCooldown[3]*1000);
             document.getElementById("hero3Locked").innerHTML = "Upgrade";
         }
         if (heroBought[4] == true)
         {
             clearInterval(heroAtk[4]);
-            setInterval(heroAttack4, heroAtkCooldown[4]*1000);
+            heroAtk[4] = setInterval(heroAttack4, heroAtkCooldown[4]*1000);
             document.getElementById("hero4Locked").innerHTML = "Upgrade";
         }
         if (heroBought[5] == true)
         {
             clearInterval(heroAtk[5]);
-            setInterval(heroAttack5, heroAtkCooldown[5]*1000);
+            heroAtk[5] = setInterval(heroAttack5, heroAtkCooldown[5]*1000);
             document.getElementById("hero5Locked").innerHTML = "Upgrade";
         }
         if (heroBought[6] == true)
         {
             clearInterval(heroAtk[6]);
-            setInterval(heroAttack6, heroAtkCooldown[6]*1000);
+            heroAtk[6] = setInterval(heroAttack6, heroAtkCooldown[6]*1000);
             document.getElementById("hero6Locked").innerHTML = "Upgrade";
         }
         if (heroBought[7] == true)
         {
             clearInterval(heroAtk[7]);
-            setInterval(heroAttack7, heroAtkCooldown[7]*1000);
+            heroAtk[7] = setInterval(heroAttack7, heroAtkCooldown[7]*1000);
             document.getElementById("hero7Locked").innerHTML = "Upgrade";
         }
         if (heroBought[8] == true)
         {
             clearInterval(heroAtk[8]);
-            setInterval(heroAttack8, heroAtkCooldown[8]*1000);
+            heroAtk[8] = setInterval(heroAttack8, heroAtkCooldown[8]*1000);
             document.getElementById("hero8Locked").innerHTML = "Upgrade";
         }
         if (heroBought[9] == true)
         {
             clearInterval(heroAtk[9]);
-            setInterval(heroAttack9, heroAtkCooldown[9]*1000);
+            heroAtk[9] = setInterval(heroAttack9, heroAtkCooldown[9]*1000);
             document.getElementById("hero9Locked").innerHTML = "Upgrade";
         }
     }
     
 }
-
-
-
-
-
-
-
-
-
-
-
 
 /* -------------------------------------------- */
 // admin
