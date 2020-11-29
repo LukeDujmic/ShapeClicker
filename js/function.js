@@ -16,7 +16,6 @@ var isGolden = false;
 var isReg = true;
 var enemyDead = false;
 
-console.log("branch testing");
 
 var damage = 5e0;
 //var heroDamage = [0, 10, 40, 4000, 17500, 250000];
@@ -3021,24 +3020,36 @@ function loadGame()
             heroAtk[10] = setInterval(heroAttack10, heroAtkCooldown[10]*1000);
             document.getElementById("hero10Locked").innerHTML = "Upgrade";
         }
+        for (i = heroNumberU.length; i < heroDamage.length; i++)
+        {
+            heroDamage.pop();
+        }
 
             //new heroes for old users
-            if (heroNumber[10] == undefined || heroNumber[10] == null)
+            if (heroNumber.length < heroNumberU.length)
             {
-                heroNumber.push(10);
-                heroAtkCooldown.push(3);
-                hCost.push(1.75e15);
-                hCostBase.push(1.75e15);
-                let z = 1;
-                z = (hCost[10] * 5 * z * heroAtkCooldown[10]) / 4 * ((1-23/1000*min(heroNumber[10], heroNumber.length))**min(heroNumber[10],heroNumber.length));
-                heroDamage.push(z);
-                heroBaseDamage.push(z);
-                heroAtk.push('filler');
-                hDmgMult.push(1);
-                heroLvl.push(0);
-                heroBought[i] = false;
-                heroUnlocked[i] = false;
-                indHeroDmg[i] = 0;
+                for (let i = (heroNumber.length + (heroNumberU.length - heroNumber.length)); i < heroNumberU.length; i++)
+                {
+                    heroNumber.push(i);
+                    if (heroNumber[i] == 10)
+                    {
+                        heroAtkCooldown.push(3);
+                        hCost.push(1.75e15);
+                        hCostBase.push(1.75e15);
+                        let z = (hCost[10] * 5 * z * heroAtkCooldown[10]) / 4 * ((1-23/1000*min(heroNumber[10], heroNumber.length))**min(heroNumber[10],heroNumber.length));
+                        heroDamage.push(z);
+                        heroBaseDamage.push(z);
+                        heroAtk.push('filler');
+                        hDmgMult.push(1);
+                        heroLvl.push(0);
+                        heroBought[i] = false;
+                        heroUnlocked[i] = false;
+                        indHeroDmg[i] = 0;
+                    }
+                }
+
+                
+                
             }
             console.log(heroNumber);
             console.log(heroDamage);
