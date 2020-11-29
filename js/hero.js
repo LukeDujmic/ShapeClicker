@@ -1,4 +1,4 @@
 //red, blue, yellow, orange, purple, green
 
-//hero 3: red hero damage x 1.25, melee hero damage x 1.2, all gold x 1.1, boss gold x 1.1, melee hero damage x 1.1, crit damage x 1.1, click damage x 1.1, all damage x 1.1
+//hero 4: purple hero damage x 1.25, +0.1% hero DPS to click dmg, click damage x 1.1, hero damage x 1.1, ranged hero damage x 1.1, all gold x 1.1, crit chance + 0.25%, crit damage x 1.1
 
