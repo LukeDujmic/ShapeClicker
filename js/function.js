@@ -279,62 +279,62 @@ function enemyCooldown()
 function enemyStyle()
 {
     let r = Math.ceil(Math.random(1) * 6);
-    if (r == 1)
+    switch (r)
     {
+        case 1:
         document.getElementById("enemy").classList.add("enemySquare");
         document.getElementById("enemy").classList.remove("enemyCircle");
         document.getElementById("enemy").classList.remove("enemyHexagon");
         document.getElementById("enemy").classList.remove("enemySquircle");
         document.getElementById("enemy").classList.remove("enemyPill");
         document.getElementById("enemy").classList.remove("enemyEgg");
-    }
-    if (r == 2)
-    {
+        break;
+
+        case 2:
         document.getElementById("enemy").classList.add("enemyCircle");
         document.getElementById("enemy").classList.remove("enemySquare");
         document.getElementById("enemy").classList.remove("enemyHexagon");
         document.getElementById("enemy").classList.remove("enemySquircle");
         document.getElementById("enemy").classList.remove("enemyPill");
         document.getElementById("enemy").classList.remove("enemyEgg");
-    }
-    if (r == 3)
-    {
+        break;
+
+        case 3: 
         document.getElementById("enemy").classList.add("enemyHexagon");
         document.getElementById("enemy").classList.remove("enemySquare");
         document.getElementById("enemy").classList.remove("enemyCircle");
         document.getElementById("enemy").classList.remove("enemySquircle");
         document.getElementById("enemy").classList.remove("enemyPill");
         document.getElementById("enemy").classList.remove("enemyEgg");
-    }
-    if (r == 4)
-    {
+        break;
+
+        case 4:
         document.getElementById("enemy").classList.add("enemySquircle");
         document.getElementById("enemy").classList.remove("enemySquare");
         document.getElementById("enemy").classList.remove("enemyCircle");
         document.getElementById("enemy").classList.remove("enemyHexagon");
         document.getElementById("enemy").classList.remove("enemyPill");
         document.getElementById("enemy").classList.remove("enemyEgg");
-    }
-    if (r == 5)
-    {
+        break;
+
+        case 5:
         document.getElementById("enemy").classList.add("enemyPill");
         document.getElementById("enemy").classList.remove("enemySquare");
         document.getElementById("enemy").classList.remove("enemyCircle");
         document.getElementById("enemy").classList.remove("enemyHexagon");
         document.getElementById("enemy").classList.remove("enemySquircle");
         document.getElementById("enemy").classList.remove("enemyEgg");
-    }
-    if (r == 6)
-    {
+        break;
+        
+        case 6:
         document.getElementById("enemy").classList.add("enemyEgg");
         document.getElementById("enemy").classList.remove("enemySquare");
         document.getElementById("enemy").classList.remove("enemyCircle");
         document.getElementById("enemy").classList.remove("enemyHexagon");
         document.getElementById("enemy").classList.remove("enemySquircle");
         document.getElementById("enemy").classList.remove("enemyPill");
+        break;
     }
-    
-
 }
 
 //heroes
@@ -2725,7 +2725,7 @@ document.getElementById("multInfoButton").addEventListener("click", showMultInfo
 function showMultInfo()
 {
     document.getElementById("multInfoButton").innerHTML = "Hide Levelling Info";
-    document.getElementById("multiplierInfo").style.display = "block";
+    document.getElementById("multiplierInfo").style.display = "flex";
     document.getElementById("multInfoButton").removeEventListener("click", showMultInfo);
     document.getElementById("multInfoButton").addEventListener("click", hideMultInfo);
 }
