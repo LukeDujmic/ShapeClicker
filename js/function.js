@@ -3022,23 +3022,21 @@ function loadGame()
         }
 
             //new heroes for old users
-            for (i = 1; i < heroNumberU.length; i++)
+            for (let i = 1; i < heroNumberU.length; i++)
             {
-                if (heroNumber[i] == null)
+                if (heroNumber[10] == null)
                 {
-                    if (heroNumber[i] == 10)
-                    {
-                        heroAtkCooldown.push(3);
-                        hCost.push(1.75e15);
-                        hCostBase.push(1.75e15);
-                        let z = 1;
-                        z = (hCost[i] * 5 * z * heroAtkCooldown[i]) / 4 * ((1-23/1000*min(heroNumber[i], heroNumber.length))**min(heroNumber[i],heroNumber.length));
-                        heroDamage.push(z);
-                        heroBaseDamage.push(z);
-                        heroAtk.push('filler');
-                        hDmgMult.push(1);
-                        heroLvl.push(0);
-                    }
+                    heroNumber.push(10);
+                    heroAtkCooldown.push(3);
+                    hCost.push(1.75e15);
+                    hCostBase.push(1.75e15);
+                    let z = 1;
+                    z = (hCost[i] * 5 * z * heroAtkCooldown[i]) / 4 * ((1-23/1000*min(heroNumber[i], heroNumber.length))**min(heroNumber[i],heroNumber.length));
+                    heroDamage.push(z);
+                    heroBaseDamage.push(z);
+                    heroAtk.push('filler');
+                    hDmgMult.push(1);
+                    heroLvl.push(0);
                     heroBought[i] = false;
                     heroUnlocked[i] = false;
                     indHeroDmg[i] = 0;
