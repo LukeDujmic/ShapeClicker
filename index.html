@@ -10,6 +10,44 @@
         <link href="https://fonts.googleapis.com/css2?family=Texturina:wght@100&display=swap" rel="stylesheet">
 
         <link rel="icon" href="images/webIcon.png" type="image/gif" sizes="32x32">
+
+        <style>
+            .enemyHexagon:before {
+            bottom: 99.4%;
+            border-bottom: 4.25em solid green;
+            transition: 0.1s;
+            }
+            .enemyHexagon:after {
+            top: 99.4%;
+            width: 0;
+            border-top: 4.25em solid green;
+            transition: 0.1s;
+            }
+            .enemyHexagon.regular:before {
+            bottom: 99.4%;
+            border-bottom: 4.25em solid green;
+            transition: 0.1s;
+            }
+
+            .enemyHexagon.regular:after {
+            top: 99.4%;
+            width: 0;
+            border-top: 4.25em solid green;
+            transition: 0.1s;
+            }
+            .enemyHexagon.golden:before {
+            bottom: 99.4%;
+            border-bottom: 4.25em solid gold;
+            transition: 0.1s;
+            }
+
+            .enemyHexagon.golden:after {
+            top: 99.4%;
+            width: 0;
+            border-top: 4.25em solid gold;
+            transition: 0.1s;
+            }
+        </style>
     </head>
 
     <body onbeforeunload="return reloadFunction()" onload="loadPass()">
@@ -17,16 +55,23 @@
             
             <div>Stage: <a id="stage"></a></div>
             <div>Progress: <a id="enemyNum"></a></div>
-            
+            <div><button id="bossButton">...</button></div>
         </div>
 
         <div id="enemyArea">
             <div id="healthStat">HP: <a id="enemyHealth"></a></div>
+            <div id="timeStat">Time Left: <a id="bossTime"></a></div>
             <div id="goldStat">Gold: <a id="gold"></a></div>
             <div id="enemy" class="enemySquare regular"></div>
         </div>
         <div id="characterArea">
-            <div id="character" class="clickNotAttack"></div>
+            <div id="characterBox1">
+                <div id="character" class="clickNotAttack"></div>
+            </div>
+
+            <div id="characterBox2">
+                <div id="character2" class="clickNotAttack2"></div>
+            </div>
         </div>
 
         <div id="heroesArea">
@@ -173,14 +218,50 @@
                     <div>Damage: <a id="hero10Damage"></a></div>
                 </div>
             </div>
+
+            <div id="hero11" class="heroBox">
+                <div class="heroSpriteBox">
+                    <div id="hero11Sprite" class="heroes"></div>
+                </div>
+                
+                <div>
+                    <button id="hero11Button"><a id="hero11Locked">Unlock</a> Hero 11 <p>(Cost: <a id="hCost11"></a>)</p></button>
+                </div>
+                <div class="heroStats">
+                    <div>Level: <a id="hero11Lvl"></a></div>
+                    <div>Damage: <a id="hero11Damage"></a></div>
+                </div>
+            </div>
+
+            <div id="hero12" class="heroBox">
+                <div class="heroSpriteBox">
+                    <div id="hero12Sprite" class="heroes"></div>
+                </div>
+                
+                <div>
+                    <button id="hero12Button"><a id="hero12Locked">Unlock</a> Hero 12 <p>(Cost: <a id="hCost12"></a>)</p></button>
+                </div>
+                <div class="heroStats">
+                    <div>Level: <a id="hero12Lvl"></a></div>
+                    <div>Damage: <a id="hero12Damage"></a></div>
+                </div>
+            </div>
         </div>
         
         <div id="playerStats">
+            <div>
+                <button onclick="upgrade()">Upgrade Player 1 (Cost: <a id="cost"></a>)</button>
+                <div>Click Level: <a id="clickLevel"></a></div>
+                <div>Damage: <a id="damage"></a></div>
+                <div>Left Click to Attack</div>
+            </div>
 
-            <button onclick="upgrade()">Upgrade Damage (Cost: <a id="cost"></a>)</button>
-            <div>Click Level: <a id="clickLevel"></a></div>
-            <div>Damage: <a id="damage"></a></div>
-            
+            <div>
+                <button onclick="upgrade2()">Upgrade Player 2 (Cost: <a id="cost2"></a>)</button>
+                <div>Click Level: <a id="clickLevel2"></a></div>
+                <div>Damage: <a id="damage2"></a></div>
+                <div>E and R to Attack</div>
+            </div>
         </div>
 
         <button onclick="multiUpgrade()" id="multiButton">Multi-Upgrade</button>
@@ -202,6 +283,49 @@
                 <div>Cooldown: <a id="aCooldownBase1"></a></div>
             </div>
 
+        </div>
+
+        <div id="prestigeArea">
+            <div id="prestigeButtonArea">
+                <button id="prestigeButton" onclick="prestigeDefer()">Prestige (<a id="artifactEarn">Unlock at Stage 80</a>)</button>
+            </div>
+            <div id="shapestones">Shapestone: <a id="shapestoneAmount">0</a></div>
+        </div>
+
+        <div id="artifactArea">
+            <div id="artifactButtonArea">
+                <button id="artifactBuyButton" onclick="buyArtifact()">Unlock Geometric Artifact (Cost: <a id="artifactBCost">1</a> Shapestone)</button>
+            </div>
+            <div id="artifactsBox">
+                <div>
+                    <div>Total Artifact Damage: <a id="totalArtDmg">0</a>x All Damage</div>
+                </div>
+                <div id="artifact1" class="hidden">
+                    <figure><img src="images/coreOfStrength.png"><figcaption>Core of Strength (Level <a id="art1Lvl">0</a>)</figcaption></figure>
+                    <div>Artifact Damage: +<a id="art1Dmg">0</a></div>
+                    <div>All Damage x <a id="art1Mult">0</a></div>
+                    <button id="artifact1Upgrade">Upgrade (Cost: <a id="art1Cost">0</a>)</button>
+                </div>
+                <div id="artifact2" class="hidden">
+                    <figure><img src="images/radiantCube.png"><figcaption>Radiant Cube (Level <a id="art2Lvl">0</a>)</figcaption></figure>
+                    <div>Artifact Damage: +<a id="art2Dmg">0</a></div>
+                    <div>All Gold x <a id="art2Mult">0</a></div>
+                    <button id="artifact2Upgrade">Upgrade (Cost: <a id="art2Cost">0</a>)</button>
+                </div>
+                <div id="artifact3" class="hidden">
+                    <figure><img src="images/honedTriangle.png"><figcaption>Honed Triangle (Level <a id="art3Lvl">0</a>)</figcaption></figure>
+                    <div>Artifact Damage: +<a id="art3Dmg">0</a></div>
+                    <div>Critical Damage x <a id="art3Mult">0</a></div>
+                    <button id="artifact3Upgrade">Upgrade (Cost: <a id="art3Cost">0</a>)</button>
+                </div>
+                <div id="artifact4" class="hidden">
+                    <figure><img src="images/inspirationalDiamond.png"><figcaption>Inspirational Diamond (Level <a id="art4Lvl">0</a>)</figcaption></figure>
+                    <div>Artifact Damage: +<a id="art4Dmg">0</a></div>
+                    <div>All Hero Damage x <a id="art4Mult">0</a></div>
+                    <button id="artifact4Upgrade">Upgrade (Cost: <a id="art4Cost">0</a>)</button>
+                </div>
+            </div>
+            
         </div>
 
         <div id="saveArea">
@@ -347,6 +471,9 @@
         <div id="admin">
             <button onclick="goldSpawn()">Spawn Gold</button>
             <button onclick="stageSelect()">Stage Select</button>
+            <button onclick="shapestoneSpawn()">Spawn Shapestone</button>
+
+            <button onclick="testDisplay()">Test</button>
         </div>
 
         <!--<div id="tabs">
@@ -354,7 +481,7 @@
             <div id="heroTab">Heroes</div>
         </div>-->
 
-
+        <script src="js/artifact.js"></script>
         <script src="js/function.js"></script>
     </body>
 </html>

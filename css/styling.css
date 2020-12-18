@@ -1,15 +1,18 @@
+
 @font-face {
     font-family: 'Texturina', serif;
     src: url('../fonts/Texturina.ttf') format('truetype');
 }
 body{
     font-family: 'Texturina', serif;
+    background-color: rgb(31, 31, 31);
 }
 #enemyArea
 {
     height: 45em;
     border: black solid 0.5em;
     border-bottom: none;
+    background-color: white;
 }
 #enemy
 {
@@ -25,6 +28,17 @@ body{
     border: solid 0.5em black;
     padding: 0.2em;
     border-top: dashed 0.1em gray;
+    display: flex;
+    justify-content: center;
+    background-color: white;
+}
+#characterBox1{
+    width: 10%;
+    padding-bottom: 1em;
+}
+#characterBox2{
+    width: 10%;
+    padding-bottom: 1em;
 }
 #character
 {
@@ -34,6 +48,16 @@ body{
     z-index: 2;
     position: relative;
 }
+#character2
+{
+    width: 1.1em;
+    height: 1.1em;
+    background-color: white;
+    z-index: 2;
+    position: relative;
+    border-radius: 50em;
+}
+/* player 1 */
 .clickNotAttack
 {
     top: 40%;
@@ -50,6 +74,27 @@ body{
     transition: 0.05s;
 }
 .clickCrit
+{
+    box-shadow: green 0em 0em 0.5em 0.5em;
+    transition: 0.05s;
+}
+/* player 2 */
+.clickNotAttack2
+{
+    top: 35%;
+    margin: auto;
+    border: 0.25em solid rgb(15, 60, 78);
+    transition: 0.05s;
+}
+.clickAttack2
+{
+    top: 35%;
+    margin: auto;
+    transform: translateY(-1em) scaleY(1.5) scaleX(1.1);
+    border: 0.25em solid rgb(15, 60, 78);
+    transition: 0.05s;
+}
+.clickCrit2
 {
     box-shadow: green 0em 0em 0.5em 0.5em;
     transition: 0.05s;
@@ -89,32 +134,9 @@ left: 0;
 transition: 0.1s;
 }
 
-.enemyHexagon.regular:before {
-bottom: 99.4%;
-border-bottom: 4.25em solid green;
-transition: 0.1s;
-}
 
-.enemyHexagon.regular:after {
-top: 99.4%;
-width: 0;
-border-top: 4.25em solid green;
-transition: 0.1s;
-}
-.enemyHexagon.golden:before {
-bottom: 99.4%;
-border-bottom: 4.25em solid gold;
-transition: 0.1s;
-}
 
-.enemyHexagon.golden:after {
-top: 99.4%;
-width: 0;
-border-top: 4.25em solid gold;
-transition: 0.1s;
-}
-
-#enemyArea:active > .enemyHexagon:before,
+/*#enemyArea:active > .enemyHexagon:before,
 .enemyHexagon:after {
 content: "";
 position: absolute;
@@ -136,7 +158,7 @@ top: 99.4%;
 width: 0;
 border-top: 4.25em solid red;
 transition: 0.05s;
-}
+}*/
 
 .enemySquircle
 {
@@ -161,18 +183,6 @@ transition: 0.05s;
     transform: translate(-50%, -50%) scale(1);
 }
 
-
-#enemyArea:active > #enemy
-{
-    background-color: red;
-    transform: translate(-50%, -55%) skewY(1deg) skewX(-10deg) translateX(20px) scale(1);
-    transition: 0.05s;
-}
-#enemyArea:active > #enemy.boss
-{
-    transform: translate(-50%, -55%) skewY(1deg) skewX(-10deg) translateX(20px) scale(1.35) translateY(-2.2em);
-}
-
 .boss
 {
     transform: translate(-50%, -50%) scale(1.35) translateY(-2em);
@@ -184,6 +194,26 @@ transition: 0.05s;
 .regular
 {
     background-color: green;
+}
+
+/* enemy taking damage or being killed */
+.damaged
+{   
+    background-color: red;
+    transform: translate(-50%, -55%) skewY(1deg) skewX(-10deg) translateX(20px) scale(1);
+}
+.bossDamaged
+{
+    background-color: red;
+    transform: translate(-50%, -55%) skewY(1deg) skewX(-10deg) translateX(20px) scale(1.35) translateY(-2.2em);
+}
+.hexDamaged1
+{
+    border-bottom: red;   
+}
+.hexDamaged2
+{
+    border-top: red;   
 }
 
 .killed
@@ -207,7 +237,6 @@ p
 /* Heroes styling */
 #heroesArea
 {
-    border: solid black 0.4em;
     margin: 5px auto;
     display: flex;
     text-align: center;
@@ -220,6 +249,7 @@ p
     border: solid black 0.3em;
     border-radius: 0.1em;
     margin: 0.1%;
+    background-color: white;
 }
 .heroSpriteBox
 {
@@ -384,6 +414,23 @@ border-top: 10px solid rgb(0, 145, 0);
     background-color: yellow;
     border: 0.075em rgb(170, 159, 95) solid;
 }
+#hero11Sprite
+{
+    top: 50%;
+    left: 50%;
+    width: 1.5em;
+    height: 2.5em;
+    background-color: green;
+}
+#hero12Sprite
+{
+    top: 50%;
+    left: 50%;
+    width: 1.8em;
+    height: 2.2em;
+    border-radius: 50%;
+    background-color: blue;
+}
 
 .rotated
 {
@@ -464,16 +511,35 @@ border-top: 10px solid rgb(0, 145, 0);
     box-shadow: rgb(255, 222, 112) 0em -2.2em 0.3em -0.3em;
     transform: scale(1.1) translate(-0.9em, -0.5em);
 }
+.attacking11
+{
+    transition: 0.1s;
+    transition-timing-function: ease-out;
+    box-shadow: rgb(22, 71, 7) 0em -2.2em 0.3em -0.1em;
+    transform: scaleX(2) scaleY(0.5) translate(-0.4em, -4.5em);
+}
+.attacking12
+{
+    transition: 0.1s;
+    transition-timing-function: ease-out;
+    box-shadow: blue 0em -2em 0em -0.4em, blue 0em -3em 0em -0.4em;
+    transform: scale(0.8) translate(-1.15em, -0.7em);
+}
 
 
 /* top UI */
+#bossButton{
+    
+    position: relative;
+    top: 0.5em;
+}
 #stageStats
 {
-    margin: 5px auto;
     display: flex;
     text-align: center;
     flex-wrap: wrap;
     justify-content: center;
+    background-color: white;
 }
 #stageStats > div
 {
@@ -500,6 +566,22 @@ border-top: 10px solid rgb(0, 145, 0);
     background-repeat: no-repeat;
     transform: skewX(-10deg);
 }
+#timeStat{
+    opacity: 1;
+    box-sizing: border-box;
+    border: solid rgb(63, 152, 158) 0.1em;
+    width: 99.1%;
+    margin: 0.4%;
+    background: url(../images/timeMeter.png);
+    background-size: 25% 100%;
+    background-repeat: no-repeat;
+    transform: skewX(-10deg);
+    font-size: 1.5em;
+    color: white;
+    text-shadow: black 0.04em 0em, black -0.04em 0em, black 0em 0.04em, black 0em -0.04em;
+    transition: 1s;
+    transition-timing-function: linear;
+}   
 #goldStat
 {
     box-sizing: border-box;
@@ -513,16 +595,22 @@ border-top: 10px solid rgb(0, 145, 0);
 }
 
 /* click UI */
+#playerStats{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
 #playerStats > div
 {
+    padding: 0.25em;
     box-sizing: border-box;
-    width: 33%;
+    width: 20em;
     border: solid black 0.3em;
     border-radius: 0.1em;
     margin: 0.1%;
     font-size: 2em;
+    background-color: white;
 }
-
 /* Ability UI */
 #abilityArea
 {
@@ -533,6 +621,7 @@ border-top: 10px solid rgb(0, 145, 0);
     flex-wrap: wrap;
     justify-content: center;
     padding: 0.5em;
+    background-color: white;
 }
 #ability1Area
 {
@@ -550,6 +639,7 @@ border-top: 10px solid rgb(0, 145, 0);
     flex-wrap: wrap;
     justify-content: center;
     padding: 0.5em;
+    background-color: white;
 }
 #ability1BuyArea
 {
@@ -558,6 +648,10 @@ border-top: 10px solid rgb(0, 145, 0);
     padding: 0.25em;
 }
 /* save buttons */
+#saveArea
+{
+    background-color: white;
+}
 #saveArea > button
 {
     padding: 1em;
@@ -640,7 +734,7 @@ button
 }
 button:hover
 {
-    box-shadow: black 0em 0.25em;
+    box-shadow: rgb(0, 0, 0)0em 0.25em;
     transform: translateY(-0.25em);
     transition: 0.15s;
 }
@@ -659,6 +753,8 @@ button:active
 {
     margin-left: 1em;
     margin-right: 1em;
+    padding: 1em;
+    background-color: white;
 }
 
 /* tabs UI */
@@ -691,4 +787,70 @@ button:active
 {
     transform: translateY(-0.33em);
     transition: 0.2s;
+}
+/* prestige styles */
+#prestigeArea
+{
+    border: solid black 0.5em;
+    border-radius: 0.2em;
+    padding: 0.5em;
+    background-color: white;
+}
+#prestigeButton
+{
+    padding: 0.1em;
+    width: 20em;
+    font-size: 2em;
+    background-color: rgb(41, 80, 41);
+    text-shadow: rgb(0, 255, 0) 0em 0em 0.1em;
+    border-radius: 0em;
+    border: solid black 0.25em;
+}
+#prestigeButton:hover
+{
+    box-shadow: black 0em 0.1em 0em;
+    transform: translateY(-0.1em);
+}
+#shapestones
+{
+    font-size: 2em;
+    color: green;
+    text-shadow: black 0.04em 0em, black -0.04em 0em, black 0em 0.04em, black 0em -0.04em
+}
+#artifactBuyButton
+{
+    padding: 0.05em;
+    font-size: 1.5em;
+    border-radius: 0.25em;
+    border: solid black 0.25em;
+    margin-top: 0.5em;
+}
+#artifactBuyButton:hover
+{
+    box-shadow: black 0em 0.1em 0em;
+    transform: translateY(-0.1em);
+}
+/* specific artifact styles */
+#artifactArea
+{
+    font-size: 1.25em;
+}
+#artifactsBox > div
+{
+    border: solid black 0.15em;
+    margin: 1%;
+    background-color: white;
+}
+.hidden{
+    display: none;
+}
+.shown{
+    display: block;
+}
+/* artifact image styles */
+figure > img
+{
+    position: relative;
+    border: solid black 0.2em;
+    border-radius: 0.2em;   
 }
