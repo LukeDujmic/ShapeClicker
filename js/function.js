@@ -2314,7 +2314,7 @@ function heroLvlMult(i)
         hDmgMult[i] *= 4;
         heroDamage[i] *= 4;
     }
-    if (heroLvl[i] == 100)
+    if (heroLvl[i] == 1000)
     {
         hDmgMult[i] *= 100;
         heroDamage[i] *= 100;
