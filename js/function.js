@@ -2314,10 +2314,10 @@ function heroLvlMult(i)
         hDmgMult[i] *= 4;
         heroDamage[i] *= 4;
     }
-    if (heroLvl[i] == 1000)
+    if (heroLvl[i] == 100)
     {
-        hDmgMult[i] *= 1000;
-        heroDamage[i] *= 1000;
+        hDmgMult[i] *= 100;
+        heroDamage[i] *= 100;
     }
     if (heroLvl[i] == 1050)
     {
@@ -3608,7 +3608,7 @@ function loadGame() //this load function just loads all of the saved local infor
         trueDamage = JSON.parse(localStorage.getItem('trueDamage'));
 
         bossChallenged = JSON.parse(localStorage.getItem('bossChallenged'));
-        if (bossChallenged == null)
+        if (bossChallenged == null || bossChallenged == undefined)
         {
             bossChallenged = false;
         }
