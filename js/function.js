@@ -323,7 +323,7 @@ function clickDamage2(event)
         {
             if ((Math.ceil(Math.random(1) * 1000/clickCritChance)) <= 10)
             {
-                health = (health - (trueDamage2 * clickCritMult));
+                health = (health - (trueDamage2 * clickCritMultP));
                 console.log('critical hit!');
                 document.getElementById("character2").classList.remove("clickNotAttack2");
                 document.getElementById("character2").classList.add("clickAttack2");
@@ -3608,6 +3608,10 @@ function loadGame() //this load function just loads all of the saved local infor
         trueDamage = JSON.parse(localStorage.getItem('trueDamage'));
 
         bossChallenged = JSON.parse(localStorage.getItem('bossChallenged'));
+        if (bossChallenged == null)
+        {
+            bossChallenged = false;
+        }
         if (boss == true)   // resetting to the stage before a boss if the user saved during a boss
         {
             boss = false;
