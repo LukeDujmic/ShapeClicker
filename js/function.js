@@ -3348,6 +3348,142 @@ function milestoneLoad()
     }
 }
 
+/* ------- TAB OPENING/CLOSING ----------- */
+function clickTabOpen()
+{
+    document.getElementById("sideGameArea").classList.add("enabled");
+    document.getElementById("sideGameArea").classList.remove("disabled");
+    document.getElementById("mainGameArea").classList.add("mainGameCompressed");
+    document.getElementById("mainGameArea").classList.remove("mainGameNormal");
+    document.getElementById("playerStats").classList.add("shown");
+    document.getElementById("playerStats").classList.remove("hidden");
+    document.getElementById("player1").classList.add("shown");
+    document.getElementById("player1").classList.remove("hidden");
+    document.getElementById("player2").classList.add("shown");
+    document.getElementById("player2").classList.remove("hidden");
+    for (i = 1; i < heroNumber.length; i++)
+    {
+        document.getElementById("hero"+i).classList.add("hidden");
+        document.getElementById("hero"+i).classList.remove("shown");
+    }
+    document.getElementById("abilitiesArea").classList.remove("shown");
+    document.getElementById("abilitiesArea").classList.add("hidden");
+    document.getElementById("prestigingArea").classList.remove("shown");
+    document.getElementById("prestigingArea").classList.add("hidden");
+    document.getElementById("saveInfoArea").classList.remove("shown");
+    document.getElementById("saveInfoArea").classList.add("hidden");
+}
+
+function heroTabOpen()
+{
+    document.getElementById("sideGameArea").classList.add("enabled");
+    document.getElementById("sideGameArea").classList.remove("disabled");
+    document.getElementById("mainGameArea").classList.add("mainGameCompressed");
+    document.getElementById("mainGameArea").classList.remove("mainGameNormal");
+    document.getElementById("playerStats").classList.remove("shown");
+    document.getElementById("playerStats").classList.add("hidden");
+    document.getElementById("player1").classList.remove("shown");
+    document.getElementById("player1").classList.add("hidden");
+    document.getElementById("player2").classList.remove("shown");
+    document.getElementById("player2").classList.add("hidden");
+    for (i = 1; i < heroNumber.length; i++)
+    {
+        document.getElementById("hero"+i).classList.remove("hidden");
+        document.getElementById("hero"+i).classList.add("shown");
+    }
+    document.getElementById("abilitiesArea").classList.remove("shown");
+    document.getElementById("abilitiesArea").classList.add("hidden");
+    document.getElementById("prestigingArea").classList.remove("shown");
+    document.getElementById("prestigingArea").classList.add("hidden");
+    document.getElementById("saveInfoArea").classList.remove("shown");
+    document.getElementById("saveInfoArea").classList.add("hidden");
+}
+
+function abilitiesTabOpen()
+{
+    document.getElementById("sideGameArea").classList.add("enabled");
+    document.getElementById("sideGameArea").classList.remove("disabled");
+    document.getElementById("mainGameArea").classList.add("mainGameCompressed");
+    document.getElementById("mainGameArea").classList.remove("mainGameNormal");
+    document.getElementById("playerStats").classList.remove("shown");
+    document.getElementById("playerStats").classList.add("hidden");
+    document.getElementById("player1").classList.remove("shown");
+    document.getElementById("player1").classList.add("hidden");
+    document.getElementById("player2").classList.remove("shown");
+    document.getElementById("player2").classList.add("hidden");
+    for (i = 1; i < heroNumber.length; i++)
+    {
+        document.getElementById("hero"+i).classList.add("hidden");
+        document.getElementById("hero"+i).classList.remove("shown");
+    }
+    document.getElementById("abilitiesArea").classList.add("shown");
+    document.getElementById("abilitiesArea").classList.remove("hidden");
+    document.getElementById("prestigingArea").classList.remove("shown");
+    document.getElementById("prestigingArea").classList.add("hidden");
+    document.getElementById("saveInfoArea").classList.remove("shown");
+    document.getElementById("saveInfoArea").classList.add("hidden");
+    document.getElementById("saveInfoArea").classList.remove("shown");
+    document.getElementById("saveInfoArea").classList.add("hidden");
+}
+
+function artifactsTabOpen()
+{
+    document.getElementById("sideGameArea").classList.add("enabled");
+    document.getElementById("sideGameArea").classList.remove("disabled");
+    document.getElementById("mainGameArea").classList.add("mainGameCompressed");
+    document.getElementById("mainGameArea").classList.remove("mainGameNormal");
+    document.getElementById("playerStats").classList.remove("shown");
+    document.getElementById("playerStats").classList.add("hidden");
+    document.getElementById("player1").classList.remove("shown");
+    document.getElementById("player1").classList.add("hidden");
+    document.getElementById("player2").classList.remove("shown");
+    document.getElementById("player2").classList.add("hidden");
+    for (i = 1; i < heroNumber.length; i++)
+    {
+        document.getElementById("hero"+i).classList.add("hidden");
+        document.getElementById("hero"+i).classList.remove("shown");
+    }
+    document.getElementById("abilitiesArea").classList.remove("shown");
+    document.getElementById("abilitiesArea").classList.add("hidden");
+    document.getElementById("prestigingArea").classList.add("shown");
+    document.getElementById("prestigingArea").classList.remove("hidden");
+    document.getElementById("saveInfoArea").classList.remove("shown");
+    document.getElementById("saveInfoArea").classList.add("hidden");
+}
+
+function infoTabOpen()
+{
+    document.getElementById("sideGameArea").classList.add("enabled");
+    document.getElementById("sideGameArea").classList.remove("disabled");
+    document.getElementById("mainGameArea").classList.add("mainGameCompressed");
+    document.getElementById("mainGameArea").classList.remove("mainGameNormal");
+    document.getElementById("playerStats").classList.remove("shown");
+    document.getElementById("playerStats").classList.add("hidden");
+    document.getElementById("player1").classList.remove("shown");
+    document.getElementById("player1").classList.add("hidden");
+    document.getElementById("player2").classList.remove("shown");
+    document.getElementById("player2").classList.add("hidden");
+    for (i = 1; i < heroNumber.length; i++)
+    {
+        document.getElementById("hero"+i).classList.add("hidden");
+        document.getElementById("hero"+i).classList.remove("shown");
+    }
+    document.getElementById("abilitiesArea").classList.remove("shown");
+    document.getElementById("abilitiesArea").classList.add("hidden");
+    document.getElementById("prestigingArea").classList.remove("shown");
+    document.getElementById("prestigingArea").classList.add("hidden");
+    document.getElementById("saveInfoArea").classList.add("shown");
+    document.getElementById("saveInfoArea").classList.remove("hidden");
+}
+
+function minimizeSide()
+{
+    document.getElementById("sideGameArea").classList.remove("enabled");
+    document.getElementById("sideGameArea").classList.add("disabled");
+    document.getElementById("mainGameArea").classList.remove("mainGameCompressed");
+    document.getElementById("mainGameArea").classList.add("mainGameNormal");
+}
+
 /* GAME SAVING ---------------------------------------------------------------------- */
 /* ---------------------------------------faust-------------------------------------- */
 function reloadFunction()   //gives a warning for users leaving/refreshing the site so that they don't easily lose things

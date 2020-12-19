@@ -51,435 +51,460 @@
     </head>
 
     <body onbeforeunload="return reloadFunction()" onload="loadPass()">
-        <div id="stageStats">
+        <div id="mainGameArea" class="mainGameNormal">
+            <div id="stageStats">
             
-            <div>Stage: <a id="stage"></a></div>
-            <div>Progress: <a id="enemyNum"></a></div>
-            <div><button id="bossButton">...</button></div>
+                <div>Stage: <a id="stage"></a></div>
+                <div>Progress: <a id="enemyNum"></a></div>
+                <div><button id="bossButton">...</button></div>
+            </div>
+    
+            <div id="enemyArea">
+                <div id="healthStat">HP: <a id="enemyHealth"></a></div>
+                <div id="timeStat">Time Left: <a id="bossTime"></a></div>
+                <div id="goldStat">Gold: <a id="gold"></a></div>
+                <div id="enemy" class="enemySquare regular"></div>
+            </div>
+            <div id="characterArea">
+                <div id="characterBox1">
+                    <div id="character" class="clickNotAttack"></div>
+                </div>
+    
+                <div id="characterBox2">
+                    <div id="character2" class="clickNotAttack2"></div>
+                </div>
+            </div>
+    
+            <div id="tabs">
+                <div id="clickTab" onclick="clickTabOpen()">Player</div>
+                <div id="heroTab" onclick="heroTabOpen()">Heroes</div>
+                <div id="abilitiesTab" onclick="abilitiesTabOpen()">Abilities</div>
+                <div id="artifactsTab" onclick="artifactsTabOpen()">Artifacts</div>
+                <div id="infoTab" onclick="infoTabOpen()">Info/Saving*</div>
+            </div>
         </div>
 
-        <div id="enemyArea">
-            <div id="healthStat">HP: <a id="enemyHealth"></a></div>
-            <div id="timeStat">Time Left: <a id="bossTime"></a></div>
-            <div id="goldStat">Gold: <a id="gold"></a></div>
-            <div id="enemy" class="enemySquare regular"></div>
-        </div>
-        <div id="characterArea">
-            <div id="characterBox1">
-                <div id="character" class="clickNotAttack"></div>
+        <div id="sideGameArea" class="disabled">
+            <button id="minimizeButton" onclick="minimizeSide()">Minimize</button>
+            <div id="heroesArea" class="hidden">
+                <div id="hero1" class="heroBox hidden">
+                    <img src="images/meleeHeroIcon.png">
+                    <div class="heroSpriteBox">
+                        <div id="hero1Sprite" class="heroes"></div>
+                    </div>
+                    
+                    <div>
+                        <button id="hero1Button"><a id="hero1Locked">Unlock</a> Hero 1 <p>(Cost: <a id="hCost1"></a>)</p></button>
+                        <button id="hero1Button2"><a id="hero1M1">Milestone (Lvl. 10)</a> <p>(Cost: <a id="hMCost1"></a>)</p></button>
+                    </div>
+                    <div class="heroStats">
+                        <div>Level: <a id="hero1Lvl"></a></div>
+                        <div>Damage: <a id="hero1Damage"></a></div>
+                    </div>
+                </div>
+    
+                <div id="hero2" class="heroBox hidden">
+                    <img src="images/rangedHeroIcon.png">
+                    <div class="heroSpriteBox">
+                        <div id="hero2Sprite" class="heroes"></div>
+                    </div>
+                    
+                    <div>
+                        <button id="hero2Button"><a id="hero2Locked">Unlock</a> Hero 2 <p>(Cost: <a id="hCost2"></a>)</p></button>
+                        <button id="hero2Button2"><a id="hero2M1">Milestone (Lvl. 10)</a> <p>(Cost: <a id="hMCost2"></a>)</p></button>
+                    </div>
+                    <div class="heroStats">
+                        <div>Level: <a id="hero2Lvl"></a></div>
+                        <div>Damage: <a id="hero2Damage"></a></div>
+                    </div>
+                </div>
+    
+                <div id="hero3" class="heroBox hidden">
+                    <img src="images/meleeHeroIcon.png">
+                    <div class="heroSpriteBox">
+                        <div id="hero3Sprite" class="heroes"></div>
+                    </div>
+                    
+                    <div>
+                        <button id="hero3Button"><a id="hero3Locked">Unlock</a> Hero 3 <p>(Cost: <a id="hCost3"></a>)</p></button>
+                        <button id="hero3Button2"><a id="hero3M1">Milestone (Lvl. 10)</a> <p>(Cost: <a id="hMCost3"></a>)</p></button>
+                    </div>
+                    <div class="heroStats">
+                        <div>Level: <a id="hero3Lvl"></a></div>
+                        <div>Damage: <a id="hero3Damage"></a></div>
+                    </div>
+                </div>
+    
+                <div id="hero4" class="heroBox hidden">
+                    <img src="images/rangedHeroIcon.png">
+                    <div class="heroSpriteBox">
+                        <div id="hero4Sprite" class="heroes star"></div>
+                    </div>
+                    
+                    <div>
+                        <button id="hero4Button"><a id="hero4Locked">Unlock</a> Hero 4 <p>(Cost: <a id="hCost4"></a>)</p></button>
+                        <button id="hero4Button2"><a id="hero4M1">Milestone (Lvl. 10)</a> <p>(Cost: <a id="hMCost4"></a>)</p></button>
+                    </div>
+                    <div class="heroStats">
+                        <div>Level: <a id="hero4Lvl"></a></div>
+                        <div>Damage: <a id="hero4Damage"></a></div>
+                    </div>
+                </div>
+    
+                <div id="hero5" class="heroBox hidden">
+                    <img src="images/meleeHeroIcon.png">
+                    <div class="heroSpriteBox">
+                        <div id="hero5Sprite" class="heroes hexagon"></div>
+                    </div>
+                    
+                    <div>
+                        <button id="hero5Button"><a id="hero5Locked">Unlock</a> Hero 5 <p>(Cost: <a id="hCost5"></a>)</p></button>
+                    </div>
+                    <div class="heroStats">
+                        <div>Level: <a id="hero5Lvl"></a></div>
+                        <div>Damage: <a id="hero5Damage"></a></div>
+                    </div>
+                </div>
+    
+                <div id="hero6" class="heroBox hidden">
+                    <img src="images/meleeHeroIcon.png">
+                    <div class="heroSpriteBox">
+                        <div id="hero6Sprite" class="heroes"></div>
+                    </div>
+                    
+                    <div>
+                        <button id="hero6Button"><a id="hero6Locked">Unlock</a> Hero 6 <p>(Cost: <a id="hCost6"></a>)</p></button>
+                    </div>
+                    <div class="heroStats">
+                        <div>Level: <a id="hero6Lvl"></a></div>
+                        <div>Damage: <a id="hero6Damage"></a></div>
+                    </div>
+                </div>
+    
+                <div id="hero7" class="heroBox hidden">
+                    <img src="images/rangedHeroIcon.png">
+                    <div class="heroSpriteBox">
+                        <div id="hero7Sprite" class="heroes"></div>
+                    </div>
+                    
+                    <div>
+                        <button id="hero7Button"><a id="hero7Locked">Unlock</a> Hero 7 <p>(Cost: <a id="hCost7"></a>)</p></button>
+                    </div>
+                    <div class="heroStats">
+                        <div>Level: <a id="hero7Lvl"></a></div>
+                        <div>Damage: <a id="hero7Damage"></a></div>
+                    </div>
+                </div>
+    
+                <div id="hero8" class="heroBox hidden">
+                    <img src="images/rangedHeroIcon.png">
+                    <div class="heroSpriteBox">
+                        <div id="hero8Sprite" class="heroes rotated"></div>
+                    </div>
+                    
+                    <div>
+                        <button id="hero8Button"><a id="hero8Locked">Unlock</a> Hero 8 <p>(Cost: <a id="hCost8"></a>)</p></button>
+                    </div>
+                    <div class="heroStats">
+                        <div>Level: <a id="hero8Lvl"></a></div>
+                        <div>Damage: <a id="hero8Damage"></a></div>
+                    </div>
+                </div>
+    
+                <div id="hero9" class="heroBox hidden">
+                    <img src="images/meleeHeroIcon.png">
+                    <div class="heroSpriteBox">
+                        <div id="hero9Sprite" class="heroes"></div>
+                    </div>
+                    
+                    <div>
+                        <button id="hero9Button"><a id="hero9Locked">Unlock</a> Hero 9 <p>(Cost: <a id="hCost9"></a>)</p></button>
+                    </div>
+                    <div class="heroStats">
+                        <div>Level: <a id="hero9Lvl"></a></div>
+                        <div>Damage: <a id="hero9Damage"></a></div>
+                    </div>
+                </div>
+    
+                <div id="hero10" class="heroBox hidden">
+                    <img src="images/rangedHeroIcon.png">
+                    <div class="heroSpriteBox">
+                        <div id="hero10Sprite" class="heroes"></div>
+                    </div>
+                    
+                    <div>
+                        <button id="hero10Button"><a id="hero10Locked">Unlock</a> Hero 10 <p>(Cost: <a id="hCost10"></a>)</p></button>
+                    </div>
+                    <div class="heroStats">
+                        <div>Level: <a id="hero10Lvl"></a></div>
+                        <div>Damage: <a id="hero10Damage"></a></div>
+                    </div>
+                </div>
+    
+                <div id="hero11" class="heroBox hidden">
+                    <img src="images/meleeHeroIcon.png">
+                    <div class="heroSpriteBox">
+                        <div id="hero11Sprite" class="heroes"></div>
+                    </div>
+                    
+                    <div>
+                        <button id="hero11Button"><a id="hero11Locked">Unlock</a> Hero 11 <p>(Cost: <a id="hCost11"></a>)</p></button>
+                    </div>
+                    <div class="heroStats">
+                        <div>Level: <a id="hero11Lvl"></a></div>
+                        <div>Damage: <a id="hero11Damage"></a></div>
+                    </div>
+                </div>
+    
+                <div id="hero12" class="heroBox hidden">
+                    <img src="images/rangedHeroIcon.png">
+                    <div class="heroSpriteBox">
+                        <div id="hero12Sprite" class="heroes"></div>
+                    </div>
+                    
+                    <div>
+                        <button id="hero12Button"><a id="hero12Locked">Unlock</a> Hero 12 <p>(Cost: <a id="hCost12"></a>)</p></button>
+                    </div>
+                    <div class="heroStats">
+                        <div>Level: <a id="hero12Lvl"></a></div>
+                        <div>Damage: <a id="hero12Damage"></a></div>
+                    </div>
+                </div>
             </div>
-
-            <div id="characterBox2">
-                <div id="character2" class="clickNotAttack2"></div>
+            
+            <div id="playerStats" class="hidden">
+                <div id="player1" class="hidden">
+                    <button onclick="upgrade()">Upgrade Player 1 (Cost: <a id="cost"></a>)</button>
+                    <div>Click Level: <a id="clickLevel"></a></div>
+                    <div>Damage: <a id="damage"></a></div>
+                    <div>Left Click to Attack</div>
+                </div>
+    
+                <div id="player2" class="hidden">
+                    <button onclick="upgrade2()">Upgrade Player 2 (Cost: <a id="cost2"></a>)</button>
+                    <div>Click Level: <a id="clickLevel2"></a></div>
+                    <div>Damage: <a id="damage2"></a></div>
+                    <div>E and R to Attack</div>
+                </div>
             </div>
-        </div>
-
-        <div id="heroesArea">
-            <div id="hero1" class="heroBox">
-                <div class="heroSpriteBox">
-                    <div id="hero1Sprite" class="heroes"></div>
+            
+            <div id="abilitiesArea" class="hidden"> 
+                <div id="abilityArea">
+                    <div id="ability1Area">
+                        <button id="ability1Button"> Use Shape Rage <p>(Cooldown: <a id="aCooldown1"></a>)</p> </button>
+                        <div>Duration Left: <a id="aDuration1"></a></div>
+                    </div>
+                    
                 </div>
                 
-                <div>
-                    <button id="hero1Button"><a id="hero1Locked">Unlock</a> Hero 1 <p>(Cost: <a id="hCost1"></a>)</p></button>
-                    <button id="hero1Button2"><a id="hero1M1">Milestone (Lvl. 10)</a> <p>(Cost: <a id="hMCost1"></a>)</p></button>
+                <div id="abilityBuyArea">
+                    <div id="ability1BuyArea">
+                        <button id="ability1"> <div id="ability1Locked">Unlock</div> Shape Rage <p>(Cost: <a id="aCost1"></a>)</p> </button>
+                        <div>Level: <a id="aLvl1"></a></div>
+                        <div>Hero Damage Multiplier: <a id="shapeRageMult"></a></div>
+                        <div>Duration: <a id="aDurationBase1"></a></div>
+                        <div>Cooldown: <a id="aCooldownBase1"></a></div>
+                    </div>
                 </div>
-                <div class="heroStats">
-                    <div>Level: <a id="hero1Lvl"></a></div>
-                    <div>Damage: <a id="hero1Damage"></a></div>
+            </div>
+            
+    
+            <div id="prestigingArea" class="hidden">
+                <div id="prestigeArea">
+                    <div id="prestigeButtonArea">
+                        <button id="prestigeButton" onclick="prestigeDefer()">Prestige (<a id="artifactEarn">Unlock at Stage 80</a>)</button>
+                    </div>
+                    <div id="shapestones">Shapestone: <a id="shapestoneAmount">0</a></div>
+                </div>
+        
+                <div id="artifactArea">
+                    <div id="artifactButtonArea">
+                        <button id="artifactBuyButton" onclick="buyArtifact()">Unlock Geometric Artifact (Cost: <a id="artifactBCost">1</a> Shapestone)</button>
+                    </div>
+                    <div id="artifactsBox">
+                        <div>
+                            <div>Total Artifact Damage: <a id="totalArtDmg">0</a>x All Damage</div>
+                        </div>
+                        <div id="artifact1" class="hidden">
+                            <figure><img src="images/coreOfStrength.png"><figcaption>Core of Strength (Level <a id="art1Lvl">0</a>)</figcaption></figure>
+                            <div>Artifact Damage: +<a id="art1Dmg">0</a></div>
+                            <div>All Damage x <a id="art1Mult">0</a></div>
+                            <button id="artifact1Upgrade">Upgrade (Cost: <a id="art1Cost">0</a>)</button>
+                        </div>
+                        <div id="artifact2" class="hidden">
+                            <figure><img src="images/radiantCube.png"><figcaption>Radiant Cube (Level <a id="art2Lvl">0</a>)</figcaption></figure>
+                            <div>Artifact Damage: +<a id="art2Dmg">0</a></div>
+                            <div>All Gold x <a id="art2Mult">0</a></div>
+                            <button id="artifact2Upgrade">Upgrade (Cost: <a id="art2Cost">0</a>)</button>
+                        </div>
+                        <div id="artifact3" class="hidden">
+                            <figure><img src="images/honedTriangle.png"><figcaption>Honed Triangle (Level <a id="art3Lvl">0</a>)</figcaption></figure>
+                            <div>Artifact Damage: +<a id="art3Dmg">0</a></div>
+                            <div>Critical Damage x <a id="art3Mult">0</a></div>
+                            <button id="artifact3Upgrade">Upgrade (Cost: <a id="art3Cost">0</a>)</button>
+                        </div>
+                        <div id="artifact4" class="hidden">
+                            <figure><img src="images/inspirationalDiamond.png"><figcaption>Inspirational Diamond (Level <a id="art4Lvl">0</a>)</figcaption></figure>
+                            <div>Artifact Damage: +<a id="art4Dmg">0</a></div>
+                            <div>All Hero Damage x <a id="art4Mult">0</a></div>
+                            <button id="artifact4Upgrade">Upgrade (Cost: <a id="art4Cost">0</a>)</button>
+                        </div>
+                    </div>
+                    
                 </div>
             </div>
 
-            <div id="hero2" class="heroBox">
-                <div class="heroSpriteBox">
-                    <div id="hero2Sprite" class="heroes"></div>
+            <div id="saveInfoArea">
+                <div id="saveArea">
+                    <button id="save" onclick="saveGame()">Save Progress</button>
+                    <button id="password" onclick="setPassword()">Set Password</button>
+                    <button id="load" onclick="loadGame()">Load Progress</button>
+                    <p>*Important Notice: Give the game about 1 second to properly save everything. If you have already loaded your progress, refresh the page and load your progress (this only matters if you have saved and want to return back multiple times for whatever reason).  Also, just know that the game only saves LOCALLY, as in it will only save on this device.</p>
+                    <p>*WARNING: Clicking save will set everything to whatever you are on!  So make sure that you don't accidentally save on stage 1 after refreshing.  Setting a password is highly advised.</p>
                 </div>
-                
-                <div>
-                    <button id="hero2Button"><a id="hero2Locked">Unlock</a> Hero 2 <p>(Cost: <a id="hCost2"></a>)</p></button>
-                    <button id="hero2Button2"><a id="hero2M1">Milestone (Lvl. 10)</a> <p>(Cost: <a id="hMCost2"></a>)</p></button>
-                </div>
-                <div class="heroStats">
-                    <div>Level: <a id="hero2Lvl"></a></div>
-                    <div>Damage: <a id="hero2Damage"></a></div>
-                </div>
+        
+                <div id="infoArea">
+                    <p>Heroes at certain levels gain a bonus to their specific damage.  For example, if you get a hero to level 10, their damage will double.</p>
+                    <button id="multInfoButton">Show Levelling Info</button>
+                    <div id="multiplierInfo">
+                        <div>
+                            <p>Hero Damage Multipliers</p>
+                            <li>Level 10: x2</li>
+                            <li>Level 20: x2</li>
+                            <li>Level 35: x2</li>
+                            <li>Level 50: x2</li>
+                            <li>Level 65: x2</li>
+                            <li>Level 80: x2</li>
+                            <li>Level 100: x3</li>
+                            <li>Level 120: x2</li>
+                            <li>Level 140: x2</li>
+                            <li>Level 160: x2</li>
+                            <li>Level 180: x2</li>
+                            <li>Level 200: x4</li>
+                            <li>Level 220: x2</li>
+                            <li>Level 240: x2</li>
+                            <li>Level 260: x2</li>
+                            <li>Level 280: x2</li>
+                            <li>Level 300: x5</li>
+                            <li>Level 325: x2</li>
+                            <li>Level 350: x2</li>
+                            <li>Level 375: x2</li>
+                            <li>Level 400: x5</li>
+                            <li>Level 430: x3</li>
+                            <li>Level 460: x3</li>
+                            <li>Level 500: x10</li>
+                            <li>Level 530: x3</li>
+                            <li>Level 560: x3</li>
+                            <li>Level 600: x5</li>
+                            <li>Level 630: x3</li>
+                            <li>Level 660: x3</li>
+                            <li>Level 700: x5</li>
+                            <li>Level 730: x3</li>
+                            <li>Level 760: x3</li>
+                            <li>Level 800: x5</li>
+                            <li>Level 830: x3</li>
+                            <li>Level 860: x3</li>
+                            <li>Level 900: x5</li>
+                            <li>Level 930: x3</li>
+                            <li>Level 960: x3</li>
+                            <li>Level 1000: x100</li>
+                            <li>Level 1050: x5</li>
+                            <li>Level 1100: x5</li>
+                            <li>Level 1150: x5</li>
+                            <li>Level 1200: x5</li>
+                            <li>Level 1250: x10</li>
+                            <li>Level 1300: x5</li>
+                            <li>Level 1350: x5</li>
+                            <li>Level 1400: x5</li>
+                            <li>Level 1450: x5</li>
+                            <li>Level 1500: x10</li>
+                            <li>Level 1550: x5</li>
+                            <li>Level 1600: x5</li>
+                            <li>Level 1650: x5</li>
+                            <li>Level 1700: x5</li>
+                            <li>Level 1750: x10</li>
+                            <li>Level 1800: x5</li>
+                            <li>Level 1850: x5</li>
+                            <li>Level 1900: x5</li>
+                            <li>Level 1950: x5</li>
+                            <li>Level 2000: x100</li>
+                            <li>Level 2050: x5</li>
+                            <li>Level 2100: x5</li>
+                            <li>Level 2150: x5</li>
+                            <li>Level 2200: x5</li>
+                            <li>Level 2250: x10</li>
+                            <li>Level 2300: x5</li>
+                            <li>Level 2350: x5</li>
+                            <li>Level 2400: x5</li>
+                            <li>Level 2450: x5</li>
+                            <li>Level 2500: x10</li>
+                            <li>Level 2550: x5</li>
+                            <li>Level 2600: x5</li>
+                            <li>Level 2650: x5</li>
+                            <li>Level 2700: x5</li>
+                            <li>Level 2750: x10</li>
+                            <li>Level 2800: x5</li>
+                            <li>Level 2850: x5</li>
+                            <li>Level 2900: x5</li>
+                            <li>Level 2950: x5</li>
+                            <li>Level 3000: x100</li>
+                        </div>
+                        
+                        <div>
+                            <p>Click Damage Multipliers</p>
+                            <li>Level 10: x2</li>
+                            <li>Level 25: x2</li>
+                            <li>Level 50: x2</li>
+                            <li>Level 75: x2</li>
+                            <li>Level 100: x4</li>
+                            <li>Level 120: x2</li>
+                            <li>Level 140: x2</li>
+                            <li>Level 160: x2</li>
+                            <li>Level 180: x2</li>
+                            <li>Level 200: x4</li>
+                            <li>Level 220: x2</li>
+                            <li>Level 240: x2</li>
+                            <li>Level 260: x2</li>
+                            <li>Level 280: x2</li>
+                            <li>Level 300: x4</li>
+                            <li>Level 325: x2</li>
+                            <li>Level 350: x2</li>
+                            <li>Level 375: x2</li>
+                            <li>Level 400: x4</li>
+                            <li>Level 425: x2</li>
+                            <li>Level 450: x2</li>
+                            <li>Level 475: x2</li>
+                            <li>Level 500: x5</li>
+                            <li>Level 530: x2</li>
+                            <li>Level 560: x2</li>
+                            <li>Level 590: x2</li>
+                            <li>Level 620: x5</li>
+                            <li>Level 650: x2</li>
+                            <li>Level 680: x2</li>
+                            <li>Level 710: x5</li>
+                            <li>Level 740: x2</li>
+                            <li>Level 770: x2</li>
+                            <li>Level 800: x5</li>
+                            <li>Level 850: x3</li>
+                            <li>Level 900: x4</li>
+                            <li>Level 950: x3</li>
+                            <li>Level 1000: x10</li>
+                        </div>
+                    </div>
             </div>
 
-            <div id="hero3" class="heroBox">
-                <div class="heroSpriteBox">
-                    <div id="hero3Sprite" class="heroes"></div>
-                </div>
-                
-                <div>
-                    <button id="hero3Button"><a id="hero3Locked">Unlock</a> Hero 3 <p>(Cost: <a id="hCost3"></a>)</p></button>
-                    <button id="hero3Button2"><a id="hero3M1">Milestone (Lvl. 10)</a> <p>(Cost: <a id="hMCost3"></a>)</p></button>
-                </div>
-                <div class="heroStats">
-                    <div>Level: <a id="hero3Lvl"></a></div>
-                    <div>Damage: <a id="hero3Damage"></a></div>
-                </div>
+            <div id="admin">
+                <!--
+                <button onclick="goldSpawn()">Spawn Gold</button>
+                <button onclick="stageSelect()">Stage Select</button>
+                <button onclick="shapestoneSpawn()">Spawn Shapestone</button>
+                -->
+    
+                <!--<button onclick="testDisplay()">Test</button>-->
             </div>
-
-            <div id="hero4" class="heroBox">
-                <div class="heroSpriteBox">
-                    <div id="hero4Sprite" class="heroes star"></div>
-                </div>
-                
-                <div>
-                    <button id="hero4Button"><a id="hero4Locked">Unlock</a> Hero 4 <p>(Cost: <a id="hCost4"></a>)</p></button>
-                    <button id="hero4Button2"><a id="hero4M1">Milestone (Lvl. 10)</a> <p>(Cost: <a id="hMCost4"></a>)</p></button>
-                </div>
-                <div class="heroStats">
-                    <div>Level: <a id="hero4Lvl"></a></div>
-                    <div>Damage: <a id="hero4Damage"></a></div>
-                </div>
-            </div>
-
-            <div id="hero5" class="heroBox">
-                <div class="heroSpriteBox">
-                    <div id="hero5Sprite" class="heroes hexagon"></div>
-                </div>
-                
-                <div>
-                    <button id="hero5Button"><a id="hero5Locked">Unlock</a> Hero 5 <p>(Cost: <a id="hCost5"></a>)</p></button>
-                </div>
-                <div class="heroStats">
-                    <div>Level: <a id="hero5Lvl"></a></div>
-                    <div>Damage: <a id="hero5Damage"></a></div>
-                </div>
-            </div>
-
-            <div id="hero6" class="heroBox">
-                <div class="heroSpriteBox">
-                    <div id="hero6Sprite" class="heroes"></div>
-                </div>
-                
-                <div>
-                    <button id="hero6Button"><a id="hero6Locked">Unlock</a> Hero 6 <p>(Cost: <a id="hCost6"></a>)</p></button>
-                </div>
-                <div class="heroStats">
-                    <div>Level: <a id="hero6Lvl"></a></div>
-                    <div>Damage: <a id="hero6Damage"></a></div>
-                </div>
-            </div>
-
-            <div id="hero7" class="heroBox">
-                <div class="heroSpriteBox">
-                    <div id="hero7Sprite" class="heroes"></div>
-                </div>
-                
-                <div>
-                    <button id="hero7Button"><a id="hero7Locked">Unlock</a> Hero 7 <p>(Cost: <a id="hCost7"></a>)</p></button>
-                </div>
-                <div class="heroStats">
-                    <div>Level: <a id="hero7Lvl"></a></div>
-                    <div>Damage: <a id="hero7Damage"></a></div>
-                </div>
-            </div>
-
-            <div id="hero8" class="heroBox">
-                <div class="heroSpriteBox">
-                    <div id="hero8Sprite" class="heroes rotated"></div>
-                </div>
-                
-                <div>
-                    <button id="hero8Button"><a id="hero8Locked">Unlock</a> Hero 8 <p>(Cost: <a id="hCost8"></a>)</p></button>
-                </div>
-                <div class="heroStats">
-                    <div>Level: <a id="hero8Lvl"></a></div>
-                    <div>Damage: <a id="hero8Damage"></a></div>
-                </div>
-            </div>
-
-            <div id="hero9" class="heroBox">
-                <div class="heroSpriteBox">
-                    <div id="hero9Sprite" class="heroes"></div>
-                </div>
-                
-                <div>
-                    <button id="hero9Button"><a id="hero9Locked">Unlock</a> Hero 9 <p>(Cost: <a id="hCost9"></a>)</p></button>
-                </div>
-                <div class="heroStats">
-                    <div>Level: <a id="hero9Lvl"></a></div>
-                    <div>Damage: <a id="hero9Damage"></a></div>
-                </div>
-            </div>
-
-            <div id="hero10" class="heroBox">
-                <div class="heroSpriteBox">
-                    <div id="hero10Sprite" class="heroes"></div>
-                </div>
-                
-                <div>
-                    <button id="hero10Button"><a id="hero10Locked">Unlock</a> Hero 10 <p>(Cost: <a id="hCost10"></a>)</p></button>
-                </div>
-                <div class="heroStats">
-                    <div>Level: <a id="hero10Lvl"></a></div>
-                    <div>Damage: <a id="hero10Damage"></a></div>
-                </div>
-            </div>
-
-            <div id="hero11" class="heroBox">
-                <div class="heroSpriteBox">
-                    <div id="hero11Sprite" class="heroes"></div>
-                </div>
-                
-                <div>
-                    <button id="hero11Button"><a id="hero11Locked">Unlock</a> Hero 11 <p>(Cost: <a id="hCost11"></a>)</p></button>
-                </div>
-                <div class="heroStats">
-                    <div>Level: <a id="hero11Lvl"></a></div>
-                    <div>Damage: <a id="hero11Damage"></a></div>
-                </div>
-            </div>
-
-            <div id="hero12" class="heroBox">
-                <div class="heroSpriteBox">
-                    <div id="hero12Sprite" class="heroes"></div>
-                </div>
-                
-                <div>
-                    <button id="hero12Button"><a id="hero12Locked">Unlock</a> Hero 12 <p>(Cost: <a id="hCost12"></a>)</p></button>
-                </div>
-                <div class="heroStats">
-                    <div>Level: <a id="hero12Lvl"></a></div>
-                    <div>Damage: <a id="hero12Damage"></a></div>
-                </div>
-            </div>
+            
         </div>
         
-        <div id="playerStats">
-            <div>
-                <button onclick="upgrade()">Upgrade Player 1 (Cost: <a id="cost"></a>)</button>
-                <div>Click Level: <a id="clickLevel"></a></div>
-                <div>Damage: <a id="damage"></a></div>
-                <div>Left Click to Attack</div>
-            </div>
-
-            <div>
-                <button onclick="upgrade2()">Upgrade Player 2 (Cost: <a id="cost2"></a>)</button>
-                <div>Click Level: <a id="clickLevel2"></a></div>
-                <div>Damage: <a id="damage2"></a></div>
-                <div>E and R to Attack</div>
-            </div>
-        </div>
-
-        <button onclick="multiUpgrade()" id="multiButton">Multi-Upgrade</button>
-
-        <div id="abilityArea">
-            <div id="ability1Area">
-                <button id="ability1Button"> Use Shape Rage <p>(Cooldown: <a id="aCooldown1"></a>)</p> </button>
-                <div>Duration Left: <a id="aDuration1"></a></div>
-            </div>
-            
-        </div>
-
-        <div id="abilityBuyArea">
-            <div id="ability1BuyArea">
-                <button id="ability1"> <div id="ability1Locked">Unlock</div> Shape Rage <p>(Cost: <a id="aCost1"></a>)</p> </button>
-                <div>Level: <a id="aLvl1"></a></div>
-                <div>Hero Damage Multiplier: <a id="shapeRageMult"></a></div>
-                <div>Duration: <a id="aDurationBase1"></a></div>
-                <div>Cooldown: <a id="aCooldownBase1"></a></div>
-            </div>
-
-        </div>
-
-        <div id="prestigeArea">
-            <div id="prestigeButtonArea">
-                <button id="prestigeButton" onclick="prestigeDefer()">Prestige (<a id="artifactEarn">Unlock at Stage 80</a>)</button>
-            </div>
-            <div id="shapestones">Shapestone: <a id="shapestoneAmount">0</a></div>
-        </div>
-
-        <div id="artifactArea">
-            <div id="artifactButtonArea">
-                <button id="artifactBuyButton" onclick="buyArtifact()">Unlock Geometric Artifact (Cost: <a id="artifactBCost">1</a> Shapestone)</button>
-            </div>
-            <div id="artifactsBox">
-                <div>
-                    <div>Total Artifact Damage: <a id="totalArtDmg">0</a>x All Damage</div>
-                </div>
-                <div id="artifact1" class="hidden">
-                    <figure><img src="images/coreOfStrength.png"><figcaption>Core of Strength (Level <a id="art1Lvl">0</a>)</figcaption></figure>
-                    <div>Artifact Damage: +<a id="art1Dmg">0</a></div>
-                    <div>All Damage x <a id="art1Mult">0</a></div>
-                    <button id="artifact1Upgrade">Upgrade (Cost: <a id="art1Cost">0</a>)</button>
-                </div>
-                <div id="artifact2" class="hidden">
-                    <figure><img src="images/radiantCube.png"><figcaption>Radiant Cube (Level <a id="art2Lvl">0</a>)</figcaption></figure>
-                    <div>Artifact Damage: +<a id="art2Dmg">0</a></div>
-                    <div>All Gold x <a id="art2Mult">0</a></div>
-                    <button id="artifact2Upgrade">Upgrade (Cost: <a id="art2Cost">0</a>)</button>
-                </div>
-                <div id="artifact3" class="hidden">
-                    <figure><img src="images/honedTriangle.png"><figcaption>Honed Triangle (Level <a id="art3Lvl">0</a>)</figcaption></figure>
-                    <div>Artifact Damage: +<a id="art3Dmg">0</a></div>
-                    <div>Critical Damage x <a id="art3Mult">0</a></div>
-                    <button id="artifact3Upgrade">Upgrade (Cost: <a id="art3Cost">0</a>)</button>
-                </div>
-                <div id="artifact4" class="hidden">
-                    <figure><img src="images/inspirationalDiamond.png"><figcaption>Inspirational Diamond (Level <a id="art4Lvl">0</a>)</figcaption></figure>
-                    <div>Artifact Damage: +<a id="art4Dmg">0</a></div>
-                    <div>All Hero Damage x <a id="art4Mult">0</a></div>
-                    <button id="artifact4Upgrade">Upgrade (Cost: <a id="art4Cost">0</a>)</button>
-                </div>
-            </div>
-            
-        </div>
-
-        <div id="saveArea">
-            <button id="save" onclick="saveGame()">Save Progress</button>
-            <button id="password" onclick="setPassword()">Set Password</button>
-            <button id="load" onclick="loadGame()">Load Progress</button>
-            <p>*Important Notice: Give the game about 1 second to properly save everything. If you have already loaded your progress, refresh the page and load your progress (this only matters if you have saved and want to return back multiple times for whatever reason).  Also, just know that the game only saves LOCALLY, as in it will only save on this device.</p>
-            <p>*WARNING: Clicking save will set everything to whatever you are on!  So make sure that you don't accidentally save on stage 1 after refreshing.  Setting a password is highly advised.</p>
-        </div>
-
-        <div id="infoArea">
-            <button id="multInfoButton">Show Levelling Info</button>
-            <div id="multiplierInfo">
-                <div>
-                    <p>Hero Damage Multipliers</p>
-                    <li>Level 10: x2</li>
-                    <li>Level 20: x2</li>
-                    <li>Level 35: x2</li>
-                    <li>Level 50: x2</li>
-                    <li>Level 65: x2</li>
-                    <li>Level 80: x2</li>
-                    <li>Level 100: x3</li>
-                    <li>Level 120: x2</li>
-                    <li>Level 140: x2</li>
-                    <li>Level 160: x2</li>
-                    <li>Level 180: x2</li>
-                    <li>Level 200: x4</li>
-                    <li>Level 220: x2</li>
-                    <li>Level 240: x2</li>
-                    <li>Level 260: x2</li>
-                    <li>Level 280: x2</li>
-                    <li>Level 300: x5</li>
-                    <li>Level 325: x2</li>
-                    <li>Level 350: x2</li>
-                    <li>Level 375: x2</li>
-                    <li>Level 400: x5</li>
-                    <li>Level 430: x3</li>
-                    <li>Level 460: x3</li>
-                    <li>Level 500: x10</li>
-                    <li>Level 530: x3</li>
-                    <li>Level 560: x3</li>
-                    <li>Level 600: x5</li>
-                    <li>Level 630: x3</li>
-                    <li>Level 660: x3</li>
-                    <li>Level 700: x5</li>
-                    <li>Level 730: x3</li>
-                    <li>Level 760: x3</li>
-                    <li>Level 800: x5</li>
-                    <li>Level 830: x3</li>
-                    <li>Level 860: x3</li>
-                    <li>Level 900: x5</li>
-                    <li>Level 930: x3</li>
-                    <li>Level 960: x3</li>
-                    <li>Level 1000: x100</li>
-                    <li>Level 1050: x5</li>
-                    <li>Level 1100: x5</li>
-                    <li>Level 1150: x5</li>
-                    <li>Level 1200: x5</li>
-                    <li>Level 1250: x10</li>
-                    <li>Level 1300: x5</li>
-                    <li>Level 1350: x5</li>
-                    <li>Level 1400: x5</li>
-                    <li>Level 1450: x5</li>
-                    <li>Level 1500: x10</li>
-                    <li>Level 1550: x5</li>
-                    <li>Level 1600: x5</li>
-                    <li>Level 1650: x5</li>
-                    <li>Level 1700: x5</li>
-                    <li>Level 1750: x10</li>
-                    <li>Level 1800: x5</li>
-                    <li>Level 1850: x5</li>
-                    <li>Level 1900: x5</li>
-                    <li>Level 1950: x5</li>
-                    <li>Level 2000: x100</li>
-                    <li>Level 2050: x5</li>
-                    <li>Level 2100: x5</li>
-                    <li>Level 2150: x5</li>
-                    <li>Level 2200: x5</li>
-                    <li>Level 2250: x10</li>
-                    <li>Level 2300: x5</li>
-                    <li>Level 2350: x5</li>
-                    <li>Level 2400: x5</li>
-                    <li>Level 2450: x5</li>
-                    <li>Level 2500: x10</li>
-                    <li>Level 2550: x5</li>
-                    <li>Level 2600: x5</li>
-                    <li>Level 2650: x5</li>
-                    <li>Level 2700: x5</li>
-                    <li>Level 2750: x10</li>
-                    <li>Level 2800: x5</li>
-                    <li>Level 2850: x5</li>
-                    <li>Level 2900: x5</li>
-                    <li>Level 2950: x5</li>
-                    <li>Level 3000: x100</li>
-                </div>
-                
-                <div>
-                    <p>Click Damage Multipliers</p>
-                    <li>Level 10: x2</li>
-                    <li>Level 25: x2</li>
-                    <li>Level 50: x2</li>
-                    <li>Level 75: x2</li>
-                    <li>Level 100: x4</li>
-                    <li>Level 120: x2</li>
-                    <li>Level 140: x2</li>
-                    <li>Level 160: x2</li>
-                    <li>Level 180: x2</li>
-                    <li>Level 200: x4</li>
-                    <li>Level 220: x2</li>
-                    <li>Level 240: x2</li>
-                    <li>Level 260: x2</li>
-                    <li>Level 280: x2</li>
-                    <li>Level 300: x4</li>
-                    <li>Level 325: x2</li>
-                    <li>Level 350: x2</li>
-                    <li>Level 375: x2</li>
-                    <li>Level 400: x4</li>
-                    <li>Level 425: x2</li>
-                    <li>Level 450: x2</li>
-                    <li>Level 475: x2</li>
-                    <li>Level 500: x5</li>
-                    <li>Level 530: x2</li>
-                    <li>Level 560: x2</li>
-                    <li>Level 590: x2</li>
-                    <li>Level 620: x5</li>
-                    <li>Level 650: x2</li>
-                    <li>Level 680: x2</li>
-                    <li>Level 710: x5</li>
-                    <li>Level 740: x2</li>
-                    <li>Level 770: x2</li>
-                    <li>Level 800: x5</li>
-                    <li>Level 850: x3</li>
-                    <li>Level 900: x4</li>
-                    <li>Level 950: x3</li>
-                    <li>Level 1000: x10</li>
-                </div>
-
-                
-            </div>
-        </div>
-
-
-        <div id="admin">
-            <button onclick="goldSpawn()">Spawn Gold</button>
-            <button onclick="stageSelect()">Stage Select</button>
-            <button onclick="shapestoneSpawn()">Spawn Shapestone</button>
-
-            <button onclick="testDisplay()">Test</button>
-        </div>
-
-        <!--<div id="tabs">
-            <div id="clickTab">Tap</div>
-            <div id="heroTab">Heroes</div>
-        </div>-->
 
         <script src="js/artifact.js"></script>
         <script src="js/function.js"></script>

@@ -6,17 +6,47 @@
 body{
     font-family: 'Texturina', serif;
     background-color: rgb(31, 31, 31);
+    display: flex;
+    justify-content: center;
+}
+#sideGameArea{
+    height: 95%;
+    overflow-y: auto;
+    border: solid black 0.4em;
+    background-color: rgb(44, 46, 54);
+}
+.hidden{
+    display: none;
+}
+.shown{
+    display: block;
+}
+.disabled{
+    width: 0%;
+    opacity: 0;
+    display: none;
+}
+.enabled{
+    width: 30%;
+    opacity: 1;
+    display: block;
+}
+.mainGameNormal{
+    width: 100%;
+}
+.mainGameCompressed{
+    width: 70%;
 }
 #enemyArea
 {
-    height: 45em;
+    height: 35em;
     border: black solid 0.5em;
     border-bottom: none;
     background-color: white;
 }
 #enemy
 {
-    top: 50%;
+    top: 40%;
     left: 50%;
     position: relative;
     
@@ -237,6 +267,7 @@ p
 /* Heroes styling */
 #heroesArea
 {
+    display: relative;
     margin: 5px auto;
     display: flex;
     text-align: center;
@@ -245,6 +276,7 @@ p
 }
 .heroBox
 {
+    position: relative;
     width: 20em;
     border: solid black 0.3em;
     border-radius: 0.1em;
@@ -267,6 +299,16 @@ p
     position: relative;
     transition: 0.1s;
     transition-timing-function: ease-in;
+}
+.heroBox > img
+{
+    position: absolute;
+    left: 0;
+    width: 1.5em;
+    border: black solid 0.1em;
+    padding: 0.1em;
+    border-left: none;
+    border-top: none;
 }
 #hero1Sprite
 {
@@ -621,6 +663,10 @@ border-top: 10px solid rgb(0, 145, 0);
     flex-wrap: wrap;
     justify-content: center;
     padding: 0.5em;
+    background-color: rgb(186, 194, 226);
+}
+#abilityArea > div
+{
     background-color: white;
 }
 #ability1Area
@@ -745,6 +791,11 @@ button:active
     transition: 0.15s;
 }
 /* info stuff */
+#infoArea > p
+{
+    background-color: white;
+    border: solid black 0.2em;
+}
 #multiplierInfo
 {
     display: none;
@@ -767,14 +818,15 @@ button:active
     justify-content: center;
     bottom: 0;
     width: 100%;
+    z-index: 3;
 }
 #tabs > div
 {
     display: inline-block;
     position: relative;
     bottom: 0;
-    width: 45%;
-    margin: 0em 1% 0em 1%;
+    width: 18%;
+    /*margin: 0em 1% 0em 1%;*/
     border: solid black 0.2em;
     border-bottom: none;
     border-radius: 0.5em 0.5em 0em 0em;
@@ -782,10 +834,11 @@ button:active
     background-color: white;
     box-shadow: black 0em 0.5em;
     transition: 0.2s;
+    z-index: 3;
 }
 #tabs > div:hover
 {
-    transform: translateY(-0.33em);
+    transform: scaleY(1.1) translateY(-0.15em);
     transition: 0.2s;
 }
 /* prestige styles */
@@ -799,7 +852,6 @@ button:active
 #prestigeButton
 {
     padding: 0.1em;
-    width: 20em;
     font-size: 2em;
     background-color: rgb(41, 80, 41);
     text-shadow: rgb(0, 255, 0) 0em 0em 0.1em;
@@ -841,12 +893,7 @@ button:active
     margin: 1%;
     background-color: white;
 }
-.hidden{
-    display: none;
-}
-.shown{
-    display: block;
-}
+
 /* artifact image styles */
 figure > img
 {
