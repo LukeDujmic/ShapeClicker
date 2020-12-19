@@ -85,8 +85,11 @@
         </div>
 
         <div id="sideGameArea" class="disabled">
-            <button id="minimizeButton" onclick="minimizeSide()">Minimize</button>
-            <button id="multiButton" onclick="multiUpgrade()">Multi-Upgrade</button>
+            <div id="fixedButtons">
+                <button id="minimizeButton" onclick="minimizeSide()">Minimize</button>
+                <button id="multiButton" onclick="multiUpgrade()">Multi-Upgrade</button>
+            </div>
+            
             <div id="heroesSection" class="hidden">
                 <div id="infoArea">
                     <button id="multInfoButton">Show Levelling Info</button>
@@ -220,6 +223,7 @@
                         
                     </div>
                 </div>
+                <div id="totalHeroDps">Total Hero DPS: <a id="allHeroDmg">0</a></div>
                 <div id="heroesArea">
                     
                     <div id="hero1" class="heroBox">
@@ -455,7 +459,7 @@
         
                 <div id="artifactArea">
                     <div id="artifactButtonArea">
-                        <button id="artifactBuyButton" onclick="buyArtifact()">Unlock Geometric Artifact (Cost: <a id="artifactBCost">1</a> Shapestone)</button>
+                        <button id="artifactBuyButton" onclick="buyArtifact()"><a id="artUnlockText">Unlock Geometric Artifact (Cost: </a><a id="artifactBCost">1 Shapestone)</a></button>
                     </div>
                     <div id="artifactsBox">
                         <div>
@@ -484,6 +488,12 @@
                             <div>Artifact Damage: +<a id="art4Dmg">0</a></div>
                             <div>All Hero Damage x <a id="art4Mult">0</a></div>
                             <button id="artifact4Upgrade">Upgrade (Cost: <a id="art4Cost">0</a>)</button>
+                        </div>
+                        <div id="artifact5" class="hidden">
+                            <figure><img src="images/squareOfMight.png"><figcaption>Square of Might (Level <a id="art5Lvl">0</a>)</figcaption></figure>
+                            <div>Artifact Damage: +<a id="art5Dmg">0</a></div>
+                            <div>Click Damage x <a id="art5Mult">0</a></div>
+                            <button id="artifact5Upgrade">Upgrade (Cost: <a id="art5Cost">0</a>)</button>
                         </div>
                     </div>
                     

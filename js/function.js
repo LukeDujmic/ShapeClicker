@@ -83,6 +83,7 @@ var savePass;
 var allDamageMultP = 1;
 var allGoldMultP = 1;
 var heroDamageMultP = 1;
+var clickDamageMultP = 1;
 // the prestige function is given some time before running with this 'defer' function (so that glitches don't happen with active abilities and such)
 function prestigeDefer()
 {
@@ -2529,7 +2530,7 @@ function upgrade()
     if (gold >= clickUpCost)
     {
         gold -= clickUpCost;
-        damage[1] = (allDamageMultP * clickDamageMult[1] * (4 + clickLevel[1]) * (1.01**(clickLevel[1] - 1)));
+        damage[1] = (allDamageMultP * clickDamageMultP * clickDamageMult[1] * (4 + clickLevel[1]) * (1.01**(clickLevel[1] - 1)));
         clickUpCost = ((clickBaseCost/5) * (5 + clickLevel[1]) * (1.055**(clickLevel[1] - 1)));
         clickLevel[1]++;
         displayStats();
@@ -2542,7 +2543,7 @@ function upgrade2()
     if (gold >= clickUpCost2)
     {
         gold -= clickUpCost2;
-        damage[2] = (allDamageMultP * clickDamageMult[2] * (4 + clickLevel[2]) * (1.01**(clickLevel[2] - 1)));
+        damage[2] = (allDamageMultP * clickDamageMultP * clickDamageMult[2] * (4 + clickLevel[2]) * (1.01**(clickLevel[2] - 1)));
         clickUpCost2 = ((clickBaseCost2/5) * (5 + clickLevel[2]) * (1.055**(clickLevel[2] - 1)));
         clickLevel[2]++;
         displayStats();
@@ -2748,6 +2749,7 @@ function allClickMultiplier(i)
     {
         clickDamageMult[j] *= i;
     }
+    allClickMultP = squaMightMult;
 }
 function allDamageMultiplier(i)
 {
@@ -2760,6 +2762,7 @@ function allDamageMultiplier(i)
     damage[2] *= i;
     allDamageMultP = allDamageMult * (totalArtDmg + 1) * coreStrengthMult;
     heroDamageMultP = heroDamageMult * inspDiamMult;
+    allClickMultP = squaMightMult;
 }
 function heroDamageMultiplier(i)
 {
@@ -3062,8 +3065,8 @@ function damageSet()
     heroDamage[10] = (allDamageMultP * heroColorDmg[3] * rangedHeroDmg * heroDamageMultP * hDmgMult[10] * (heroBaseDamage[10]/5) * (5 + heroLvl[10]) * (1.01**(heroLvl[10])));
     heroDamage[11] = (allDamageMultP * heroColorDmg[6] * meleeHeroDmg * heroDamageMultP * hDmgMult[11] * (heroBaseDamage[11]/5) * (5 + heroLvl[11]) * (1.01**(heroLvl[11])));
     heroDamage[12] = (allDamageMultP * heroColorDmg[2] * rangedHeroDmg * heroDamageMultP * hDmgMult[12] * (heroBaseDamage[12]/5) * (5 + heroLvl[12]) * (1.01**(heroLvl[12])));
-    damage[1] = (allDamageMultP * clickDamageMult[1] * (4 + clickLevel[1]) * (1.01**(clickLevel[1] - 1)));
-    damage[2] = (allDamageMultP * clickDamageMult[2] * (4 + clickLevel[2]) * (1.01**(clickLevel[2] - 1)));
+    damage[1] = (allDamageMultP * clickDamageMultP * clickDamageMult[1] * (4 + clickLevel[1]) * (1.01**(clickLevel[1] - 1)));
+    damage[2] = (allDamageMultP * clickDamageMultP * clickDamageMult[2] * (4 + clickLevel[2]) * (1.01**(clickLevel[2] - 1)));
 }
 //sets the multipliers up (the ones that are constant due to artifacts)
 function multiplierSet()
@@ -3072,6 +3075,7 @@ function multiplierSet()
     allGoldMultP = allGoldMult * radiantCubeMult;
     clickCritMultP = clickCritMult * honedTriMult;
     heroDamageMultP = heroDamageMult * inspDiamMult;
+    clickDamageMultP = squaMightMult;
 }
 // this function is vital for showing everything on the website itself.  It also runs some functions to check values
 function displayStats()
@@ -3154,6 +3158,8 @@ function displayStats()
     document.getElementById("hero12Lvl").innerHTML = heroLvl[12];
     document.getElementById("hero12Damage").innerHTML = convrt(heroDamage[12]);
 
+    /* total hero DPS */
+    document.getElementById("allHeroDmg").innerHTML = convrt(allHeroDmg);
     /* Ability Stuff */
     document.getElementById("aLvl1").innerHTML = aLvl[1];
     document.getElementById("shapeRageMult").innerHTML = convrt(shapeRageMult);
@@ -3163,6 +3169,11 @@ function displayStats()
     document.getElementById("aDurationBase1").innerHTML = convrt(aDurationBase[1]);
 
     /* prestige stuff */
+    if (artAmount >= artUnlocked.length - 1)
+    {
+        document.getElementById("artUnlockText").innerHTML = 'MAX Artifacts Owned';
+        document.getElementById("artifactBCost").innerHTML = '';
+    }
     if (stage >=80)
     {
         document.getElementById("artifactEarn").innerHTML = "Restart and Earn "+convrt(Math.ceil(((stage - 69) / 14)**1.75))+" Shapestone";
@@ -3172,7 +3183,12 @@ function displayStats()
         document.getElementById("artifactEarn").innerHTML = "Unlock at Stage 80";
     }
     document.getElementById("shapestoneAmount").innerHTML = convrt(shapestone);
-    document.getElementById("artifactBCost").innerHTML = convrt(artUnlockCost);
+    if (artAmount < artUnlocked.length - 1)
+    {
+        document.getElementById("artifactBCost").innerHTML = convrt(artUnlockCost)+' Shapestone)';
+        document.getElementById("artUnlockText").innerHTML = 'Unlock Geometric Artifact (Cost: ';
+    }
+    
     document.getElementById("totalArtDmg").innerHTML = convrt(1 + totalArtDmg);
     if (artUnlocked[1] == true)
     {
@@ -3201,6 +3217,13 @@ function displayStats()
         document.getElementById("art4Lvl").innerHTML = convrt(artifact4.level);
         document.getElementById("art4Dmg").innerHTML = convrt(artifact4.artDmg);
         document.getElementById("art4Mult").innerHTML = convrt(artifact4.artMult);
+    }
+    if (artUnlocked[5] == true)
+    {
+        document.getElementById("art5Cost").innerHTML = convrt(artifact5.upCost);
+        document.getElementById("art5Lvl").innerHTML = convrt(artifact5.level);
+        document.getElementById("art5Dmg").innerHTML = convrt(artifact5.artDmg);
+        document.getElementById("art5Mult").innerHTML = convrt(artifact5.artMult);
     }
     /* Health Bar Stuff */
     document.getElementById("healthStat").style.backgroundSize = ((health/maxHealth) * 100)+"% 100%";
@@ -3593,6 +3616,7 @@ function saveGameDefer()
     localStorage.setItem('aCost', JSON.stringify(aCost));
     localStorage.setItem('aLvl', JSON.stringify(aLvl));
     localStorage.setItem('shapeRageMult', JSON.stringify(shapeRageMult));
+    //milestones
     localStorage.setItem('h1M', JSON.stringify(h1M));
     localStorage.setItem('h2M', JSON.stringify(h2M));
     localStorage.setItem('h3M', JSON.stringify(h3M));
@@ -3618,7 +3642,8 @@ function saveGameDefer()
     localStorage.setItem('allDamageMultP', JSON.stringify(allDamageMultP));
     localStorage.setItem('allGoldMultP', JSON.stringify(allGoldMultP));
     localStorage.setItem('clickCritMultP', JSON.stringify(clickCritMultP));
-    localStorage.setItem('heroDamageMultP', JSON.stringify(heroDamageMultP));
+    localStorage.setItem('heroDamageMultP', JSON.stringify(heroDamageMulP));
+    localStorage.setItem('clickDamageMultP', JSON.stringify(clickDamageMultP));
     //artifacts
     localStorage.setItem('artUnlockCost', JSON.stringify(artUnlockCost));
     localStorage.setItem('artifact1', JSON.stringify(artifact1));
@@ -3629,6 +3654,8 @@ function saveGameDefer()
     localStorage.setItem('honedTriMult', JSON.stringify(honedTriMult));
     localStorage.setItem('artifact4', JSON.stringify(artifact4));
     localStorage.setItem('inspDiamMult', JSON.stringify(inspDiamMult));
+    localStorage.setItem('artifact5', JSON.stringify(artifact5));
+    localStorage.setItem('squaMightMult', JSON.stringify(squaMightMult));
 }
 function loadGame() //this load function just loads all of the saved local information for ALL the variables.  This thing gives a crap ton of issues when loading a new version of the game from an old save, so I have several checks
 {
@@ -3702,6 +3729,7 @@ function loadGame() //this load function just loads all of the saved local infor
         allDamageMultP = JSON.parse(localStorage.getItem('allDamageMultP'));
         allGoldMultP = JSON.parse(localStorage.getItem('allGoldMultP'));
         clickCritMultP = JSON.parse(localStorage.getItem('clickCritMultP'));
+        clickDamageMultP = JSON.parse(localStorage.getItem('clickDamageMultP'));
 
         artUnlocked = JSON.parse(localStorage.getItem('artUnlocked'));
         if (artUnlocked == undefined){
@@ -3752,6 +3780,12 @@ function loadGame() //this load function just loads all of the saved local infor
         if (bossChallenged == null || bossChallenged == undefined)
         {
             bossChallenged = false;
+        }
+        if (bossChallenged == true)
+        {
+            stageProgress = 5;
+            document.getElementById('bossButton').addEventListener('click', fightBoss);
+            document.getElementById('bossButton').innerHTML = 'Fight Boss';
         }
         if (boss == true)   // resetting to the stage before a boss if the user saved during a boss
         {
@@ -3912,6 +3946,17 @@ function loadGame() //this load function just loads all of the saved local infor
             document.getElementById("artifact4").classList.add("shown");
             document.getElementById("artifact4").classList.remove("hidden");
         }
+
+        artifact5 = JSON.parse(localStorage.getItem('artifact5'));
+        squaMightMult = JSON.parse(localStorage.getItem('squaMightMult'));
+        if (squaMightMult == undefined){
+            squaMightMult = 1;
+        }
+        if (artUnlocked[5] == true){
+            resetArtUpgradeButton();
+            document.getElementById("artifact5").classList.add("shown");
+            document.getElementById("artifact5").classList.remove("hidden");
+        }
         console.log(heroNumber);
         checkHeroUpdate();
     }
@@ -4052,6 +4097,7 @@ function testDisplay(){
     console.log(artifact2);
     console.log(artifact3);
     console.log(artifact4);
+    console.log(artifact5);
 }
 
 var faust = setInterval(displayStats, 10);

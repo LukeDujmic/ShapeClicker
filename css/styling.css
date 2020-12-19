@@ -39,7 +39,7 @@ body{
 }
 #enemyArea
 {
-    height: 35em;
+    height: 80%;
     border: black solid 0.5em;
     border-bottom: none;
     background-color: white;
@@ -309,6 +309,13 @@ p
     padding: 0.1em;
     border-left: none;
     border-top: none;
+}
+#totalHeroDps
+{
+    background-color: white;
+    border: solid black 0.2em;
+    padding: 0.05em;
+    font-size: 1.2em;
 }
 #hero1Sprite
 {
@@ -627,7 +634,7 @@ border-top: 10px solid rgb(0, 145, 0);
 #goldStat
 {
     box-sizing: border-box;
-    width: 25%;
+    width: 100%;
     color:rgb(255, 187, 0);
     text-shadow: black 0.04em 0em, black -0.04em 0em, black 0em 0.04em, black 0em -0.04em;
     border-radius: 0.1em;
