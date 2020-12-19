@@ -3370,6 +3370,9 @@ function clickTabOpen()
     document.getElementById("prestigingArea").classList.add("hidden");
     document.getElementById("saveInfoArea").classList.remove("shown");
     document.getElementById("saveInfoArea").classList.add("hidden");
+
+    document.getElementById("multiButton").classList.add("shown");
+    document.getElementById("multiButton").classList.remove("hidden");
 }
 
 function heroTabOpen()
@@ -3393,6 +3396,9 @@ function heroTabOpen()
     document.getElementById("prestigingArea").classList.add("hidden");
     document.getElementById("saveInfoArea").classList.remove("shown");
     document.getElementById("saveInfoArea").classList.add("hidden");
+
+    document.getElementById("multiButton").classList.add("shown");
+    document.getElementById("multiButton").classList.remove("hidden");
 }
 
 function abilitiesTabOpen()
@@ -3418,6 +3424,9 @@ function abilitiesTabOpen()
     document.getElementById("saveInfoArea").classList.add("hidden");
     document.getElementById("saveInfoArea").classList.remove("shown");
     document.getElementById("saveInfoArea").classList.add("hidden");
+
+    document.getElementById("multiButton").classList.remove("shown");
+    document.getElementById("multiButton").classList.add("hidden");
 }
 
 function artifactsTabOpen()
@@ -3441,6 +3450,9 @@ function artifactsTabOpen()
     document.getElementById("prestigingArea").classList.remove("hidden");
     document.getElementById("saveInfoArea").classList.remove("shown");
     document.getElementById("saveInfoArea").classList.add("hidden");
+
+    document.getElementById("multiButton").classList.remove("shown");
+    document.getElementById("multiButton").classList.add("hidden");
 }
 
 function infoTabOpen()
@@ -3455,7 +3467,7 @@ function infoTabOpen()
     document.getElementById("player1").classList.add("hidden");
     document.getElementById("player2").classList.remove("shown");
     document.getElementById("player2").classList.add("hidden");
-    
+
     document.getElementById("heroesSection").classList.remove("shown");
     document.getElementById("heroesSection").classList.add("hidden");
     document.getElementById("abilitiesArea").classList.remove("shown");
@@ -3464,6 +3476,9 @@ function infoTabOpen()
     document.getElementById("prestigingArea").classList.add("hidden");
     document.getElementById("saveInfoArea").classList.add("shown");
     document.getElementById("saveInfoArea").classList.remove("hidden");
+
+    document.getElementById("multiButton").classList.remove("shown");
+    document.getElementById("multiButton").classList.add("hidden");
 }
 
 function minimizeSide()
