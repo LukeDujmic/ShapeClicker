@@ -791,7 +791,7 @@ button:active
     transition: 0.15s;
 }
 /* info stuff */
-#infoArea > p
+#infoArea > div > div > p
 {
     background-color: white;
     border: solid black 0.2em;
@@ -800,7 +800,7 @@ button:active
 {
     display: none;
 }
-#multiplierInfo > div
+#multiplierInfo > div > div
 {
     margin-left: 1em;
     margin-right: 1em;

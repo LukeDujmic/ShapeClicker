@@ -3361,11 +3361,9 @@ function clickTabOpen()
     document.getElementById("player1").classList.remove("hidden");
     document.getElementById("player2").classList.add("shown");
     document.getElementById("player2").classList.remove("hidden");
-    for (i = 1; i < heroNumber.length; i++)
-    {
-        document.getElementById("hero"+i).classList.add("hidden");
-        document.getElementById("hero"+i).classList.remove("shown");
-    }
+
+    document.getElementById("heroesSection").classList.remove("shown");
+    document.getElementById("heroesSection").classList.add("hidden");
     document.getElementById("abilitiesArea").classList.remove("shown");
     document.getElementById("abilitiesArea").classList.add("hidden");
     document.getElementById("prestigingArea").classList.remove("shown");
@@ -3386,11 +3384,9 @@ function heroTabOpen()
     document.getElementById("player1").classList.add("hidden");
     document.getElementById("player2").classList.remove("shown");
     document.getElementById("player2").classList.add("hidden");
-    for (i = 1; i < heroNumber.length; i++)
-    {
-        document.getElementById("hero"+i).classList.remove("hidden");
-        document.getElementById("hero"+i).classList.add("shown");
-    }
+
+    document.getElementById("heroesSection").classList.add("shown");
+    document.getElementById("heroesSection").classList.remove("hidden");
     document.getElementById("abilitiesArea").classList.remove("shown");
     document.getElementById("abilitiesArea").classList.add("hidden");
     document.getElementById("prestigingArea").classList.remove("shown");
@@ -3411,11 +3407,9 @@ function abilitiesTabOpen()
     document.getElementById("player1").classList.add("hidden");
     document.getElementById("player2").classList.remove("shown");
     document.getElementById("player2").classList.add("hidden");
-    for (i = 1; i < heroNumber.length; i++)
-    {
-        document.getElementById("hero"+i).classList.add("hidden");
-        document.getElementById("hero"+i).classList.remove("shown");
-    }
+
+    document.getElementById("heroesSection").classList.remove("shown");
+    document.getElementById("heroesSection").classList.add("hidden");
     document.getElementById("abilitiesArea").classList.add("shown");
     document.getElementById("abilitiesArea").classList.remove("hidden");
     document.getElementById("prestigingArea").classList.remove("shown");
@@ -3438,11 +3432,9 @@ function artifactsTabOpen()
     document.getElementById("player1").classList.add("hidden");
     document.getElementById("player2").classList.remove("shown");
     document.getElementById("player2").classList.add("hidden");
-    for (i = 1; i < heroNumber.length; i++)
-    {
-        document.getElementById("hero"+i).classList.add("hidden");
-        document.getElementById("hero"+i).classList.remove("shown");
-    }
+
+    document.getElementById("heroesSection").classList.remove("shown");
+    document.getElementById("heroesSection").classList.add("hidden");
     document.getElementById("abilitiesArea").classList.remove("shown");
     document.getElementById("abilitiesArea").classList.add("hidden");
     document.getElementById("prestigingArea").classList.add("shown");
@@ -3463,11 +3455,9 @@ function infoTabOpen()
     document.getElementById("player1").classList.add("hidden");
     document.getElementById("player2").classList.remove("shown");
     document.getElementById("player2").classList.add("hidden");
-    for (i = 1; i < heroNumber.length; i++)
-    {
-        document.getElementById("hero"+i).classList.add("hidden");
-        document.getElementById("hero"+i).classList.remove("shown");
-    }
+    
+    document.getElementById("heroesSection").classList.remove("shown");
+    document.getElementById("heroesSection").classList.add("hidden");
     document.getElementById("abilitiesArea").classList.remove("shown");
     document.getElementById("abilitiesArea").classList.add("hidden");
     document.getElementById("prestigingArea").classList.remove("shown");
