@@ -39,6 +39,7 @@ body{
 }
 #enemyArea
 {
+    min-height: 35em;
     height: 80%;
     border: black solid 0.5em;
     border-bottom: none;
