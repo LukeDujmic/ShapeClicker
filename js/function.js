@@ -3197,7 +3197,7 @@ function displayStats()
     document.getElementById("shapestoneAmount").innerHTML = convrt(shapestone);
     if (artAmount < artUnlocked.length - 1)
     {
-        document.getElementById("artifactBCost").innerHTML = convrt(artUnlockCost)+' Shapestone)';
+        document.getElementById("artifactBCost").innerHTML = convrt(Math.floor((artAmount + 1) * 1.35**(artAmount + 1)))+' Shapestone)';
         document.getElementById("artUnlockText").innerHTML = 'Unlock Geometric Artifact (Cost: ';
     }
     
@@ -3924,7 +3924,14 @@ function loadGame() //this load function just loads all of the saved local infor
             resetArtUpgradeButton();
             document.getElementById("artifact1").classList.add("shown");
             document.getElementById("artifact1").classList.remove("hidden");
+            if (artifact1 == undefined)
+            {
+                artUnlocked[1] == false;
+                artAmount -= 1;
+                shapestone += Math.floor((artAmount + 1) * 1.35**(artAmount + 1));
+            }
         }
+        
 
         artifact2 = JSON.parse(localStorage.getItem('artifact2'));
         radiantCubeMult = JSON.parse(localStorage.getItem('radiantCubeMult'));
@@ -3935,6 +3942,12 @@ function loadGame() //this load function just loads all of the saved local infor
             resetArtUpgradeButton();
             document.getElementById("artifact2").classList.add("shown");
             document.getElementById("artifact2").classList.remove("hidden");
+            if (artifact2 == undefined)
+            {
+                artUnlocked[2] == false;
+                artAmount -= 1;
+                shapestone += Math.floor((artAmount + 1) * 1.35**(artAmount + 1));
+            }
         }
 
         artifact3 = JSON.parse(localStorage.getItem('artifact3'));
@@ -3946,6 +3959,12 @@ function loadGame() //this load function just loads all of the saved local infor
             resetArtUpgradeButton();
             document.getElementById("artifact3").classList.add("shown");
             document.getElementById("artifact3").classList.remove("hidden");
+            if (artifact3 == undefined)
+            {
+                artUnlocked[3] == false;
+                artAmount -= 1;
+                shapestone += Math.floor((artAmount + 1) * 1.35**(artAmount + 1));
+            }
         }
 
         artifact4 = JSON.parse(localStorage.getItem('artifact4'));
@@ -3957,6 +3976,12 @@ function loadGame() //this load function just loads all of the saved local infor
             resetArtUpgradeButton();
             document.getElementById("artifact4").classList.add("shown");
             document.getElementById("artifact4").classList.remove("hidden");
+            if (artifact4 == undefined)
+            {
+                artUnlocked[4] == false;
+                artAmount -= 1;
+                shapestone += Math.floor((artAmount + 1) * 1.35**(artAmount + 1));
+            }
         }
 
         artifact5 = JSON.parse(localStorage.getItem('artifact5'));
@@ -3968,6 +3993,12 @@ function loadGame() //this load function just loads all of the saved local infor
             resetArtUpgradeButton();
             document.getElementById("artifact5").classList.add("shown");
             document.getElementById("artifact5").classList.remove("hidden");
+            if (artifact5 == undefined)
+            {
+                artUnlocked[5] == false;
+                artAmount -= 1;
+                shapestone += Math.floor((artAmount + 1) * 1.35**(artAmount + 1));
+            }
         }
         console.log(heroNumber);
         checkHeroUpdate();

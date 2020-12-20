@@ -1,11 +1,27 @@
 // artUnlockCost = (artAmount + 1) * 1.35**(artAmount + 1);
 var artUnlocked = [true, false, false, false, false, false];
 var artUnlockedT = [true, false, false, false, false, false];
-var artifact1 = undefined;
-var artifact2 = undefined;
-var artifact3 = undefined;
-var artifact4 = undefined;
-var artifact5 = undefined;
+if (artUnlocked[1] == false)
+{
+    var artifact1 = undefined;
+}
+if (artUnlocked[2] == false)
+{
+    var artifact2 = undefined;
+}
+if (artUnlocked[3] == false)
+{
+    var artifact3 = undefined;
+}
+if (artUnlocked[4] == false)
+{
+    var artifact4 = undefined;
+}
+if (artUnlocked[5] == false)
+{
+    var artifact5 = undefined;
+}
+
 //setting up artifact variables
 var totalArtDmg = 0;
 var artDamages = [0, 0, 0, 0, 0, 0];
