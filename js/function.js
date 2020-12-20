@@ -1305,6 +1305,17 @@ function buyHero4Milestone()
 }
 
 //Hero 5
+var h5M = [true, false, false, false, false, false, false, false, false, false];
+var hM1Cost5 = milestoneCost(2, 10);
+var hM2Cost5 = milestoneCost(2, 30);
+var hM3Cost5 = milestoneCost(2, 60);
+var hM4Cost5 = milestoneCost(2, 100);
+var hM5Cost5 = milestoneCost(2, 200);
+var hM6Cost5 = milestoneCost(2, 300);
+var hM7Cost5 = milestoneCost(2, 400);
+var hM8Cost5 = milestoneCost(2, 500);
+var hM9Cost5 = milestoneCost(2, 1000);
+
 hDmgMult[5] = 1;
 
 heroDamage[5] = heroDamage[5] * heroDamageMultP * hDmgMult[5] * heroColorDmg[6] * meleeHeroDmg;
@@ -3047,6 +3058,7 @@ document.getElementById("hMCost1").innerHTML = convrt(hM1Cost1);
 document.getElementById("hMCost2").innerHTML = convrt(hM1Cost2);
 document.getElementById("hMCost3").innerHTML = convrt(hM1Cost3);
 document.getElementById("hMCost4").innerHTML = convrt(hM1Cost4);
+document.getElementById("hMCost5").innerHTML = 'Coming Soon';    //convrt(hM1Cost5)
 
 
 document.getElementById("aCost1").innerHTML = 'Stage 10';
@@ -3733,7 +3745,7 @@ function loadGame() //this load function just loads all of the saved local infor
 
         artUnlocked = JSON.parse(localStorage.getItem('artUnlocked'));
         if (artUnlocked == undefined){
-            artUnlocked = [true, false, false, false, false];
+            artUnlocked = [true, false, false, false, false, false];
         }
         totalArtDmg = JSON.parse(localStorage.getItem('totalArtDmg'));
         if (totalArtDmg == undefined){
@@ -3742,7 +3754,7 @@ function loadGame() //this load function just loads all of the saved local infor
 
         artDamages = JSON.parse(localStorage.getItem('artDamages'));
         if (artDamages == undefined){
-            artDamages = [0, 0, 0, 0, 0];
+            artDamages = [0, 0, 0, 0, 0, 0];
         }
 
         h1M = JSON.parse(localStorage.getItem('h1M'));

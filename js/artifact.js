@@ -277,6 +277,9 @@ function resetArtUpgradeButton()
     if (artUnlocked[4] == true){
         document.getElementById("artifact4Upgrade").addEventListener('click', upgradeArt4);
     }
+    if (artUnlocked[5] == true){
+        document.getElementById("artifact5Upgrade").addEventListener('click', upgradeArt5);
+    }
 }
 const artifact = {
     name: '',
