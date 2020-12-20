@@ -3654,7 +3654,7 @@ function saveGameDefer()
     localStorage.setItem('allDamageMultP', JSON.stringify(allDamageMultP));
     localStorage.setItem('allGoldMultP', JSON.stringify(allGoldMultP));
     localStorage.setItem('clickCritMultP', JSON.stringify(clickCritMultP));
-    localStorage.setItem('heroDamageMultP', JSON.stringify(heroDamageMulP));
+    localStorage.setItem('heroDamageMultP', JSON.stringify(heroDamageMultP));
     localStorage.setItem('clickDamageMultP', JSON.stringify(clickDamageMultP));
     //artifacts
     localStorage.setItem('artUnlockCost', JSON.stringify(artUnlockCost));
